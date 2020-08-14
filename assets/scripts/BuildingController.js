@@ -56,7 +56,7 @@ cc.Class({
             this.SpriteR = sprite;
         })
 
-        this.on(cc.Node.EventType.TOUCH_START, (event)=>{
+        this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             // 检查游戏是否处于编辑态
             if(this.GameAdmin.gameState == 1){
                 
