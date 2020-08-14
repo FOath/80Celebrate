@@ -28,15 +28,17 @@ cc.Class({
         
         // 游戏数据记录区
         // 游戏状态
-        gameState: {
+        GameState: {
             get(){
-                return this._gameState;
+                return this._GameState;
             },
             set(value){
-                this._gameState = value;
+                this._GameState = value;
                 this.node.emit('GAME_STATE_CHANGE', value);
             }
         }, // 0 指普通运行态， 1 指编辑态
+        // 编辑界面
+        EditCanvas: cc.Node,
         // 当前放置的建筑总数
 
         // 菱形网格
@@ -76,7 +78,8 @@ cc.Class({
     },
     
     start () {
-
+        this.GameState = 1;
+        this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
     },
     clamp(num, min, max){
         if(num < min){

@@ -28,15 +28,17 @@ cc.Class({
         GameAdmin: cc.Component,
 
         Name: 'woodBuilding',
+        OffsetY: 100,
+        BuildingSize: cc.v2(2, 2),
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
         // 建筑是否翻转
-        isRotate: {
+        IsRotate: {
             get(){
-                return this._isRotate;
+                return this._IsRotate;
             },
             set(value){
-                this._isRotate = value;
+                this._IsRotate = value;
                 if(!value)
                     this.getComponent(cc.Sprite).spriteFrame = this.Sprite;
                 else
@@ -50,7 +52,7 @@ cc.Class({
     onLoad () {
         cc.resources.load(this.Name, cc.SpriteFrame, (err, sprite)=>{
             this.Sprite = sprite;
-            this.isRotate = false;
+            this.IsRotate = false;
         });
         cc.resources.load(this.Name + 'R', cc.SpriteFrame, (err, sprite)=>{
             this.SpriteR = sprite;
@@ -58,8 +60,17 @@ cc.Class({
 
         this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             // 检查游戏是否处于编辑态
-            if(this.GameAdmin.gameState == 1){
-                
+            if(this.GameAdmin.GameState == 1){
+                let EditCanvas = this.GameAdmin.EditCanvas; 
+                if(!EditCanvas.active){
+                    EditCanvas.active = true;
+                    EditCanvas.setPosition(this.node.x, this.node.y);
+                    EditCanvas.addChild(this.node);
+                    EditCanvas.getComponent('EditBuilding').Building = this.node;
+                    EditCanvas.getComponent('EditBuilding').GridSize = this.BuildingSize;
+                    EditCanvas.canPutDown = EditCanvas.checkGrid(this.node.position);
+                    this.node.setPosition(0, this.OffsetY);
+                }
             }
         }, this);
     },
@@ -67,6 +78,8 @@ cc.Class({
     start () {
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
     },
-
+    Rotate(){
+        this.IsRotate = !this.IsRotate;
+    }
     // update (dt) {},
 });

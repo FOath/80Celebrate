@@ -26,10 +26,10 @@ cc.Class({
         // },
         
         // 游戏管理员
-        GameAdmin: cc.Node,
+        GameAdmin: cc.Component,
         // 建筑
         Building: cc.Node,
-        BuildingName: 'woodBuilding',
+        /*BuildingName: 'woodBuilding',
         BuildingSprite: cc.SpriteFrame,
         BuildingSpriteR: cc.SpriteFrame,
         // 建筑是否翻转
@@ -37,14 +37,14 @@ cc.Class({
             get(){
                 return this._isRotate;
             },
-            set(value){
+            set(value){1
                 this._isRotate = value;
                 if(!value)
                     this.Building.getComponent(cc.Sprite).spriteFrame = this.BuildingSprite;
                 else
                     this.Building.getComponent(cc.Sprite).spriteFrame = this.BuildingSpriteR;
             }
-        }, // false代表未翻转，true代表翻转
+        },*/ // false代表未翻转，true代表翻转
         // 设置界面及其子选项
         Setting: cc.Node,
         SettingClose: cc.Node,
@@ -64,8 +64,17 @@ cc.Class({
                 // 计算网格偏移
                 this.GridOffset = cc.v2((value.y-value.x) * this.rhombusWidth / 4, 
                                          (value.x + value.y - 2) * this.rhombusHeight / 4);
+                // 更改位置
+                let pos = this.node.position.add(this.GridOffset);            
+                // 调节位置
+                let newPos = this.checkBuildingPosition(pos);
+                // 检查位置是否合法
+                this.canPutDown = this.checkGrid(newPos);
+                this.node.setPosition(newPos.sub(this.GridOffset));
+
                 // 绘制网格
-                let graphics = this.EditGrid.getComponent(cc.Graphics);                
+                let graphics = this.EditGrid.getComponent(cc.Graphics);
+                graphics.clear();
                 let halfWidth = this.rhombusWidth / 2;
                 let halfHeight = this.rhombusHeight / 2;
                 let origin = this.GridOffset.add(cc.v2(0, 50));
@@ -127,22 +136,13 @@ cc.Class({
 
     start () {
         // 游戏管理员
-        this.GameAdmin = cc.find('/GameAdmin');
+        this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         // 游戏变量获取
-        this.rhombusWidth = this.GameAdmin.getComponent('GameAdmin').rhombusWidth;
-        this.rhombusHeight = this.GameAdmin.getComponent('GameAdmin').rhombusHeight;
-        this.lineCount = this.GameAdmin.getComponent('GameAdmin').lineCount;
+        this.rhombusWidth = this.GameAdmin.rhombusWidth;
+        this.rhombusHeight = this.GameAdmin.rhombusHeight;
+        this.lineCount = this.GameAdmin.lineCount;
         // 建筑
-        this.Building = this.node.getChildByName('Building');
-        this.BuildingY = 100;
-        this.BuildingName = 'brickBuilding';
-        cc.resources.load(this.BuildingName, cc.SpriteFrame, (err, sprite)=>{
-            this.BuildingSprite = sprite;
-            this.isRotate = false;
-        });
-        cc.resources.load(this.BuildingName + 'R', cc.SpriteFrame, (err, sprite)=>{
-            this.BuildingSpriteR = sprite;
-        })
+        // this.Building = this.node.getChildByName('Building');
         // 设置界面及其子选项
         this.Setting = this.node.getChildByName('Setting');
         this.SettingClose = this.Setting.getChildByName('Close');
@@ -150,10 +150,10 @@ cc.Class({
         this.SettingCheck = this.Setting.getChildByName('Check');
         // 编辑网格
         this.EditGrid = this.node.getChildByName('EditGrid');
-        this.GridSize = cc.v2(2, 3);
+        // this.GridSize = cc.v2(2, 3);
         // 绘制编辑网格
-        //this.paintEditGrid(cc.Color.GREEN);
-        this.canPutDown = this.checkGrid(cc.v2(0, 0));
+        // this.paintEditGrid(cc.Color.GREEN);
+        // this.canPutDown = this.checkGrid(cc.v2(0, 0));
         // 计时器
         this.time = 0;
     },
@@ -202,7 +202,7 @@ cc.Class({
         let b2 = pos.y + pos.x * k;
         let yNum = Math.floor((b2 + this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight) / this.rhombusHeight);
         // cc.log(xNum + ' ' + yNum);
-        if(this.GameAdmin.getComponent('GameAdmin').BuildingSpaceArray[xNum][yNum] == 0)
+        if(this.GameAdmin && this.GameAdmin.BuildingSpaceArray[xNum][yNum] == 0)
             return true;
         else
             return false;
@@ -233,14 +233,14 @@ cc.Class({
         }
     },
     rotateBuilding(){
-        //this.isRotate = !this.isRotate;
+        this.Building.getComponent('BuildingController').Rotate();
         if(this.GridSize.x != this.GridSize.y)
             this.GridSize = cc.v2(this.GridSize.y, this.GridSize.x);
     },
     putDownBuilding(){
         if(!this.canPutDown)
             return;
-        
+        /*
         cc.resources.load('prefabs/'+this.BuildingName, (err, prefab)=>{
             var building = cc.instantiate(prefab);
             building.parent = this.node.parent;
@@ -248,7 +248,7 @@ cc.Class({
             building.height = this.Building.height;
             building.setPosition(this.node.x, this.node.y);
             building.getComponent('BuildingController').isRotate = this.isRotate;
-        });
+        });*/
         this.closeEditCanvas();
     },
     closeEditCanvas(){
@@ -257,13 +257,11 @@ cc.Class({
     },
     clearEditCanvas(){
         // 卸载挂载的Building
-        this.Building.getComponent(cc.Sprite).spriteFrame = null;
-        this.BuildingName =     '';
-        this.BuildingSprite = null;
-        this.BuildingSpriteR = null;
+        this.Building = null;
     },
     update (dt) {
         this.time += dt;
-        this.Building.setPosition(this.Building.x, this.BuildingY + 50 * Math.sin(this.time));
+        if(this.Building)
+            this.Building.setPosition(this.Building.x, this.BuildingY + 50 * Math.sin(this.time));
     },
 });
