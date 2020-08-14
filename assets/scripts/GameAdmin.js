@@ -28,7 +28,17 @@ cc.Class({
         
         // 游戏数据记录区
         // 游戏状态
-        gameState: 0, // 0 指普通运行态， 1 指编辑态
+        gameState: {
+            get(){
+                return this._gameState;
+            },
+            set(value){
+                this._gameState = value;
+                this.node.emit('GAME_STATE_CHANGE', value);
+            }
+        }, // 0 指普通运行态， 1 指编辑态
+        // 当前放置的建筑总数
+
         // 菱形网格
         rhombusWidth: 200, // 地形菱形网格宽
         rhombusHeight: 100, // 地形菱形网格高

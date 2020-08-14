@@ -24,6 +24,9 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        // 游戏管理员
+        GameAdmin: cc.Component,
+
         Name: 'woodBuilding',
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
@@ -52,10 +55,17 @@ cc.Class({
         cc.resources.load(this.Name + 'R', cc.SpriteFrame, (err, sprite)=>{
             this.SpriteR = sprite;
         })
+
+        this.on(cc.Node.EventType.TOUCH_START, (event)=>{
+            // 检查游戏是否处于编辑态
+            if(this.GameAdmin.gameState == 1){
+                
+            }
+        }, this);
     },
-
+ 
     start () {
-
+        this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
     },
 
     // update (dt) {},
