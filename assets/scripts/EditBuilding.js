@@ -29,6 +29,7 @@ cc.Class({
         GameAdmin: cc.Component,
         // 建筑
         Building: cc.Node,
+        BuildingBeforePos: cc.v2(0, 0),
         /*BuildingName: 'woodBuilding',
         BuildingSprite: cc.SpriteFrame,
         BuildingSpriteR: cc.SpriteFrame,
@@ -52,8 +53,6 @@ cc.Class({
         SettingCheck: cc.Node,
         // 编辑网格节点
         EditGrid: cc.Node,
-        // 编辑网格偏移
-        GridOffsets: Array,
         // 编辑网格大小
         GridSize: {
             get(){
@@ -69,9 +68,8 @@ cc.Class({
                 // 调节位置
                 let newPos = this.checkBuildingPosition(pos);
                 // 检查位置是否合法
-                this.canPutDown = this.checkGrid(newPos);
+                this.canPutDown = this.checkGrids(newPos);
                 this.node.setPosition(newPos.sub(this.GridOffset));
-
                 // 绘制网格
                 let graphics = this.EditGrid.getComponent(cc.Graphics);
                 graphics.clear();
@@ -94,7 +92,8 @@ cc.Class({
                 graphics.stroke();
             }
         },
-        
+        // 编辑类型
+        EditType: 0, // 0表示是创建物体，1表示是移动物体        
 
         // 是否可放置
         canPutDown: {
@@ -103,6 +102,8 @@ cc.Class({
             },
             set(value){
                 this._canPutDown = value;
+                if(!this.EditGrid)
+                    this.EditGrid = this.node.getChildByName('EditGrid');
                 if(!value){
                     // 编辑网格变色
                     this.EditGrid.getComponent(cc.Graphics).strokeColor = cc.Color.RED;
@@ -110,8 +111,15 @@ cc.Class({
                 else{
                     // 编辑网格变色
                     this.EditGrid.getComponent(cc.Graphics).strokeColor = cc.Color.GREEN;
-                }
+                }   
                 this.EditGrid.getComponent(cc.Graphics).stroke();
+                
+                if(!this.Setting){
+                    this.Setting = this.node.getChildByName('Setting');
+                    this.SettingClose = this.Setting.getChildByName('Close');
+                    this.SettingRotate = this.Setting.getChildByName('Rotate');
+                    this.SettingCheck = this.Setting.getChildByName('Check');                                
+                }                
                 this.SettingCheck.getComponent(cc.Button).interactable = value;
             }
         }
@@ -120,14 +128,13 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // 初始化网格偏移
-        this.gridOffsets = new Array();
+        // 绑定点击事件
         this.node.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
             let pos = this.node.parent.convertToNodeSpaceAR(event.getLocation()).add(this.GridOffset);            
             // 调节位置
             let newPos = this.checkBuildingPosition(pos);
             // 检查位置是否合法
-            this.canPutDown = this.checkGrid(newPos);
+            this.canPutDown = this.checkGrids(newPos);
             this.node.setPosition(newPos.sub(this.GridOffset));
             // 停止触摸事件传播
             event.stopPropagation();
@@ -137,12 +144,14 @@ cc.Class({
     start () {
         // 游戏管理员
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
+        // 游戏界面
+        this.GameCanvas = cc.find('/Canvas/GameCanvas');
         // 游戏变量获取
         this.rhombusWidth = this.GameAdmin.rhombusWidth;
         this.rhombusHeight = this.GameAdmin.rhombusHeight;
         this.lineCount = this.GameAdmin.lineCount;
         // 建筑
-        // this.Building = this.node.getChildByName('Building');
+        this.Building = null;
         // 设置界面及其子选项
         this.Setting = this.node.getChildByName('Setting');
         this.SettingClose = this.Setting.getChildByName('Close');
@@ -150,10 +159,9 @@ cc.Class({
         this.SettingCheck = this.Setting.getChildByName('Check');
         // 编辑网格
         this.EditGrid = this.node.getChildByName('EditGrid');
-        // this.GridSize = cc.v2(2, 3);
-        // 绘制编辑网格
-        // this.paintEditGrid(cc.Color.GREEN);
-        // this.canPutDown = this.checkGrid(cc.v2(0, 0));
+        
+        this.EditGrid.zIndex = 0;
+        this.Setting.zIndex = 2;
         // 计时器
         this.time = 0;
     },
@@ -173,7 +181,7 @@ cc.Class({
         }
         return cc.v2(xNum * halfGridWidth, yNum * halfGridHeight);
     },
-    checkGrid(newPos){
+    checkGrids(newPos){
         let state = true;
             for(let i = 0; i < this.GridSize.y; ++i){
                 for(let j = 0; j < this.GridSize.x; ++j){
@@ -193,44 +201,36 @@ cc.Class({
         // 首先检查是否越界
         if(Math.abs(0.5 * pos.x) + Math.abs(pos.y) >= (this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight))
             return false;
-        // 先求pos所在直线的截距
-        let k = this.rhombusHeight / this.rhombusWidth;
-        let b1 = pos.y - pos.x * k;
-        let xNum = Math.floor((b1 + this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight) / this.rhombusHeight);
-        xNum = (2 * this.lineCount) - xNum; // x轴上的映射方向是相反的
-        
-        let b2 = pos.y + pos.x * k;
-        let yNum = Math.floor((b2 + this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight) / this.rhombusHeight);
-        // cc.log(xNum + ' ' + yNum);
-        if(this.GameAdmin && this.GameAdmin.BuildingSpaceArray[xNum][yNum] == 0)
+        // 网格位置变为网格坐标
+        let gridCoord = this.gridPosToGridCoord(pos.x, pos.y);
+        if(this.GameAdmin && this.GameAdmin.BuildingSpaceArray[gridCoord.x][gridCoord.y] == 0)
             return true;
         else
             return false;
     },
-    paintEditGrid(color){
-        let graphics = this.EditGrid.getComponent(cc.Graphics);
-        if(!graphics)
-            graphics = this.EditGrid.addComponent(cc.Graphics);
+    setBuilding(building, type){
+        if(this.node.childrenCount >= 3)
+            return;
         
-        graphics.strokeColor = color;
-        // 2行2列时
-        if(this.size.x == 2 && this.size.y ==  2){
-            let halfWidth = this.rhombusWidth / 2;
-            let halfHeight = this.rhombusHeight / 2;
-            let offsetH = 2 * this.rhombusWidth / 2;
-            let offsetV = 2 * this.rhombusHeight / 2;
-            // 斜向上
-            for(let i = 0; i <= 2; ++i){
-                graphics.moveTo(i * halfWidth - offsetH, -i * halfHeight);
-                graphics.lineTo(i * halfWidth, -i * halfHeight + offsetV);
-            }
-            // 斜向下
-            for(let i = 0; i <= 2; ++i){
-                graphics.moveTo(i * halfWidth - offsetH, i * halfHeight);
-                graphics.lineTo(i * halfWidth, i * halfHeight - offsetV);
-            }
-            graphics.stroke();
+        // 显示编辑界面
+        this.Setting.active = true;
+        this.EditGrid.active = true;
+        // 记录建筑之前的位置
+        this.EditType = type;
+        this.Building = building;
+        this.OffsetY = building.getComponent('BuildingController').OffsetY;
+        this.GridSize = this.Building.getComponent('BuildingController').BuildingSize;
+        if(type == 1){ // 0 表示创建建筑，1表示移动建筑
+            this.BuildingBeforePos = cc.v2(building.x, building.y);    
+            // 将之前建筑所在地盘的BuildingSpaceArray归0
+            this.setBuildingSpaceArray(this.BuildingBeforePos.x + this.GridOffset.x, this.BuildingBeforePos.y + this.GridOffset.y, 0);
+            this.canPutDown = true;
         }
+        this.node.setPosition(building.x, building.y);
+        building.parent = this.node;
+        building.zIndex = 1;
+        building.setPosition(0, building.getComponent('BuildingController').OffsetY);
+        
     },
     rotateBuilding(){
         this.Building.getComponent('BuildingController').Rotate();
@@ -240,28 +240,60 @@ cc.Class({
     putDownBuilding(){
         if(!this.canPutDown)
             return;
-        /*
-        cc.resources.load('prefabs/'+this.BuildingName, (err, prefab)=>{
-            var building = cc.instantiate(prefab);
-            building.parent = this.node.parent;
-            building.width = this.Building.width;
-            building.height = this.Building.height;
-            building.setPosition(this.node.x, this.node.y);
-            building.getComponent('BuildingController').isRotate = this.isRotate;
-        });*/
-        this.closeEditCanvas();
+        
+        // 将现在建筑所在地盘的BuildingSpaceArray归1
+        this.setBuildingSpaceArray(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y, 1);
+        this.Building.parent = this.GameCanvas;
+        this.Building.setPosition(this.node.x, this.node.y);
+        this.Building = null;
+    
+        // 隐藏编辑界面
+        this.Setting.active = false;
+        this.EditGrid.active = false;
+    },
+    setBuildingSpaceArray(x, y, state){
+        // 更改GameAdmin的BuildingSpaceArray和BuildingBuffArray
+        for(let i = 0; i < this.GridSize.y; ++i){
+            for(let j = 0; j < this.GridSize.x; ++j){
+                let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
+                let gridPos = cc.v2(x, y).add(offset);
+                
+                let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                this.GameAdmin.BuildingSpaceArray[gridCoord.x][gridCoord.y] = state;
+            }
+        }
+    },
+    gridPosToGridCoord(x, y){
+        let k = this.rhombusHeight / this.rhombusWidth;
+        let b1 = y - x * k;
+        let xNum = Math.floor((b1 + this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight) / this.rhombusHeight);
+        xNum = (2 * this.lineCount) - xNum; // x轴上的映射方向是相反的
+
+        let b2 = y + x * k;
+        let yNum = Math.floor((b2 + this.lineCount * this.rhombusHeight + 0.5 * this.rhombusHeight) / this.rhombusHeight);
+
+        return cc.v2(xNum, yNum);
     },
     closeEditCanvas(){
-        this.clearEditCanvas();
-        this.node.active = false;
-    },
-    clearEditCanvas(){
-        // 卸载挂载的Building
-        this.Building = null;
+        if(this.EditType == 1){
+            // 在移动物体，取消时物体放回原处
+            this.Building.parent = this.GameCanvas;
+            this.Building.setPosition(this.BuildingBeforePos.x, this.BuildingBeforePos.y);
+            this.Building = null;
+        }
+        else{
+            // 在创建物体，取消时删除物体
+
+            this.Building.removeFromParent(false);
+            this.Building = null;
+        }
+        // 隐藏编辑界面
+        this.Setting.active = false;
+        this.EditGrid.active = false;
     },
     update (dt) {
         this.time += dt;
         if(this.Building)
-            this.Building.setPosition(this.Building.x, this.BuildingY + 50 * Math.sin(this.time));
+            this.Building.setPosition(this.Building.x, this.OffsetY + 50 * Math.sin(this.time));
     },
 });

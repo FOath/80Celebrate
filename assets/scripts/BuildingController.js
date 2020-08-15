@@ -30,8 +30,10 @@ cc.Class({
         Name: 'woodBuilding',
         OffsetY: 100,
         BuildingSize: cc.v2(2, 2),
+        BuildingBuff: 0x0000000,
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
+        
         // 建筑是否翻转
         IsRotate: {
             get(){
@@ -61,21 +63,17 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             // 检查游戏是否处于编辑态
             if(this.GameAdmin.GameState == 1){
-                let EditCanvas = this.GameAdmin.EditCanvas; 
-                if(!EditCanvas.active){
-                    EditCanvas.active = true;
-                    EditCanvas.setPosition(this.node.x, this.node.y);
-                    EditCanvas.addChild(this.node);
-                    EditCanvas.getComponent('EditBuilding').Building = this.node;
-                    EditCanvas.getComponent('EditBuilding').GridSize = this.BuildingSize;
-                    EditCanvas.canPutDown = EditCanvas.checkGrid(this.node.position);
-                    this.node.setPosition(0, this.OffsetY);
-                }
+                let EditCanvas = this.GameAdmin.EditCanvas;
+                if(!EditCanvas)
+                    return;
+                
+                EditCanvas.getComponent('EditBuilding').setBuilding(this.node, 1);
             }
         }, this);
     },
  
     start () {
+        this.IsRotate = false;
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
     },
     Rotate(){

@@ -34,20 +34,27 @@ cc.Class({
             },
             set(value){
                 this._GameState = value;
-                this.node.emit('GAME_STATE_CHANGE', value);
             }
         }, // 0 指普通运行态， 1 指编辑态
-        // 编辑界面
-        EditCanvas: cc.Node,
-        // 当前放置的建筑总数
-
         // 菱形网格
         rhombusWidth: 200, // 地形菱形网格宽
         rhombusHeight: 100, // 地形菱形网格高
         lineCount: 8,
+        // 当前文化值总和
+        CultureSum: 0,
+        // 编辑界面
+        EditCanvas: cc.Node,
         // 可放置区域标记
         BuildingSpaceArray: Array, // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
-        
+        // 建筑buff区域标记
+        BuildingBuffArray: Array, // 标记该区域的buff，范围为0x0000000到0x0000000
+        // 六个史诗建筑各自的属性
+        EpicBuilding1: cc.v3(0, 0, 0),
+        EpicBuilding2: cc.v3(0, 0, 0),
+        EpicBuilding3: cc.v3(0, 0, 0),
+        EpicBuilding4: cc.v3(0, 0, 0),
+        EpicBuilding5: cc.v3(0, 0, 0),
+        EpicBuilding6: cc.v3(0, 0, 0),
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -66,7 +73,16 @@ cc.Class({
             this.BuildingSpaceArray[this.lineCount][i] = 1;
             this.BuildingSpaceArray[i][this.lineCount] = 1;
         }
-
+        // 初始化buff作用区域
+        this.BuildingBuffArray = new Array();
+        for(let i = 0; i < (2 * this.lineCount + 1); ++i){
+            this.BuildingBuffArray[i] = new Array();
+            for(let j = 0; j < (2 * this.lineCount + 1); ++j){
+                this.BuildingBuffArray[i][j] = 0x000000;
+            }
+        }
+        // 初始化各种数据
+        this.CultureSum = 0;
         this.Background.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
             let screenSize = cc.winSize;
             let offset = event.getDelta();
