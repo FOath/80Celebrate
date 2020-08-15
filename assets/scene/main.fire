@@ -140,9 +140,11 @@
     "rhombusHeight": 100,
     "lineCount": 8,
     "CultureSum": 0,
+    "GameCanvas": null,
     "EditCanvas": null,
     "BuildingSpaceArray": null,
     "BuildingBuffArray": null,
+    "EpicBuilding": [],
     "_id": "fed2wZ9qVEg4p5IJCvukc9"
   },
   {
@@ -327,7 +329,7 @@
       "array": [
         0,
         0,
-        348.23392359987076,
+        350.1990226553324,
         0,
         0,
         0,
@@ -4519,6 +4521,9 @@
     "BuildingBuff": 4096,
     "Sprite": null,
     "SpriteR": null,
+    "Science": 100,
+    "Culture": 5,
+    "Charm": 0,
     "_id": "15PW4IoEhGxaKzGDVucXS3"
   },
   {
@@ -4641,7 +4646,7 @@
     "_enabled": true,
     "GameAdmin": null,
     "Name": "brickBuilding",
-    "OffsetY": 150,
+    "OffsetY": 100,
     "BuildingSize": {
       "__type__": "cc.Vec2",
       "x": 2,
@@ -4650,6 +4655,9 @@
     "BuildingBuff": 0,
     "Sprite": null,
     "SpriteR": null,
+    "Science": 200,
+    "Culture": 8,
+    "Charm": 0,
     "_id": "fblXC73U1LErulIjoI2RjT"
   },
   {

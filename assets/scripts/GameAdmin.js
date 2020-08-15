@@ -42,6 +42,8 @@ cc.Class({
         lineCount: 8,
         // 当前文化值总和
         CultureSum: 0,
+        // 游戏界面
+        GameCanvas: cc.Node,
         // 编辑界面
         EditCanvas: cc.Node,
         // 可放置区域标记
@@ -49,12 +51,7 @@ cc.Class({
         // 建筑buff区域标记
         BuildingBuffArray: Array, // 标记该区域的buff，范围为0x0000000到0x0000000
         // 六个史诗建筑各自的属性
-        EpicBuilding1: cc.v3(0, 0, 0),
-        EpicBuilding2: cc.v3(0, 0, 0),
-        EpicBuilding3: cc.v3(0, 0, 0),
-        EpicBuilding4: cc.v3(0, 0, 0),
-        EpicBuilding5: cc.v3(0, 0, 0),
-        EpicBuilding6: cc.v3(0, 0, 0),
+        EpicBuilding: Array
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -83,6 +80,14 @@ cc.Class({
         }
         // 初始化各种数据
         this.CultureSum = 0;
+        this.EpicBuilding = new Array();
+        this.EpicBuilding = [cc.v3(4, 5, 0),
+            cc.v3(3, 8, 1),
+            cc.v3(2, 30, 1),
+            cc.v3(2.5, 8, 1.5),
+            cc.v3(2, 10, 2),
+            cc.v3(1, 15, 3)];
+        
         this.Background.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
             let screenSize = cc.winSize;
             let offset = event.getDelta();
@@ -95,7 +100,27 @@ cc.Class({
     
     start () {
         this.GameState = 1;
+        this.GameCanvas = cc.find('/Canvas/GameCanvas');
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
+
+        // 计算总文化
+        this.GameCanvas.walk((target)=>{
+            let buildingController = target.getComponent('BuildingController');
+            if(buildingController){
+                this.CultureSum += buildingController.Culture;
+            }
+        }, null);
+        // 计算总科技产出
+        let scienceSum = 0; 
+        this.GameCanvas.walk((target)=>{
+            let buildingController = target.getComponent('BuildingController');
+            if(buildingController){
+                scienceSum += buildingController.Science;
+            } 
+        }, null);
+
+        let res = scienceSum * ( 1 + this.CultureSum / 100);
+        cc.log("总科技产出为" + Math.round(res));
     },
     clamp(num, min, max){
         if(num < min){

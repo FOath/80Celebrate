@@ -30,22 +30,6 @@ cc.Class({
         // 建筑
         Building: cc.Node,
         BuildingBeforePos: cc.v2(0, 0),
-        /*BuildingName: 'woodBuilding',
-        BuildingSprite: cc.SpriteFrame,
-        BuildingSpriteR: cc.SpriteFrame,
-        // 建筑是否翻转
-        isRotate: {
-            get(){
-                return this._isRotate;
-            },
-            set(value){1
-                this._isRotate = value;
-                if(!value)
-                    this.Building.getComponent(cc.Sprite).spriteFrame = this.BuildingSprite;
-                else
-                    this.Building.getComponent(cc.Sprite).spriteFrame = this.BuildingSpriteR;
-            }
-        },*/ // false代表未翻转，true代表翻转
         // 设置界面及其子选项
         Setting: cc.Node,
         SettingClose: cc.Node,
@@ -233,7 +217,7 @@ cc.Class({
         
     },
     rotateBuilding(){
-        this.Building.getComponent('BuildingController').Rotate();
+        this.Building.getComponent('BuildingController').rotate();
         if(this.GridSize.x != this.GridSize.y)
             this.GridSize = cc.v2(this.GridSize.y, this.GridSize.x);
     },
@@ -243,10 +227,52 @@ cc.Class({
         
         // 将现在建筑所在地盘的BuildingSpaceArray归1
         this.setBuildingSpaceArray(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y, 1);
+        // 如果建筑是史诗建筑，则给周围一圈设置buff
+        if(this.Building.getComponent('BuildingController').BuildingBuff != 0x0000000){
+            let origin = cc.v2(this.node.x, this.node.y).add(this.GridOffset).add(cc.v2(0, this.rhombusHeight));
+            // 四条边按照上左，上右，下左，下右的顺序设置
+            // 上左
+            for(let i = 0; i < this.GridSize.x + 2; ++i){
+                let offset = cc.v2( i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
+                let gridPos = origin.add(offset);
+                let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                }
+            }
+            // 上右
+            for(let i = 1; i < this.GridSize.y + 2; ++i){
+                let offset = cc.v2( -i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
+                let gridPos = origin.add(offset);
+                let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                }
+            }
+            // 下左
+            for(let i = 1; i < this.GridSize.x + 2; ++i){
+                let offset = cc.v2((i - this.GridSize.y - 1) * this.rhombusWidth / 2, -(this.GridSize.y + 1 + i) * this.rhombusHeight / 2);
+                let gridPos = origin.add(offset);
+                let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                }
+            }
+            // 下右
+            for(let i = 1; i < this.GridSize.y + 1; ++i){
+                let offset = cc.v2((this.GridSize.x + 1 -i) * this.rhombusWidth / 2, -(this.GridSize.x + 1 + i) * this.rhombusHeight / 2);
+                let gridPos = origin.add(offset);
+                let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                }
+            }
+        }
+        
         this.Building.parent = this.GameCanvas;
         this.Building.setPosition(this.node.x, this.node.y);
         this.Building = null;
-    
+        
         // 隐藏编辑界面
         this.Setting.active = false;
         this.EditGrid.active = false;
