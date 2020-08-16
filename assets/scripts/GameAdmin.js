@@ -49,9 +49,11 @@ cc.Class({
         // 可放置区域标记
         BuildingSpaceArray: Array, // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
         // 建筑buff区域标记
-        BuildingBuffArray: Array, // 标记该区域的buff，范围为0x0000000到0x0000000
+        BuildingBuffArray: Array, // 标记该区域的buff，范围为0到1111111(二进制)
         // 六个史诗建筑各自的属性
-        EpicBuilding: Array
+        EpicBuilding: Array,
+        // 产出标签界面
+        OutputLabel: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -75,7 +77,7 @@ cc.Class({
         for(let i = 0; i < (2 * this.lineCount + 1); ++i){
             this.BuildingBuffArray[i] = new Array();
             for(let j = 0; j < (2 * this.lineCount + 1); ++j){
-                this.BuildingBuffArray[i][j] = 0x000000;
+                this.BuildingBuffArray[i][j] = 0;
             }
         }
         // 初始化各种数据
@@ -102,25 +104,7 @@ cc.Class({
         this.GameState = 1;
         this.GameCanvas = cc.find('/Canvas/GameCanvas');
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
-
-        // 计算总文化
-        this.GameCanvas.walk((target)=>{
-            let buildingController = target.getComponent('BuildingController');
-            if(buildingController){
-                this.CultureSum += buildingController.Culture;
-            }
-        }, null);
-        // 计算总科技产出
-        let scienceSum = 0; 
-        this.GameCanvas.walk((target)=>{
-            let buildingController = target.getComponent('BuildingController');
-            if(buildingController){
-                scienceSum += buildingController.Science;
-            } 
-        }, null);
-
-        let res = scienceSum * ( 1 + this.CultureSum / 100);
-        cc.log("总科技产出为" + Math.round(res));
+        this.OutputLabel = cc.find('/Canvas/UICanvas/OutputLabel');
     },
     clamp(num, min, max){
         if(num < min){
@@ -132,5 +116,76 @@ cc.Class({
         else 
             return num;
     },
+    computeOutput(){
+        // 计算总文化
+        this.CultureSum = 0;
+        this.GameCanvas.walk((target)=>{
+            let buildingController = target.getComponent('BuildingController');
+            if(buildingController){
+                this.CultureSum += buildingController.Culture;
+            }
+        }, null);
+        // 计算总科技产出
+        let scienceSum = 0; 
+        this.GameCanvas.walk((target)=>{
+            let buildingController = target.getComponent('BuildingController');
+            if(buildingController){
+                scienceSum += buildingController.getOutput().x;
+            } 
+        }, null);
+
+        let res = scienceSum * ( 1 + this.CultureSum / 100);
+        this.OutputLabel.getComponent(cc.Label).string = "总科技产出为" + Math.round(res);
+    },
     // update (dt) {},
+    initBuilding(event, customData){
+        if(this.EditCanvas.childrenCount >= 3)
+            return;
+        // 改变游戏运行态
+        this.GameState = 1;
+
+        
+        let index = parseInt(customData);
+        switch(index){
+            case 1:
+            case 2:
+            case 3:
+                cc.resources.load('prefabs/woodBuilding' + index, (err, prefab)=>{
+                    let building = cc.instantiate(prefab);
+                    building.parent = this.GameCanvas;
+                    building.setPosition(0, 0);
+
+                    this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
+                });
+                break;
+            case 4:
+            case 5:
+            case 6:
+                cc.log('prefabs/cinema' + (index - 3));
+                cc.resources.load('prefabs/cinema' + (index - 3), (err, prefab)=>{
+                    cc.log(err);
+                    let building = cc.instantiate(prefab);
+                    building.parent = this.GameCanvas;
+                    building.setPosition(0, 0);
+
+                    this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
+                });
+                break;
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                cc.resources.load('prefabs/pennyMall' + (index - 6), (err, prefab)=>{
+                    let building = cc.instantiate(prefab);
+                    building.parent = this.GameCanvas;
+                    building.setPosition(0, 0);
+
+                    this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
+                });
+                break;
+        }
+        
+    }
 });

@@ -114,6 +114,9 @@ cc.Class({
     onLoad () {
         // 绑定点击事件
         this.node.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
+            if(!this.Building)
+                return;
+
             let pos = this.node.parent.convertToNodeSpaceAR(event.getLocation()).add(this.GridOffset);            
             // 调节位置
             let newPos = this.checkBuildingPosition(pos);
@@ -229,14 +232,17 @@ cc.Class({
         this.setBuildingSpaceArray(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y, 1);
         // 如果建筑是史诗建筑，则给周围一圈设置buff
         if(this.Building.getComponent('BuildingController').BuildingBuff != 0x0000000){
+            cc.log('史诗建筑放置');
             let origin = cc.v2(this.node.x, this.node.y).add(this.GridOffset).add(cc.v2(0, this.rhombusHeight));
+            let lineCount = (2 * this.lineCount + 1);
             // 四条边按照上左，上右，下左，下右的顺序设置
             // 上左
             for(let i = 0; i < this.GridSize.x + 2; ++i){
                 let offset = cc.v2( i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
                 let gridPos = origin.add(offset);
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
+                    //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);     
                     this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
                 }
             }
@@ -245,7 +251,8 @@ cc.Class({
                 let offset = cc.v2( -i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
                 let gridPos = origin.add(offset);
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
+                    //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);
                     this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
                 }
             }
@@ -254,7 +261,8 @@ cc.Class({
                 let offset = cc.v2((i - this.GridSize.y - 1) * this.rhombusWidth / 2, -(this.GridSize.y + 1 + i) * this.rhombusHeight / 2);
                 let gridPos = origin.add(offset);
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
+                    //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);           
                     this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
                 }
             }
@@ -263,7 +271,8 @@ cc.Class({
                 let offset = cc.v2((this.GridSize.x + 1 -i) * this.rhombusWidth / 2, -(this.GridSize.x + 1 + i) * this.rhombusHeight / 2);
                 let gridPos = origin.add(offset);
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                if(gridCoord.x >= 0 && gridCoord.x < this.lineCount && gridCoord.y >= 0 && gridCoord.y < this.lineCount){
+                if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
+                    //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);             
                     this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
                 }
             }

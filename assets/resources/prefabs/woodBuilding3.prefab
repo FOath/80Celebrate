@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "brickBuilding",
+    "_name": "Building",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -32,27 +32,27 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 68,
+      "g": 199,
+      "b": 99,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 440,
-      "height": 500
+      "width": 450,
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.2
+      "y": 0.25
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        25.137,
-        -126.878,
+        0,
+        0,
         0,
         0,
         0,
@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c4f9270a-db72-4baf-a6cd-6fef73e29631"
+      "__uuid__": "17b0ecb0-f028-4674-9b98-0599d369247d"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -124,8 +124,12 @@
       "x": 2,
       "y": 2
     },
+    "BuildingBuff": 0,
     "Sprite": null,
     "SpriteR": null,
+    "Science": 0,
+    "Culture": 1,
+    "Charm": 200,
     "_id": ""
   },
   {
@@ -134,9 +138,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "244cdbe9-ea65-4c2d-869f-e76e09c517f7"
+      "__uuid__": "88a16614-57d6-4033-b0e5-33918f267bdc"
     },
-    "fileId": "4aUeeQfi5NzKOGP9s2HEYY",
+    "fileId": "8c/So5PF5Co6F2CQP9xjOq",
     "sync": false
   }
 ]

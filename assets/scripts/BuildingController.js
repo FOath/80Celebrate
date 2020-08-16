@@ -30,7 +30,7 @@ cc.Class({
         Name: 'woodBuilding',
         OffsetY: 100,
         BuildingSize: cc.v2(2, 2),
-        BuildingBuff: 0x0000000, // 0x0000000指无buff, X位为1代表是EpicBuildingX的效果
+        BuildingBuff: 0, // 0x0000000指无buff, X位为1代表是EpicBuildingX的效果
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
         Science: 0,
@@ -80,6 +80,7 @@ cc.Class({
         // 网格属性获取 
         this.rhombusWidth = this.GameAdmin.rhombusWidth;
         this.rhombusHeight = this.GameAdmin.rhombusHeight;
+        this.lineCount = this.GameAdmin.lineCount;
         // 网格偏移赋值
         this.GridOffset = cc.v2((this.BuildingSize.y-this.BuildingSize.x) * this.rhombusWidth / 4, 
                                          (this.BuildingSize.x + this.BuildingSize.y - 2) * this.rhombusHeight / 4);
@@ -89,25 +90,29 @@ cc.Class({
     },
     getOutput(){
         // 非史诗建筑才需要算产出
-        let record = 0x0000000;
-        if(this.BuildingBuff == 0x0000000){
+        let record = 0;
+        if(this.BuildingBuff == 0){
             for(let i = 0; i < this.BuildingSize.y; ++i){
                 for(let j = 0; j < this.BuildingSize.x; ++j){
                     let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
-                    let gridPos = cc.v2(x, y).add(offset);
-
-                    record = record | this.GameAdmin.BuildingBuffArray[gridPos.x][gridPos.y];
+                    let gridPos = cc.v2(this.node.x, this.node.y).add(offset);
+                    
+                    let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+                    record = record | this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y];
                 }
             }
         }
-        
+        let science = this.Science;
+        let charm = this.Charm;
         for(let i = 0; i < this.GameAdmin.EpicBuilding.length; ++i){
-            let sign = 0x0000001 << i;
-            if(record & sign != 0){
-                this.Science *= this.GameAdmin.EpicBuilding[i].x;
-                this.Charm *= this.GameAdmin.EpicBuilding[i].z;                
+            let sign = 1 << i;
+            cc.log(sign);
+            if((record & sign) != 0){
+                science *= this.GameAdmin.EpicBuilding[i].x;
+                charm *= this.GameAdmin.EpicBuilding[i].z;                
             }    
         }
+        return cc.v3(science, this.Culture, charm);
     },
     gridPosToGridCoord(x, y){
         let k = this.rhombusHeight / this.rhombusWidth;
