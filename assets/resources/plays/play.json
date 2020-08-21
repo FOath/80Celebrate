@@ -1,0 +1,71 @@
+{
+	"script": [{
+			"op": "background-switch",
+			"content": {
+				"id": 0,
+				"delay": 2,
+				"url": "backgrounds/1-1"
+			}
+		},{
+			"op": "dialog-switch",
+			"content": {
+				"id": 1,
+				"url": "dialog"
+			}
+		},{
+			"op": "speak",
+			"content": {
+				"lines": "我们的故事是从1940年开始的，在这一年代，中国的抗日战争经历了最艰苦也是最后取得伟大胜利的时期."
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，名为\"自然科学院\""
+			}
+		},
+		{
+			"op": "actor1-appear",
+			"content": {
+				"url": "actors/actor-man",
+				"posX": -700,
+				"posY": -140
+			}
+		},
+		{
+			"op": "actor2-appear",
+			"content": {
+				"url": "actors/actor-woman",
+				"posX": 700,
+				"posY": -160
+			}
+		},
+		{
+			"op": "actor2-back",
+			"content": {
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "等了这么久你终于来了"
+			}
+		},
+		{
+			"op": "actor1-back",
+			"content": {
+			}
+		},
+		{
+			"op": "actor2-front",
+			"content": {
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "你是？等等，这里的景致怎么从来没有见过，我这是在哪？"
+			}
+		}
+	]
+}

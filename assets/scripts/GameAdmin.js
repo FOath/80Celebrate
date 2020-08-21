@@ -47,11 +47,11 @@ cc.Class({
         // 编辑界面
         EditCanvas: cc.Node,
         // 可放置区域标记
-        BuildingSpaceArray: Array, // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
+        BuildingSpaceArray: [], // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
         // 建筑buff区域标记
-        BuildingBuffArray: Array, // 标记该区域的buff，范围为0到1111111(二进制)
+        BuildingBuffArray: [], // 标记该区域的buff，范围为0到1111111(二进制)
         // 六个史诗建筑各自的属性
-        EpicBuilding: Array,
+        EpicBuilding: [],
         // 产出标签界面
         OutputLabel: cc.Node,
     },
