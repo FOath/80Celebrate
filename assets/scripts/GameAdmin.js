@@ -36,6 +36,8 @@ cc.Class({
                 this._GameState = value;
             }
         }, // 0 指普通运行态， 1 指编辑态
+        // 两指状态下的触点距离
+        touchLength: 0,
         // 菱形网格
         rhombusWidth: 200, // 地形菱形网格宽
         rhombusHeight: 100, // 地形菱形网格高
@@ -89,14 +91,50 @@ cc.Class({
             cc.v3(2.5, 8, 1.5),
             cc.v3(2, 10, 2),
             cc.v3(1, 15, 3)];
-        
         this.Background.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
-            let screenSize = cc.winSize;
-            let offset = event.getDelta();
-            let des = cc.v2(this.Background.getPosition().x + offset.x, this.Background.getPosition().y + offset.y);
-            let x = this.clamp(des.x, -(this.Background.width - screenSize.width) / 2, (this.Background.width - screenSize.width) / 2);
-            let y = this.clamp(des.y, -(this.Background.height - screenSize.height) / 2, (this.Background.height - screenSize.height) / 2);
-            this.Background.setPosition(x, y);
+            let touches = event.getTouches();
+            if(touches.length == 1){
+                // 单指触碰表示移动
+                let screenSize = cc.winSize;
+                let offset = event.getDelta();
+                let des = cc.v2(this.Background.getPosition().x + offset.x, this.Background.getPosition().y + offset.y);
+                let x = this.clamp(des.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
+                let y = this.clamp(des.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
+                this.Background.setPosition(x, y);
+            }
+            else if(touches.length == 2){
+                // 双指触碰表示缩放
+                let touch0 = touches[0];
+                let touch1 = touches[1];
+                let dis = touch0.getLocation().sub(touch1.getLocation()).magSqr();
+                if(dis > this.touchLength){
+                    this.Background.scale = Math.min(this.Background.scale + 0.1, 3);
+                    
+                }
+                else if(dis < this.touchLength){
+                    this.Background.scale = Math.max(this.Background.scale - 0.1, 0.5);
+                    // 防止缩小时露出边界
+                    let screenSize = cc.winSize;
+                    let x = this.clamp(this.Background.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
+                    let y = this.clamp(this.Background.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
+                    this.Background.setPosition(x, y);
+                }
+                this.touchLength = dis;
+            }
+        }, this);
+
+        this.Background.on(cc.Node.EventType.MOUSE_WHEEL,(event)=>{
+            if(event.getScrollY() > 0){
+                this.Background.scale = Math.min(this.Background.scale + 0.1, 3);
+            }
+            else{
+                this.Background.scale = Math.max(this.Background.scale - 0.1, 0.5);
+                // 防止缩小时露出边界
+                let screenSize = cc.winSize;
+                let x = this.clamp(this.Background.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
+                let y = this.clamp(this.Background.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
+                this.Background.setPosition(x, y);
+            }
         }, this);
     },
     
@@ -105,6 +143,7 @@ cc.Class({
         this.GameCanvas = cc.find('/Canvas/GameCanvas');
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
         this.OutputLabel = cc.find('/Canvas/UICanvas/OutputLabel');
+        this.EditCanvas.zIndex = 1000;
     },
     clamp(num, min, max){
         if(num < min){
@@ -186,6 +225,8 @@ cc.Class({
                 });
                 break;
         }
-        
+    },
+    switchToHistory(){
+        cc.director.loadScene("selectLevel");
     }
 });

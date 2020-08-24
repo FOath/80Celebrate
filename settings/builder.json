@@ -2,9 +2,7 @@
   "title": "80Celebrate",
   "packageName": "org.cocos2d.demo",
   "startScene": "efc1c538-f422-4570-9254-aa8578ecd082",
-  "excludeScenes": [
-    "992787d5-5206-408b-8394-fe2a91569110"
-  ],
+  "excludeScenes": [],
   "orientation": {
     "landscapeLeft": true,
     "landscapeRight": true,

@@ -48,12 +48,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
-    start () {
+    onLoad () {
         // 初始化变量
-        this.isComplete = true; // 刚开始无动作。
-        this.isSpeaking = false;
+        this.isComplete = false; // 刚开始无动作。
         this.resArray = new Array();
         cc.resources.load('plays/play', (err, json)=>{
             this.playJson = json.json;
@@ -77,13 +74,18 @@ cc.Class({
             }
         });
     },
+
+    start () {
+        
+    },
     playScirpt(){
+        if(this.scriptIndex >= this.playJson.script.length)
+            return;
         let item = this.playJson.script[this.scriptIndex];
         let action = null;
         switch(item.op){
             case "speak":
                 this.isComplete = false;
-                this.isSpeaking = true;
                 this.linesIndex = 0;
                 let content = this.playJson.script[this.scriptIndex].content.lines;
                 this.schedule(this.typeWriter.bind(this, content), this.playSpeed, content.length);
@@ -162,6 +164,25 @@ cc.Class({
                 action.then(()=>{
                     this.playScirpt();
                 })
+                break;
+            case "actor1-disappear":
+                action = new Promise((resolve, reject)=>{
+                    this.Actor1.getComponent(cc.Sprite).spriteFrame = null;
+                    resolve();
+                });
+                action.then(()=>{
+                    this.playScirpt();
+                })
+                break;
+            case "actor2-disappear":
+                action = new Promise((resolve, reject)=>{
+                    this.Actor2.getComponent(cc.Sprite).spriteFrame = null;
+                    resolve();
+                });
+                action.then(()=>{
+                    this.playScirpt();
+                })
+                break;
                 break;
         }
         ++this.scriptIndex;

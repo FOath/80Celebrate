@@ -280,8 +280,11 @@ cc.Class({
         
         this.Building.parent = this.GameCanvas;
         this.Building.setPosition(this.node.x, this.node.y);
+        let coord = this.gridPosToGridCoord(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y);
+        cc.log(coord.x, coord.y);
+        cc.log(this.calculateZIndex(coord.x, coord.y));
+        this.Building.zIndex = this.calculateZIndex(coord.x, coord.y);    
         this.Building = null;
-        
         // 隐藏编辑界面
         this.Setting.active = false;
         this.EditGrid.active = false;
@@ -318,13 +321,29 @@ cc.Class({
         }
         else{
             // 在创建物体，取消时删除物体
-
             this.Building.removeFromParent(false);
             this.Building = null;
         }
         // 隐藏编辑界面
         this.Setting.active = false;
         this.EditGrid.active = false;
+    },
+    calculateZIndex(x, y){
+        let newX = (2 * this.lineCount)- y;
+        let newY = x;
+        let line = newX + newY + 1;
+
+        let tempSum = 0;
+        for(let i = 1; i < line; ++i){
+            if(i <= (2 * this.lineCount + 1)){
+                tempSum += i;
+            }
+            else{
+                tempSum += (3 * this.lineCount + 1 - i);
+            }
+        }
+        tempSum += y;
+        return tempSum;
     },
     update (dt) {
         this.time += dt;

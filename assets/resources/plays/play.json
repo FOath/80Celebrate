@@ -27,7 +27,7 @@
 		{
 			"op": "actor1-appear",
 			"content": {
-				"url": "actors/actor-man",
+				"url": "actors/actor_man",
 				"posX": -700,
 				"posY": -140
 			}
@@ -35,7 +35,7 @@
 		{
 			"op": "actor2-appear",
 			"content": {
-				"url": "actors/actor-woman",
+				"url": "actors/actor_woman",
 				"posX": 700,
 				"posY": -160
 			}
