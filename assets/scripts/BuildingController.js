@@ -33,6 +33,8 @@ cc.Class({
         BuildingBuff: 0, // 0x0000000指无buff, X位为1代表是EpicBuildingX的效果
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
+        buildingId: 0,
+        level: 0,
         Science: 0,
         Culture: 0,
         Charm: 0,

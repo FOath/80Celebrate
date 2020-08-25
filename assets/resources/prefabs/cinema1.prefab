@@ -127,6 +127,8 @@
     "BuildingBuff": 0,
     "Sprite": null,
     "SpriteR": null,
+    "buildingId": 3,
+    "level": 1,
     "Science": 600,
     "Culture": 2,
     "Charm": 0,

@@ -151,6 +151,8 @@ cc.Class({
         this.Setting.zIndex = 2;
         // 计时器
         this.time = 0;
+        // 暂时不接收点击事件
+        this.node.pauseSystemEvents();
     },
     checkBuildingPosition(pos){
         let halfGridWidth = this.rhombusWidth / 2;
@@ -199,6 +201,8 @@ cc.Class({
         if(this.node.childrenCount >= 3)
             return;
         
+        // 开始接受点击事件
+        this.node.resumeSystemEvents();
         // 显示编辑界面
         this.Setting.active = true;
         this.EditGrid.active = true;
@@ -281,8 +285,6 @@ cc.Class({
         this.Building.parent = this.GameCanvas;
         this.Building.setPosition(this.node.x, this.node.y);
         let coord = this.gridPosToGridCoord(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y);
-        cc.log(coord.x, coord.y);
-        cc.log(this.calculateZIndex(coord.x, coord.y));
         this.Building.zIndex = this.calculateZIndex(coord.x, coord.y);    
         this.Building = null;
         // 隐藏编辑界面
@@ -320,7 +322,7 @@ cc.Class({
             this.Building = null;
         }
         else{
-            // 在创建物体，取消时删除物体
+            // 在创建物体，或者将物体放入背包，取消时删除物体
             this.Building.removeFromParent(false);
             this.Building = null;
         }

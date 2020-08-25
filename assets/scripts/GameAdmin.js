@@ -56,6 +56,8 @@ cc.Class({
         EpicBuilding: [],
         // 产出标签界面
         OutputLabel: cc.Node,
+        // 商店界面
+        BuildingMuseum: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -91,59 +93,17 @@ cc.Class({
             cc.v3(2.5, 8, 1.5),
             cc.v3(2, 10, 2),
             cc.v3(1, 15, 3)];
-        this.Background.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
-            let touches = event.getTouches();
-            if(touches.length == 1){
-                // 单指触碰表示移动
-                let screenSize = cc.winSize;
-                let offset = event.getDelta();
-                let des = cc.v2(this.Background.getPosition().x + offset.x, this.Background.getPosition().y + offset.y);
-                let x = this.clamp(des.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
-                let y = this.clamp(des.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
-                this.Background.setPosition(x, y);
-            }
-            else if(touches.length == 2){
-                // 双指触碰表示缩放
-                let touch0 = touches[0];
-                let touch1 = touches[1];
-                let dis = touch0.getLocation().sub(touch1.getLocation()).magSqr();
-                if(dis > this.touchLength){
-                    this.Background.scale = Math.min(this.Background.scale + 0.1, 3);
-                    
-                }
-                else if(dis < this.touchLength){
-                    this.Background.scale = Math.max(this.Background.scale - 0.1, 0.5);
-                    // 防止缩小时露出边界
-                    let screenSize = cc.winSize;
-                    let x = this.clamp(this.Background.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
-                    let y = this.clamp(this.Background.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
-                    this.Background.setPosition(x, y);
-                }
-                this.touchLength = dis;
-            }
-        }, this);
-
-        this.Background.on(cc.Node.EventType.MOUSE_WHEEL,(event)=>{
-            if(event.getScrollY() > 0){
-                this.Background.scale = Math.min(this.Background.scale + 0.1, 3);
-            }
-            else{
-                this.Background.scale = Math.max(this.Background.scale - 0.1, 0.5);
-                // 防止缩小时露出边界
-                let screenSize = cc.winSize;
-                let x = this.clamp(this.Background.x, -(this.Background.width * this.Background.scale - screenSize.width) / 2, (this.Background.width * this.Background.scale - screenSize.width) / 2);
-                let y = this.clamp(this.Background.y, -(this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale, (this.Background.height * this.Background.scale - screenSize.height) / 2 + 40 * this.Background.scale);
-                this.Background.setPosition(x, y);
-            }
-        }, this);
     },
     
     start () {
         this.GameState = 1;
+        this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData'); // 全局数据记录区
         this.GameCanvas = cc.find('/Canvas/GameCanvas');
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
         this.OutputLabel = cc.find('/Canvas/UICanvas/OutputLabel');
+        this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
         this.EditCanvas.zIndex = 1000;
+
     },
     clamp(num, min, max){
         if(num < min){
@@ -190,6 +150,8 @@ cc.Class({
             case 2:
             case 3:
                 cc.resources.load('prefabs/woodBuilding' + index, (err, prefab)=>{
+                    if(err != undefined)
+                        cc.log(err);
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
@@ -200,15 +162,15 @@ cc.Class({
             case 4:
             case 5:
             case 6:
-                cc.log('prefabs/cinema' + (index - 3));
                 cc.resources.load('prefabs/cinema' + (index - 3), (err, prefab)=>{
-                    cc.log(err);
+                    if(err != undefined)
+                        cc.log(err);
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
 
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
-                });
+                }); 
                 break;
             case 7:
             case 8:
@@ -228,5 +190,24 @@ cc.Class({
     },
     switchToHistory(){
         cc.director.loadScene("selectLevel");
+    },
+    setBuildingMuseum(event, state){
+        if(state == 'true'){
+            if(!this.BuildingMuseum.getComponent('BuildingMuseum').hasInitialized){
+                this.BuildingMuseum.getComponent('BuildingMuseum').init();
+            }
+            this.BuildingMuseum.active = true;
+        }
+        else{
+            this.BuildingMuseum.active = false;
+        }
+    },
+    putBackBuilding(){
+        let building = this.EditCanvas.getComponent('EditBuilding').Building.getComponent('BuildingController');
+        this.GameGlobalData.BackpackBuilding.push(
+            new this.GameGlobalData.BackpackItem().init(building.buildingId, building.level)
+        )
+        this.EditCanvas.getComponent('EditBuilding').EditType = 0;
+        this.EditCanvas.getComponent('EditBuilding').closeEditCanvas();
     }
 });
