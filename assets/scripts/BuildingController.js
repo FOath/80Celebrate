@@ -24,22 +24,55 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+
         // 游戏管理员
         GameAdmin: cc.Component,
+        // 游戏全局数据
+        GameGlobalData: cc.Component,
 
-        Name: 'woodBuilding',
-        OffsetY: 100,
-        BuildingSize: cc.v2(2, 2),
-        BuildingBuff: 0, // 0x0000000指无buff, X位为1代表是EpicBuildingX的效果
+
+        buildingId: {
+            get(){
+                return this._buildingId;
+            },
+            set(value){
+                this._buildingId = value;
+                this.buildingName = this.GameGlobalData.BuildingType[value].name;
+                this.science      = this.GameGlobalData.BuildingType[value].science;
+                this.culture      = this.GameGlobalData.BuildingType[value].culture;
+                this.charm        = this.GameGlobalData.BuildingType[value].charm;
+                this.size         = this.GameGlobalData.BuildingType[value].size;
+                this.epicType     = this.GameGlobalData.BuildingType[value].epicType;
+                this.imageUrl     = this.GameGlobalData.BuildingType[value].imageUrl;
+            }
+        },
+        buildingName: "实验楼",
+        science: 0,
+        culture: 0,
+        charm: 0,
+        size: {
+            get(){
+                return this._size;
+            },
+            set(value){
+                this._size = value;
+                this.gridOffset = cc.v2((this.size.y-this.size.x) * this.rhombusWidth / 4, 
+                                         (this.size.x + this.size.y - 2) * this.rhombusHeight / 4);
+            }
+        },
+        epicType: 0,
+        imageUrl: 'woodBuilding',
+
+        // 预置体自身的数据
+        offsetY: 100,
+        level: 0, // 建筑等级
+        gridOffset: null,
+
         Sprite: cc.SpriteFrame,
         SpriteR: cc.SpriteFrame,
-        buildingId: 0,
-        level: 0,
-        Science: 0,
-        Culture: 0,
-        Charm: 0,
+        
         // 建筑是否翻转
-        IsRotate: {
+        isRotate: {
             get(){
                 return this._IsRotate;
             },
@@ -52,69 +85,75 @@ cc.Class({
             }
         }
     },
-
     // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
-        cc.resources.load(this.Name, cc.SpriteFrame, (err, sprite)=>{
-            this.Sprite = sprite;
-            this.IsRotate = false;
-        });
-        cc.resources.load(this.Name + 'R', cc.SpriteFrame, (err, sprite)=>{
-            this.SpriteR = sprite;
-        })
-
         this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             // 检查游戏是否处于编辑态
             if(this.GameAdmin.GameState == 1){
                 let EditCanvas = this.GameAdmin.EditCanvas;
-                if(!EditCanvas)
+                if(!EditCanvas || this.node.parent == EditCanvas)
                     return;
-                
+                cc.log("点击建筑");
                 EditCanvas.getComponent('EditBuilding').setBuilding(this.node, 1);
             }
         }, this);
     },
- 
     start () {
-        this.IsRotate = false;
+
+    },
+    init(id){
+        // 游戏管理员
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
+        // 游戏全局数据
+        this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
         // 网格属性获取 
-        this.rhombusWidth = this.GameAdmin.rhombusWidth;
-        this.rhombusHeight = this.GameAdmin.rhombusHeight;
-        this.lineCount = this.GameAdmin.lineCount;
-        // 网格偏移赋值
-        this.GridOffset = cc.v2((this.BuildingSize.y-this.BuildingSize.x) * this.rhombusWidth / 4, 
-                                         (this.BuildingSize.x + this.BuildingSize.y - 2) * this.rhombusHeight / 4);
+        this.rhombusWidth = this.GameGlobalData.rhombusWidth;
+        this.rhombusHeight = this.GameGlobalData.rhombusHeight;
+        this.lineCount = this.GameGlobalData.lineCount;
+        // 设置建筑id
+        this.buildingId = id;
+        // 设置建筑等级
+        this.level = 0;
+
+        cc.resources.load(this.imageUrl, cc.SpriteFrame, (err, sprite)=>{
+            this.Sprite = sprite;
+            this.isRotate = false;
+        });
+        cc.resources.load(this.imageUrl + 'R', cc.SpriteFrame, (err, sprite)=>{
+            this.SpriteR = sprite;
+        });
     },
     rotate(){
-        this.IsRotate = !this.IsRotate;
+        this.isRotate = !this.isRotate;
+        this.size = cc.v2(this.size.y, this.size.x);
     },
     getOutput(){
         // 非史诗建筑才需要算产出
         let record = 0;
-        if(this.BuildingBuff == 0){
-            for(let i = 0; i < this.BuildingSize.y; ++i){
-                for(let j = 0; j < this.BuildingSize.x; ++j){
+        if(this.epicType == 0){
+            for(let i = 0; i < this.size.y; ++i){
+                for(let j = 0; j < this.size.x; ++j){
                     let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
-                    let gridPos = cc.v2(this.node.x, this.node.y).add(offset);
-                    
+                    let gridPos = cc.v2(this.node.x, this.node.y).add(this.gridOffset).add(offset);
+                    cc.log(gridPos.x + " " + gridPos.y);
+
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                    record = record | this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y];
+                    cc.log(gridCoord.x + " " + gridCoord.y);
+                    cc.log(this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y]);
+                    record = record | this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y];
                 }
             }
         }
-        let science = this.Science;
-        let charm = this.Charm;
-        for(let i = 0; i < this.GameAdmin.EpicBuilding.length; ++i){
+        let science = this.science;
+        let charm = this.charm;
+        for(let i = 0; i < this.GameGlobalData.EpicBuildingBuff.length; ++i){
             let sign = 1 << i;
-            cc.log(sign);
             if((record & sign) != 0){
-                science *= this.GameAdmin.EpicBuilding[i].x;
-                charm *= this.GameAdmin.EpicBuilding[i].z;                
+                science *= this.GameGlobalData.EpicBuildingBuff[i].x;
+                charm *= this.GameGlobalData.EpicBuildingBuff[i].z;                
             }    
         }
-        return cc.v3(science, this.Culture, charm);
+        return cc.v3(science, this.culture, charm);
     },
     gridPosToGridCoord(x, y){
         let k = this.rhombusHeight / this.rhombusWidth;

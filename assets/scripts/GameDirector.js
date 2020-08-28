@@ -52,7 +52,7 @@ cc.Class({
         // 初始化变量
         this.isComplete = false; // 刚开始无动作。
         this.resArray = new Array();
-        cc.resources.load('plays/play', (err, json)=>{
+        cc.resources.load('plays/level1', (err, json)=>{
             this.playJson = json.json;
             this.scriptIndex = 0;
             this.maxScriptIndex = this.playJson.script.length;
@@ -97,7 +97,7 @@ cc.Class({
                     this.Background.getComponent(cc.Sprite).spriteFrame = sprite;
                 });
                 this.scheduleOnce(()=>{
-                    this.isComplete = true;
+                    this.playScirpt();
                 }, item.content.delay);
                 break;
             case "dialog-switch":
@@ -182,7 +182,6 @@ cc.Class({
                 action.then(()=>{
                     this.playScirpt();
                 })
-                break;
                 break;
         }
         ++this.scriptIndex;

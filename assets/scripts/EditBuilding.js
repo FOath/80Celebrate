@@ -25,8 +25,11 @@ cc.Class({
         //     }
         // },
         
+        
         // 游戏管理员
         GameAdmin: cc.Component,
+        // 游戏数据
+        GameGlobalData: cc.Component,
         // 建筑
         Building: cc.Node,
         BuildingBeforePos: cc.v2(0, 0),
@@ -116,7 +119,8 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
             if(!this.Building)
                 return;
-
+            
+            cc.log("点击编辑Canvas");
             let pos = this.node.parent.convertToNodeSpaceAR(event.getLocation()).add(this.GridOffset);            
             // 调节位置
             let newPos = this.checkBuildingPosition(pos);
@@ -131,12 +135,14 @@ cc.Class({
     start () {
         // 游戏管理员
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
+        // 游戏数据
+        this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
         // 游戏界面
         this.GameCanvas = cc.find('/Canvas/GameCanvas');
         // 游戏变量获取
-        this.rhombusWidth = this.GameAdmin.rhombusWidth;
-        this.rhombusHeight = this.GameAdmin.rhombusHeight;
-        this.lineCount = this.GameAdmin.lineCount;
+        this.rhombusWidth = this.GameGlobalData.rhombusWidth;
+        this.rhombusHeight = this.GameGlobalData.rhombusHeight;
+        this.lineCount = this.GameGlobalData.lineCount;
         // 建筑
         this.Building = null;
         // 设置界面及其子选项
@@ -153,6 +159,11 @@ cc.Class({
         this.time = 0;
         // 暂时不接收点击事件
         this.node.pauseSystemEvents();
+    },
+    update (dt) {
+        this.time += dt;
+        if(this.Building)
+            this.Building.setPosition(this.Building.x, this.offsetY + 50 * Math.sin(this.time));
     },
     checkBuildingPosition(pos){
         let halfGridWidth = this.rhombusWidth / 2;
@@ -192,7 +203,7 @@ cc.Class({
             return false;
         // 网格位置变为网格坐标
         let gridCoord = this.gridPosToGridCoord(pos.x, pos.y);
-        if(this.GameAdmin && this.GameAdmin.BuildingSpaceArray[gridCoord.x][gridCoord.y] == 0)
+        if(this.GameGlobalData && this.GameGlobalData.BuildingSpaceArray[gridCoord.x][gridCoord.y] == 0)
             return true;
         else
             return false;
@@ -209,8 +220,8 @@ cc.Class({
         // 记录建筑之前的位置
         this.EditType = type;
         this.Building = building;
-        this.OffsetY = building.getComponent('BuildingController').OffsetY;
-        this.GridSize = this.Building.getComponent('BuildingController').BuildingSize;
+        this.offsetY = building.getComponent('BuildingController').offsetY;
+        this.GridSize = this.Building.getComponent('BuildingController').size;
         if(type == 1){ // 0 表示创建建筑，1表示移动建筑
             this.BuildingBeforePos = cc.v2(building.x, building.y);    
             // 将之前建筑所在地盘的BuildingSpaceArray归0
@@ -220,7 +231,7 @@ cc.Class({
         this.node.setPosition(building.x, building.y);
         building.parent = this.node;
         building.zIndex = 1;
-        building.setPosition(0, building.getComponent('BuildingController').OffsetY);
+        building.setPosition(0, building.getComponent('BuildingController').offsetY);
         
     },
     rotateBuilding(){
@@ -235,7 +246,7 @@ cc.Class({
         // 将现在建筑所在地盘的BuildingSpaceArray归1
         this.setBuildingSpaceArray(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y, 1);
         // 如果建筑是史诗建筑，则给周围一圈设置buff
-        if(this.Building.getComponent('BuildingController').BuildingBuff != 0x0000000){
+        if(this.Building.getComponent('BuildingController').epicType != 0){
             cc.log('史诗建筑放置');
             let origin = cc.v2(this.node.x, this.node.y).add(this.GridOffset).add(cc.v2(0, this.rhombusHeight));
             let lineCount = (2 * this.lineCount + 1);
@@ -247,7 +258,7 @@ cc.Class({
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                 if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
                     //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);     
-                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                    this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').epicType;
                 }
             }
             // 上右
@@ -257,7 +268,7 @@ cc.Class({
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                 if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
                     //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);
-                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                    this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').epicType;
                 }
             }
             // 下左
@@ -267,7 +278,7 @@ cc.Class({
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                 if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
                     //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);           
-                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                    this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').epicType;
                 }
             }
             // 下右
@@ -277,7 +288,7 @@ cc.Class({
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                 if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
                     //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);             
-                    this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameAdmin.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').BuildingBuff;
+                    this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | this.Building.getComponent('BuildingController').epicType;
                 }
             }
         }
@@ -287,6 +298,9 @@ cc.Class({
         let coord = this.gridPosToGridCoord(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y);
         this.Building.zIndex = this.calculateZIndex(coord.x, coord.y);    
         this.Building = null;
+
+        // 停止接受点击事件
+        this.node.pauseSystemEvents();
         // 隐藏编辑界面
         this.Setting.active = false;
         this.EditGrid.active = false;
@@ -299,7 +313,7 @@ cc.Class({
                 let gridPos = cc.v2(x, y).add(offset);
                 
                 let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                this.GameAdmin.BuildingSpaceArray[gridCoord.x][gridCoord.y] = state;
+                this.GameGlobalData.BuildingSpaceArray[gridCoord.x][gridCoord.y] = state;
             }
         }
     },
@@ -326,9 +340,12 @@ cc.Class({
             this.Building.removeFromParent(false);
             this.Building = null;
         }
+        // 停止接受点击事件
+        this.node.pauseSystemEvents();
         // 隐藏编辑界面
         this.Setting.active = false;
         this.EditGrid.active = false;
+        
     },
     calculateZIndex(x, y){
         let newX = (2 * this.lineCount)- y;
@@ -347,9 +364,13 @@ cc.Class({
         tempSum += y;
         return tempSum;
     },
-    update (dt) {
-        this.time += dt;
-        if(this.Building)
-            this.Building.setPosition(this.Building.x, this.OffsetY + 50 * Math.sin(this.time));
-    },
+    // 建筑放回背包
+    putBackBuilding(){
+        let building = this.Building.getComponent('BuildingController');
+        this.GameGlobalData.BackpackBuilding.push(
+            new this.GameGlobalData.BackpackItemTemplete().init(building.buildingId, building.level)
+        )
+        this.EditType = 0;
+        this.closeEditCanvas();
+    }
 });

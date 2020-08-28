@@ -24,7 +24,6 @@ cc.Class({
         //         this._bar = value;
         //     }
         // }
-        Background: cc.Node,
         
         // 游戏数据记录区
         // 游戏状态
@@ -34,65 +33,36 @@ cc.Class({
             },
             set(value){
                 this._GameState = value;
-            }
+            },
+            visible: false
         }, // 0 指普通运行态， 1 指编辑态
-        // 两指状态下的触点距离
-        touchLength: 0,
-        // 菱形网格
-        rhombusWidth: 200, // 地形菱形网格宽
-        rhombusHeight: 100, // 地形菱形网格高
-        lineCount: 8,
-        // 当前文化值总和
-        CultureSum: 0,
         // 游戏界面
-        GameCanvas: cc.Node,
+        GameCanvas: {
+            default: null,
+            visible: false,
+        },
         // 编辑界面
-        EditCanvas: cc.Node,
-        // 可放置区域标记
-        BuildingSpaceArray: [], // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
-        // 建筑buff区域标记
-        BuildingBuffArray: [], // 标记该区域的buff，范围为0到1111111(二进制)
-        // 六个史诗建筑各自的属性
-        EpicBuilding: [],
+        EditCanvas: {
+            default: null,
+            visible: false,
+        },
         // 产出标签界面
-        OutputLabel: cc.Node,
+        OutputLabel: {
+            default: null,
+            visible: false,
+        },
         // 商店界面
-        BuildingMuseum: cc.Node
+        BuildingMuseum: {
+            default: null,
+            visible: false,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // 初始化可放置区域
-        this.BuildingSpaceArray = new Array();
-        for(let i = 0; i < (2 * this.lineCount + 1); ++i){
-            this.BuildingSpaceArray[i] = new Array();
-            for(let j = 0; j < (2 * this.lineCount + 1); ++j){
-                this.BuildingSpaceArray[i][j] = 0;
-            }
-        }
-        // 把中间的马路设为1
-        for(let i = 0; i < (2 * this.lineCount + 1); ++i){
-            this.BuildingSpaceArray[this.lineCount][i] = 1;
-            this.BuildingSpaceArray[i][this.lineCount] = 1;
-        }
-        // 初始化buff作用区域
-        this.BuildingBuffArray = new Array();
-        for(let i = 0; i < (2 * this.lineCount + 1); ++i){
-            this.BuildingBuffArray[i] = new Array();
-            for(let j = 0; j < (2 * this.lineCount + 1); ++j){
-                this.BuildingBuffArray[i][j] = 0;
-            }
-        }
         // 初始化各种数据
         this.CultureSum = 0;
-        this.EpicBuilding = new Array();
-        this.EpicBuilding = [cc.v3(4, 5, 0),
-            cc.v3(3, 8, 1),
-            cc.v3(2, 30, 1),
-            cc.v3(2.5, 8, 1.5),
-            cc.v3(2, 10, 2),
-            cc.v3(1, 15, 3)];
     },
     
     start () {
@@ -105,23 +75,13 @@ cc.Class({
         this.EditCanvas.zIndex = 1000;
 
     },
-    clamp(num, min, max){
-        if(num < min){
-            return min;
-        }
-        else if(num > max){
-            return max;
-        }
-        else 
-            return num;
-    },
     computeOutput(){
         // 计算总文化
-        this.CultureSum = 0;
+        let cultureSum = 0;
         this.GameCanvas.walk((target)=>{
             let buildingController = target.getComponent('BuildingController');
             if(buildingController){
-                this.CultureSum += buildingController.Culture;
+                cultureSum += buildingController.culture;
             }
         }, null);
         // 计算总科技产出
@@ -133,7 +93,7 @@ cc.Class({
             } 
         }, null);
 
-        let res = scienceSum * ( 1 + this.CultureSum / 100);
+        let res = scienceSum * ( 1 + cultureSum / 100);
         this.OutputLabel.getComponent(cc.Label).string = "总科技产出为" + Math.round(res);
     },
     // update (dt) {},
@@ -143,7 +103,6 @@ cc.Class({
         // 改变游戏运行态
         this.GameState = 1;
 
-        
         let index = parseInt(customData);
         switch(index){
             case 1:
@@ -155,7 +114,7 @@ cc.Class({
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-
+                    building.getComponent('BuildingController').init(index - 1);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
@@ -168,7 +127,7 @@ cc.Class({
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-
+                    building.getComponent('BuildingController').init(index - 1);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 }); 
                 break;
@@ -182,7 +141,7 @@ cc.Class({
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-
+                    building.getComponent('BuildingController').init(index - 1);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
@@ -201,13 +160,5 @@ cc.Class({
         else{
             this.BuildingMuseum.active = false;
         }
-    },
-    putBackBuilding(){
-        let building = this.EditCanvas.getComponent('EditBuilding').Building.getComponent('BuildingController');
-        this.GameGlobalData.BackpackBuilding.push(
-            new this.GameGlobalData.BackpackItem().init(building.buildingId, building.level)
-        )
-        this.EditCanvas.getComponent('EditBuilding').EditType = 0;
-        this.EditCanvas.getComponent('EditBuilding').closeEditCanvas();
     }
 });

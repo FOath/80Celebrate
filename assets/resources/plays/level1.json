@@ -1,0 +1,768 @@
+{
+	"script": [{
+			"op": "background-switch",
+			"content": {
+				"id": 0,
+				"delay": 2,
+				"url": "backgrounds/1-1"
+			}
+		},{
+			"op": "dialog-switch",
+			"content": {
+				"id": 1,
+				"url": "dialog"
+			}
+		},{
+			"op": "speak",
+			"content": {
+				"lines": "我们的故事是从1940年开始的，在这一年代，中国的抗日战争经历了最艰苦也是最后取得伟大胜利的时期."
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，名为\"自然科学院\""
+			}
+		},
+		{
+			"op": "actor1-appear",
+			"content": {
+				"url": "actors/actor_man",
+				"posX": -700,
+				"posY": -140
+			}
+		},
+		{
+			"op": "actor2-appear",
+			"content": {
+				"url": "actors/actor_woman",
+				"posX": 700,
+				"posY": -160
+			}
+		},
+		{
+			"op": "actor2-back",
+			"content": {
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "等了这么久你终于来了"
+			}
+		},
+		{
+			"op": "actor1-back",
+			"content": {
+			}
+		},
+		{
+			"op": "actor2-front",
+			"content": {
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "你是？等等，这里的景致怎么从来没有见过，我这是在哪？"
+			}
+		},
+		{
+			"op": "actor2-back",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor1-front",
+			"content":{
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "自我介绍一下吧，我叫北小理，是中国共产党领导和创办的第一所理工科大学。"
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "我刚刚诞生不久，现在人们还习惯叫我\"自然科学院\"。"
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "接下来的日子我会给你讲述我的成长，所以我已经在这等你很久了。"
+			}
+		},
+		{
+			"op": "actor1-back",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor2-front",
+			"content":{
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "了解一所大学的成长？这真是一件很酷的事儿呢，不过我可以为你做些什么呢？"
+			}
+		},
+		{
+			"op": "actor2-back",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor1-front",
+			"content":{
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "目前的北小理还是一片待开发的空地，你可以通过完成关卡对话的方式获得不同属性的建筑，"
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "随机摆放提升校园的科技值、魅力值和文化值，可以在个人和学院排行榜中随时查看其他玩家的建设情况。"
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "是不是很简单？我想你应该知道游戏怎么玩了吧。"
+			}
+		},
+		{
+			"op": "actor1-back",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor2-front",
+			"content":{
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "嗯嗯！然后我们要干嘛呢？"
+			}
+		},
+		{
+			"op": "actor2-back",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor1-front",
+			"content":{
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "接下来就让我们一起出发吧。第一站让我们先到学校里去看一看吧。"
+			}
+		},
+		{
+			"op": "actor1-disappear",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor2-disappear",
+			"content": {
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "你们来到了自然科学院，抗战时期的校园条件虽然艰苦些，可却处处洋溢着革命的热情和求知好学的精气神儿…"
+			}
+		},
+        {
+			"op": "actor1-appear",
+			"content": {
+				"url": "actors/actor_man",
+				"posX": -700,
+				"posY": -140
+			}
+		},
+		{
+			"op": "actor2-appear",
+			"content": {
+				"url": "actors/actor_woman",
+				"posX": 700,
+				"posY": -160
+			}
+		},
+        {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "这里就是自然科学院啊，虽然比我想象中的要艰苦些，可是感觉大家都在很认真地学习呢。"
+			}
+		},
+        {
+			"op": "speak",
+			"content": {
+				"lines": "在这样的时期里创建一所学校真是一个突破性的决定，能给我讲讲自然科学院创建的契机吗？"
+			}
+		},
+        {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "没问题。这件事就要从1939年说起了，那个时候中国抗日战争进入了\"相持阶段\"。"
+			}
+		},  
+        {
+			"op": "speak",
+			"content": {
+				"lines": "国民党顽固派消极抗日，发动了抗战时期第一次反共高潮，"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "对陕甘宁边区实行经济封锁，边区的财政和人民生活发生了困难。"
+			}
+		}, 
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "这可怎么办呀，内忧外患持续干扰，一定要想想办法保障大家的生活啊。"
+			}
+		},
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "你说的没错，事情发生后，中共中央就确定了自力更生、发展边区经济的方针。"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "但是在生产过程中，我们还是遇到了许多科技问题"
+			}
+		},
+                {
+			"op": "speak",
+			"content": {
+				"lines": "所以经过申请审批，5月延安自然科学研究院正式成立了，也就是我的前身了。"
+			}
+		},
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "这下可太好啦，学校创建后，我们就可以发展生产了，大家也不用为了生活而担心了。"
+			}
+		},
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "咱们的实力的确不容小觑！1940-1949年这段时间延安自然科学院可是取得非常多的成就："
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "发明了马兰草造纸技术、发现了南泥湾、研制了灰生铁，还提高了盐的产量，生产了肥皂火柴等各种生活生产用具呢！"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "不过这些都是大家的科研成果，小理不敢独自居功。"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "小理只是希望大家的生活能过得好一些"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "能有更多的优秀学子为国家做出贡献，能看到我们的国家越来越强大。"
+			}
+		},
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "小理真是心怀国家呢~ 那小理你自己有什么愿望吗，或许我可以帮你实现呢。"
+			}
+		},
+           {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },      
+        {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "当然有了，你别看现在我们的条件艰苦些，但是小理也是有自己的目标的"
+			}
+		},
+        {
+			"op": "speak",
+			"content": {
+				"lines": "我希望有朝一日小理能成为世界一流大学，培养更多优秀的年轻人的，为祖国的国防事业做更多的贡献！"
+			}
+		},
+        {
+            "op": "actor1-back",
+            "content": {
+                
+            }
+        },      
+        {
+            "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "这个目标尽管很难，但是我想陪你一起努力实现！"
+			}
+		},
+        {
+			"op": "actor1-disappear",
+			"content": {
+
+			}
+		},
+		{
+			"op": "actor2-disappear",
+			"content": {
+
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "自然科学院在延安办学的五年多时间里不畏艰难，励精图治，在探索中前行"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "在人才培养、生产科研等多方面都取得了骄人的业绩，自然科学院的办学经历为北京理工大学的成长积累了宝贵而又丰富的经验。"
+			}
+		},
+        {
+			"op": "actor1-appear",
+			"content": {
+				"url": "actors/actor_man",
+				"posX": -700,
+				"posY": -140
+			}
+		},
+		{
+			"op": "actor2-appear",
+			"content": {
+				"url": "actors/actor_woman",
+				"posX": 700,
+				"posY": -160
+			}
+		},
+        {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+        {
+			"op": "speak",
+			"content": {
+				"lines": "你们这是要搬走了吗？"
+			}
+		},
+               
+              {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "是的，我们正在搬家。"
+			}
+		},
+               
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "好端端的为什么要搬走？搬哪儿去呀？"
+			}
+		},
+               
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "这一次是为了取得全国胜利做准备。"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "党中央全面筹划教育发展，为加速人才培养，所以我们延安大学部分学院（包括自然科学院）要向东北解放区转移了。"
+			}
+		},
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "不过我听说山海关和承德等地区已经被国民党军队占领了，我们要怎么到东北去啊？"
+			}
+		},
+               
+                {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "是啊，就是由于这些重重阻碍，我最终停留在了华北地区。"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "这期间辗转了很多地区，小理也换了好多名字，不过无论小理在哪里都没有忘记自己的使命"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "小理一直在积极参与地区的活动，为地区和国家培养了许多高素质的专业型人才。"
+			}
+		},
+                {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "小理果然是很有责任感的，不过小理放心，我们终会迎来和平的，等到那一天，小理就可以安顿下来了。"
+			}
+		},
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "你说得对，到了1948年的时候，北方大学工学院与晋察冀边区工业局工业学校合并，人们开始叫我“华北大学工学院”了。"
+			}
+		},
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "战争时期虽然动荡，但是同学们一定也得到了很多锻炼。"
+			}
+		},
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "这个时期华北大学工学院的同学们既是学生又是革命工作的参与者，在中国人民的解放战争中收获了很多成长。"
+			}
+		},
+               
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "1949年新中国成立了，在这一伟大的时刻，小理走过峥嵘岁月，也该迎来幸福的生活啦！"
+			}
+		},
+               {
+              "op": "actor2-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor1-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "那一刻我的激动难以言表，也是在1949年，我跟随党中央迁到北平来了"
+			}
+		},
+               {
+              "op": "actor1-back",
+            "content": {
+                
+            }
+        },
+               {
+              "op": "actor2-front",
+            "content": {
+                
+            }
+        },
+               {
+			"op": "speak",
+			"content": {
+				"lines": "小理在华北三年多的办学历程种，一直全心全意为人民服务、为新民主主义建设培养人才为目的，为夺取全国解放战争的胜利、为建设新中国做出了特殊的贡献。"
+			}
+		},
+                {
+			"op": "speak",
+			"content": {
+				"lines": "接下来的日子我们也要继往开来，一起成长，为国家培养更多人才，小理也要变得越来越强啊！"
+			}
+		},
+        {
+			"op": "actor1-disappear",
+			"content": {
+			}
+		},
+		{
+			"op": "actor2-disappear",
+			"content": {
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "1949年9月，迁址北平的华北大学工学院恢复教学，组织招收新生，筹划发展。"
+			}
+		},
+               {
+			"op": "speak",
+			"content": {
+				"lines": "1949年10月1日，中华人民共和国成立，华北大学工学院全体师生光荣地参加了开国大典，接受了党中央、毛主席的检阅。"
+			}
+		},
+                {
+			"op": "speak",
+			"content": {
+				"lines": "自此开始了规范化、正规化、培养多方位人才的漫漫发展之路…"
+			}
+		},
+        {
+			"op": "speak",
+			"content": {
+				"lines": "本章结束"
+			}
+		}
+	]
+}
+
+

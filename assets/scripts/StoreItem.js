@@ -42,7 +42,7 @@ cc.Class({
                     this.Thumbnail.getComponent(cc.Sprite).spriteFrame = sprite;
                 });
                 // 科技 文化 魅力
-                if(this.GameGlobalData.BuildingType[value].isEpic){
+                if(this.GameGlobalData.BuildingType[value].epicType != 0){
                     let science = this.GameGlobalData.BuildingType[value].science * 100;
                     let culture = this.GameGlobalData.BuildingType[value].culture;
                     let charm = this.GameGlobalData.BuildingType[value].charm * 100;

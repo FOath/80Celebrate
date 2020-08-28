@@ -24,7 +24,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        hasInitialized: false,
+        canvasState: 0, // 0 表示商店打开， 1表示背包打开
         StoreBtn: cc.Node,
         StoreScrollView: cc.Node,
         StoreContent: cc.Node,
@@ -40,12 +40,7 @@ cc.Class({
     //},
 
     start () {
-        
-    },
-    init(){
-        this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
-        this.hasInitialized = true;
-        // 初始化商店
+        // 商店初始化一次即可
         for(let i = 0; i < 12; ++i){
             cc.resources.load("prefabs/storeItem", (err, item)=>{
                 var storeItem = cc.instantiate(item);
@@ -53,20 +48,33 @@ cc.Class({
                 this.StoreContent.addChild(storeItem);
             });
         }
-        // 修改数据
-        this.openStore();
+    },
+    init(){
+        this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
+        switch(this.canvasState){
+            case 0:
+                this.openStore();
+                break;
+            case 1:
+                this.openBackpack();
+                break;
+        }
+        
     },
     openStore(){
+        this.canvasState = 0;
+        // 商店初始化一次即可，不需要每次都开都初始化
         // 设置商店界面显示，商店按钮不可用
         this.StoreBtn.getComponent(cc.Button).interactable = false;
         this.StoreScrollView.active = true;
         // 设置背包界面显示，背包按钮可用
         this.BackpackBtn.getComponent(cc.Button).interactable = true;
         this.BackpackScrollView.active = false;
-        this.BackpackContent.removeAllChildren();
     },
     openBackpack(){
+        this.canvasState = 1;
         // 初始化背包
+        this.BackpackContent.removeAllChildren();
         for(let i = 0; i < this.GameGlobalData.BackpackBuilding.length; ++i){
             cc.resources.load("prefabs/backpackItem", (err, item)=>{
                 var backpackItem = cc.instantiate(item);
