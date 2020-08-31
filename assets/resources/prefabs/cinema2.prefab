@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "720290c8-ae92-48a4-892f-8dc139e03e2c"
+      "__uuid__": "e1a06271-3c4f-44c9-a4d4-84f7e4cf546c"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -117,21 +117,18 @@
     },
     "_enabled": true,
     "GameAdmin": null,
-    "Name": "cinema",
-    "OffsetY": 100,
-    "BuildingSize": {
-      "__type__": "cc.Vec2",
-      "x": 2,
-      "y": 3
-    },
-    "BuildingBuff": 0,
+    "GameGlobalData": null,
+    "buildingName": "实验楼",
+    "science": 0,
+    "culture": 0,
+    "charm": 0,
+    "epicType": 0,
+    "imageUrl": "woodBuilding",
+    "offsetY": 100,
+    "level": 1,
+    "gridOffset": null,
     "Sprite": null,
     "SpriteR": null,
-    "buildingId": 4,
-    "level": 1,
-    "Science": 200,
-    "Culture": 5,
-    "Charm": 0,
     "_id": ""
   },
   {

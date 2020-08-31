@@ -293,10 +293,7 @@ cc.Class({
             }
         }
         
-        this.Building.parent = this.GameCanvas;
-        this.Building.setPosition(this.node.x, this.node.y);
-        let coord = this.gridPosToGridCoord(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y);
-        this.Building.zIndex = this.calculateZIndex(coord.x, coord.y);    
+        this.Building.getComponent('BuildingController').putDown(this.GameCanvas, this.node.x, this.node.y);
         this.Building = null;
 
         // 停止接受点击事件
@@ -346,23 +343,6 @@ cc.Class({
         this.Setting.active = false;
         this.EditGrid.active = false;
         
-    },
-    calculateZIndex(x, y){
-        let newX = (2 * this.lineCount)- y;
-        let newY = x;
-        let line = newX + newY + 1;
-
-        let tempSum = 0;
-        for(let i = 1; i < line; ++i){
-            if(i <= (2 * this.lineCount + 1)){
-                tempSum += i;
-            }
-            else{
-                tempSum += (3 * this.lineCount + 1 - i);
-            }
-        }
-        tempSum += y;
-        return tempSum;
     },
     // 建筑放回背包
     putBackBuilding(){

@@ -155,6 +155,37 @@ cc.Class({
         }
         return cc.v3(science, this.culture, charm);
     },
+    putDown(node, x, y){
+        this.node.parent = node;
+        cc.log(x + ' ' + y);
+        this.node.setPosition(x, y);
+        let coord = this.gridPosToGridCoord(this.node.x + this.gridOffset.x, this.node.y + this.gridOffset.y);
+        this.node.zIndex = this.calculateZIndex(coord.x, coord.y);
+    },
+    calculateZIndex(x, y){
+        let newX = (2 * this.lineCount)- y;
+        let newY = x;
+        let line = newX + newY + 1;
+
+        let tempSum = 0;
+        for(let i = 1; i < line; ++i){
+            if(i <= (2 * this.lineCount + 1)){
+                tempSum += i;
+            }
+            else{
+                tempSum += (4 * this.lineCount + 2 - i);
+            }
+        }
+
+        if(line <= (2 * this.lineCount + 1))
+            tempSum += newY;
+        else{
+            let delta = line - (2 * this.lineCount + 1);
+            tempSum += (newY - delta);
+        }
+
+        return tempSum;
+    },
     gridPosToGridCoord(x, y){
         let k = this.rhombusHeight / this.rhombusWidth;
         let b1 = y - x * k;

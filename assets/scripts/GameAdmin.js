@@ -74,6 +74,13 @@ cc.Class({
         this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
         this.EditCanvas.zIndex = 1000;
 
+        this.init();
+    },
+    init(){
+        // 根据GameGlobalData的数据放置建筑
+        for(let i = 0; i < this.GameGlobalData.ExistingBuildingArray.length; ++i){
+            
+        }
     },
     computeOutput(){
         // 计算总文化
