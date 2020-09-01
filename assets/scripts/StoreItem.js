@@ -24,7 +24,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        GameAdmin: cc.Node,
+        //GameAdmin: cc.Node,
 
         buildingId: {
             get(){

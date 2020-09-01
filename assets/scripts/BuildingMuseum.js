@@ -25,12 +25,20 @@ cc.Class({
         //     }
         // },
         canvasState: 0, // 0 表示商店打开， 1表示背包打开
+        
         StoreBtn: cc.Node,
         StoreScrollView: cc.Node,
         StoreContent: cc.Node,
+
         BackpackBtn: cc.Node,
         BackpackScrollView: cc.Node,
         BackpackContent: cc.Node,
+        
+        // 帮助界面
+        HelpCanvas: cc.Node,
+        HelpBtn: cc.Node,
+        HelpSprite: cc.SpriteFrame,
+        HelpSpriteDisable: cc.SpriteFrame,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -90,6 +98,22 @@ cc.Class({
         // 设置背包界面显示，背包按钮可用
         this.StoreBtn.getComponent(cc.Button).interactable = true;
         this.StoreScrollView.active = false;
+    },
+    openInstruction(){
+        if(this.HelpCanvas.active){
+            this.HelpCanvas.active = false;
+            this.HelpBtn.getComponent(cc.Button).normalSprite = this.HelpSprite;
+            this.HelpBtn.getComponent(cc.Button).pressedSprite = this.HelpSprite;
+            this.HelpBtn.getComponent(cc.Button).hoverSprite = this.HelpSprite;
+            this.HelpBtn.getComponent(cc.Button).disabledSprite = this.HelpSprite;
+        }
+        else{
+            this.HelpCanvas.active = true;
+            this.HelpBtn.getComponent(cc.Button).normalSprite = this.HelpSpriteDisable;
+            this.HelpBtn.getComponent(cc.Button).pressedSprite = this.HelpSpriteDisable;
+            this.HelpBtn.getComponent(cc.Button).hoverSprite = this.HelpSpriteDisable;
+            this.HelpBtn.getComponent(cc.Button).disabledSprite = this.HelpSpriteDisable;
+        }
     }
     // update (dt) {},
 });

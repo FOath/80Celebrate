@@ -93,27 +93,30 @@ cc.Class({
                 let EditCanvas = this.GameAdmin.EditCanvas;
                 if(!EditCanvas || this.node.parent == EditCanvas)
                     return;
-                cc.log("点击建筑");
                 EditCanvas.getComponent('EditBuilding').setBuilding(this.node, 1);
             }
         }, this);
     },
     start () {
-
+        
     },
-    init(id){
+    init(id, level){
         // 游戏管理员
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         // 游戏全局数据
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
-        // 网格属性获取 
+        // 网格属性获取
         this.rhombusWidth = this.GameGlobalData.rhombusWidth;
         this.rhombusHeight = this.GameGlobalData.rhombusHeight;
         this.lineCount = this.GameGlobalData.lineCount;
         // 设置建筑id
         this.buildingId = id;
+        // 获得建筑产出属性
+        this.science = this.GameGlobalData.BuildingType[id].science;
+        this.culture = this.GameGlobalData.BuildingType[id].culture;
+        this.charm   = this.GameGlobalData.BuildingType[id].charm;
         // 设置建筑等级
-        this.level = 0;
+        this.level = level;
 
         cc.resources.load(this.imageUrl, cc.SpriteFrame, (err, sprite)=>{
             this.Sprite = sprite;
@@ -127,7 +130,7 @@ cc.Class({
         this.isRotate = !this.isRotate;
         this.size = cc.v2(this.size.y, this.size.x);
     },
-    getOutput(){
+    getProduct(){
         // 非史诗建筑才需要算产出
         let record = 0;
         if(this.epicType == 0){
@@ -135,11 +138,8 @@ cc.Class({
                 for(let j = 0; j < this.size.x; ++j){
                     let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
                     let gridPos = cc.v2(this.node.x, this.node.y).add(this.gridOffset).add(offset);
-                    cc.log(gridPos.x + " " + gridPos.y);
-
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
-                    cc.log(gridCoord.x + " " + gridCoord.y);
-                    cc.log(this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y]);
+
                     record = record | this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y];
                 }
             }
@@ -151,16 +151,18 @@ cc.Class({
             if((record & sign) != 0){
                 science *= this.GameGlobalData.EpicBuildingBuff[i].x;
                 charm *= this.GameGlobalData.EpicBuildingBuff[i].z;                
-            }    
+            }
         }
         return cc.v3(science, this.culture, charm);
     },
-    putDown(node, x, y){
-        this.node.parent = node;
-        cc.log(x + ' ' + y);
+    putDown(parent, x, y){
+        this.node.parent = parent;
+        //cc.log(x + ' ' + y);
         this.node.setPosition(x, y);
         let coord = this.gridPosToGridCoord(this.node.x + this.gridOffset.x, this.node.y + this.gridOffset.y);
         this.node.zIndex = this.calculateZIndex(coord.x, coord.y);
+
+        this.GameAdmin.computeProduct();
     },
     calculateZIndex(x, y){
         let newX = (2 * this.lineCount)- y;

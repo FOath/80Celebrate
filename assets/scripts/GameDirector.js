@@ -29,6 +29,8 @@ cc.Class({
         resArray: [],
         // 标志动作是否完成
         isSpeaking: false,
+        isAutoPlay: false,
+        isSpeedUp: false,
         isComplete: true,
         scriptIndex: 0, // 记录脚本当前动作下标
         maxScriptIndex: 0, // 记录脚本总动作数
@@ -51,7 +53,7 @@ cc.Class({
     onLoad () {
         // 初始化变量
         this.isComplete = false; // 刚开始无动作。
-        this.resArray = new Array();
+        this.playSpeed = 0.1;
         cc.resources.load('plays/level1', (err, json)=>{
             this.playJson = json.json;
             this.scriptIndex = 0;
@@ -63,8 +65,14 @@ cc.Class({
             this.DialogLabel.getComponent(cc.Label).string = str.substr(0, this.linesIndex);
             ++this.linesIndex;
             if(this.linesIndex > str.length){
-                this.isComplete = true;
                 this.linesIndex = 0;
+                this.isSpeaking = false;
+                if(!this.isAutoPlay){
+                    this.isComplete = true;
+                }
+                else{
+                    this.playScirpt();
+                }
             }
         };
         // 点击进行下一个动作
@@ -78,6 +86,21 @@ cc.Class({
     start () {
         
     },
+    setAutoPlay(){
+        this.isAutoPlay = !this.isAutoPlay;
+    },
+    setSpeedUp(){
+        this.isSpeedUp = !this.isSpeedUp;
+        if(this.isSpeedUp){
+            this.playSpeed = 0.05;
+        }
+        else{
+            this.playSpeed = 0.1;
+        }
+    },
+    backToMain(){
+        cc.director.loadScene("main");
+    },
     playScirpt(){
         if(this.scriptIndex >= this.playJson.script.length)
             return;
@@ -85,6 +108,7 @@ cc.Class({
         let action = null;
         switch(item.op){
             case "speak":
+                this.isSpeaking = true;
                 this.isComplete = false;
                 this.linesIndex = 0;
                 let content = this.playJson.script[this.scriptIndex].content.lines;

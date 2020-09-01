@@ -350,7 +350,15 @@ cc.Class({
         this.GameGlobalData.BackpackBuilding.push(
             new this.GameGlobalData.BackpackItemTemplete().init(building.buildingId, building.level)
         )
-        this.EditType = 0;
-        this.closeEditCanvas();
+
+        //this.EditType = 0;
+        //this.closeEditCanvas();
+        this.Building.removeFromParent(false);
+        this.Building = null;
+
+        this.node.pauseSystemEvents();
+        // 隐藏编辑界面
+        this.Setting.active = false;
+        this.EditGrid.active = false;
     }
 });

@@ -138,6 +138,7 @@ cc.Class({
         this.BackpackItemTemplete = cc.Class({
             name: "BackpackItemTemplete",
             properties: {
+                uniqueId: 1598267019,
                 buildingId: 0,
                 level: 1
             },
@@ -153,15 +154,17 @@ cc.Class({
         this.ExistingBuildingTemplate = cc.Class({
             name: "ExistingBuildingTemplate",
             properties:{
-                buildingId: 0, // 建筑id
+                uniqueId: 1598267019, // 建筑唯一id
+                typeId: 0, // 建筑类型id
                 level: 1, // 建筑等级
                 isRotate: false, // 建筑是否旋转
                 posX: 50,  // 建筑x坐标
                 posY: 100,  // 建筑y坐标
                 lastProduce: 1598267019 // 上次获取资源的时间
             },
-            init(id, level, isRotate, posX, posY, lastProduce){
-                this.buildingId = id;
+            init(uniqueId, typeId, level, isRotate, posX, posY, lastProduce){
+                this.uniqueId = uniqueId;
+                this.typeId = typeId;
                 this.level = level;
                 this.isRotate = isRotate;
                 this.posX = posX;
@@ -191,18 +194,19 @@ cc.Class({
         for(let i = 0; i < buildings.length; ++i){
             this.ExistingBuildingArray.push(
                 new this.ExistingBuildingTemplate().init(
-                    buildings[i].id,
+                    buildings[i].unique_id,
+                    buildings[i].type_id,
                     buildings[i].level,
+                    buildings[i].is_rotate,
                     buildings[i].position_x,
                     buildings[i].position_y,
-                    buildings[i].is_rotate,
-                    buildings[i].lastProduce
+                    buildings[i].last_produce
                 )
             )
         }
         // 根据获得的建筑信息更新可放置区域和buff作用区域
         for(let i = 0; i < this.ExistingBuildingArray.length; ++i){
-            let id = this.ExistingBuildingArray[i].buildingId;
+            let id = this.ExistingBuildingArray[i].typeId;
             let x = this.ExistingBuildingArray[i].posX;
             let y = this.ExistingBuildingArray[i].posY;
             let isRotate = this.ExistingBuildingArray[i].isRotate;
