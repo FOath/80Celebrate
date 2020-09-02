@@ -329,7 +329,7 @@ cc.Class({
         if(this.EditType == 1){
             // 在移动物体，取消时物体放回原处
             this.Building.parent = this.GameCanvas;
-            this.Building.setPosition(this.BuildingBeforePos.x, this.BuildingBeforePos.y);
+            this.Building.getComponent('BuildingController').putDown(this.GameCanvas, this.BuildingBeforePos.x, this.BuildingBeforePos.y);
             this.Building = null;
         }
         else{
@@ -346,15 +346,19 @@ cc.Class({
     },
     // 建筑放回背包
     putBackBuilding(){
-        let building = this.Building.getComponent('BuildingController');
-        this.GameGlobalData.BackpackBuilding.push(
-            new this.GameGlobalData.BackpackItemTemplete().init(building.buildingId, building.level)
-        )
+        let uniqueId = this.Building.getComponent('BuildingController').uniqueId;
 
-        //this.EditType = 0;
-        //this.closeEditCanvas();
+        for(let i = 0; i < this.GameGlobalData.ExistingBuildingArray.length; ++i){
+            if(this.GameGlobalData.ExistingBuildingArray[i].uniqueId == uniqueId){
+                this.GameGlobalData.ExistingBuildingArray[i].isBackpack = true;
+                break;
+            }
+        }
         this.Building.removeFromParent(false);
         this.Building = null;
+
+        // 更新建筑的产出
+        this.GameAdmin.computeProduct();
 
         this.node.pauseSystemEvents();
         // 隐藏编辑界面

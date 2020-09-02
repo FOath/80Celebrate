@@ -83,7 +83,7 @@ cc.Class({
         this.canvasState = 1;
         // 初始化背包
         this.BackpackContent.removeAllChildren();
-        for(let i = 0; i < this.GameGlobalData.BackpackBuilding.length; ++i){
+        /*for(let i = 0; i < this.GameGlobalData.BackpackBuilding.length; ++i){
             cc.resources.load("prefabs/backpackItem", (err, item)=>{
                 var backpackItem = cc.instantiate(item);
                 let id = this.GameGlobalData.BackpackBuilding[i].buildingId;
@@ -91,6 +91,20 @@ cc.Class({
                 backpackItem.getComponent('BackpackItem').init(id, level);
                 this.BackpackContent.addChild(backpackItem);
             });
+        }*/
+        let buildings = this.GameGlobalData.ExistingBuildingArray;
+        for(let i = 0; i < buildings.length; ++i){
+            if(buildings[i].isBackpack){
+                cc.resources.load("prefabs/backpackItem", (err, item)=>{
+                    var backpackItem = cc.instantiate(item);
+                    let index = buildings[i].index;
+                    let uniqueId = buildings[i].uniqueId;
+                    let typeId = buildings[i].typeId;
+                    let level = buildings[i].level;
+                    backpackItem.getComponent('BackpackItem').init(index, uniqueId, typeId, level);
+                    this.BackpackContent.addChild(backpackItem);
+                });
+            }
         }
         // 设置背包界面显示，背包按钮不可用
         this.BackpackBtn.getComponent(cc.Button).interactable = false;

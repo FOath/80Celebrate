@@ -44,7 +44,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 500,
-      "height": 170
+      "height": 210
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -100,15 +100,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 151,
-      "g": 151,
-      "b": 151,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 500,
-      "height": 180
+      "height": 210
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -221,7 +221,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 525,
+      "width": 520,
       "height": 170
     },
     "_anchorPoint": {
@@ -233,7 +233,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        31.668,
         0,
         0,
         0,
@@ -297,8 +297,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -137.5,
-        0,
+        -140,
+        -2.639,
         0,
         0,
         0,
@@ -409,7 +409,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        112.5,
+        110,
         0,
         0,
         0,
@@ -1342,7 +1342,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 525,
+      "width": 520,
       "height": 170
     },
     "_resize": 1,
@@ -1353,7 +1353,7 @@
       "height": 40
     },
     "_N$startAxis": 0,
-    "_N$paddingLeft": 25,
+    "_N$paddingLeft": 20,
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
@@ -1383,7 +1383,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "GameAdmin": null,
     "Thumbnail": {
       "__id__": 6
     },

@@ -43,10 +43,7 @@ cc.Class({
         BuildingType: [],
         // 预设的史诗建筑属性
         EpicBuildingBuff: [],
-        // 背包项及存放的数组
-        BackpackItemTemplete: null,
-        BackpackBuilding: [],
-        // 已放置的建筑数组
+        // 已拥有的建筑数组
         ExistingBuildingTemplate: null,
         ExistingBuildingArray: [],
         // 当前生产情况
@@ -134,39 +131,28 @@ cc.Class({
             cc.v3(1.5, 40, 2),
             cc.v3(1,   40, 3)
         ];
-        // 预设的背包项类
-        this.BackpackItemTemplete = cc.Class({
-            name: "BackpackItemTemplete",
-            properties: {
-                uniqueId: 1598267019,
-                buildingId: 0,
-                level: 1
-            },
-            init(id, level){
-                this.buildingId = id;
-                this.level = level;
-                return this;
-            },
-        });
-        this.BackpackBuilding = new Array();
 
         // 预设的现存建筑类
         this.ExistingBuildingTemplate = cc.Class({
             name: "ExistingBuildingTemplate",
             properties:{
-                uniqueId: 1598267019, // 建筑唯一id
+                index: 0, // 该建筑在ExistingBuildingArray中的下标
+                uniqueId: "1598267019", // 建筑唯一id
                 typeId: 0, // 建筑类型id
                 level: 1, // 建筑等级
                 isRotate: false, // 建筑是否旋转
+                isBackpack: false, // 标志是否在背包
                 posX: 50,  // 建筑x坐标
                 posY: 100,  // 建筑y坐标
                 lastProduce: 1598267019 // 上次获取资源的时间
             },
-            init(uniqueId, typeId, level, isRotate, posX, posY, lastProduce){
+            init(index, uniqueId, typeId, level, isRotate, isBackpack, posX, posY, lastProduce){
+                this.index = index;
                 this.uniqueId = uniqueId;
                 this.typeId = typeId;
                 this.level = level;
                 this.isRotate = isRotate;
+                this.isBackpack = isBackpack;
                 this.posX = posX;
                 this.posY = posY;
                 this.lastProduce = lastProduce;
@@ -194,10 +180,12 @@ cc.Class({
         for(let i = 0; i < buildings.length; ++i){
             this.ExistingBuildingArray.push(
                 new this.ExistingBuildingTemplate().init(
+                    i,
                     buildings[i].unique_id,
                     buildings[i].type_id,
                     buildings[i].level,
                     buildings[i].is_rotate,
+                    buildings[i].is_backpack,
                     buildings[i].position_x,
                     buildings[i].position_y,
                     buildings[i].last_produce
@@ -206,11 +194,15 @@ cc.Class({
         }
         // 根据获得的建筑信息更新可放置区域和buff作用区域
         for(let i = 0; i < this.ExistingBuildingArray.length; ++i){
-            let id = this.ExistingBuildingArray[i].typeId;
+            // 如果建筑在背包，直接跳过
+            if(this.ExistingBuildingArray[i].isBackpack)
+                continue;
+
+            let typeId = this.ExistingBuildingArray[i].typeId;
             let x = this.ExistingBuildingArray[i].posX;
             let y = this.ExistingBuildingArray[i].posY;
             let isRotate = this.ExistingBuildingArray[i].isRotate;
-            let size = this.BuildingType[id].size;
+            let size = this.BuildingType[typeId].size;
             let epicType = this.BuildingType[i].epicType;
             // 若建筑已旋转，则建筑的size的x与y互换
             if(isRotate && size.x != size.y){

@@ -26,15 +26,17 @@ cc.Class({
         // },
         GameAdmin: cc.Node,
 
-        buildingId: {
+        index: 0,
+        uniqueId: "1598267019",
+        typeId: {
             get(){
-                return this._buildingId;
+                return this._typeId;
             },
             set(value){
                 // 剔除无效的id
                 if(value < 0 || value > 11)
                     return;
-                this._buildingId = value;
+                this._typeId = value;
                 // 缩略图
                 cc.resources.load(this.GameGlobalData.BuildingType[value].imageUrl, cc.SpriteFrame, (err, sprite)=>{
                     if(err != undefined)
@@ -64,7 +66,7 @@ cc.Class({
             },
             set(value){
                 this._level = value;
-                if(this.GameGlobalData.BuildingType[this.buildingId].epicType != 0){
+                if(this.GameGlobalData.BuildingType[this.typeId].epicType != 0){
                     this.Level.destroy();
                 }
                 else{
@@ -90,12 +92,14 @@ cc.Class({
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         this.PutdownBtn.on(cc.Node.EventType.TOUCH_START, (event)=>{
             this.GameAdmin.setBuildingMuseum(event, false);
-            this.GameAdmin.initBuilding(event, this.buildingId + 1);
+            this.GameAdmin.initBuilding(event, this.index, this.uniqueId, this.typeId, this.level);
         })
     },
-    init(id, level){
+    init(index, uniqueId, typeId, level){
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
-        this.buildingId = id;
+        this.index = index;
+        this.uniqueId = uniqueId;
+        this.typeId = typeId;
         this.level = level;
     }
     // update (dt) {},

@@ -29,7 +29,8 @@
 			"is_rotate": false,
 			"is_backpack": false,
 			"last_produce": "1598267030"
-		}, {
+		},
+		{
 			"unique_id": "1598267021",
 			"type_id": 6,
 			"level": 1,
@@ -37,6 +38,26 @@
 			"position_y": 100,
 			"is_rotate": true,
 			"is_backpack": false,
+			"last_produce": "1598267030"
+		},
+		{
+			"unique_id": "1598267022",
+			"type_id": 3,
+			"level": 1,
+			"position_x": -600,
+			"position_y": 100,
+			"is_rotate": true,
+			"is_backpack": true,
+			"last_produce": "1598267030"
+		},
+		{
+			"unique_id": "1598267013",
+			"type_id": 0,
+			"level": 1,
+			"position_x": -300,
+			"position_y": 0,
+			"is_rotate": false,
+			"is_backpack": true,
 			"last_produce": "1598267030"
 		}]
 	}

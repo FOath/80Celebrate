@@ -30,13 +30,14 @@ cc.Class({
         // 游戏全局数据
         GameGlobalData: cc.Component,
 
-
-        buildingId: {
+        index: 0,
+        uniqueId: "1598267019",
+        typeId: {
             get(){
-                return this._buildingId;
+                return this._typeId;
             },
             set(value){
-                this._buildingId = value;
+                this._typeId = value;
                 this.buildingName = this.GameGlobalData.BuildingType[value].name;
                 this.science      = this.GameGlobalData.BuildingType[value].science;
                 this.culture      = this.GameGlobalData.BuildingType[value].culture;
@@ -74,14 +75,22 @@ cc.Class({
         // 建筑是否翻转
         isRotate: {
             get(){
-                return this._IsRotate;
+                return this._isRotate;
             },
             set(value){
-                this._IsRotate = value;
-                if(!value)
+                this._isRotate = value;
+                // 修改图片和size
+                if(!value){
                     this.getComponent(cc.Sprite).spriteFrame = this.Sprite;
-                else
+                    this.size = this.GameGlobalData.BuildingType[this.typeId].size;
+                }
+                else{
                     this.getComponent(cc.Sprite).spriteFrame = this.SpriteR;
+                    this.size = cc.v2(this.GameGlobalData.BuildingType[this.typeId].size.y, this.GameGlobalData.BuildingType[this.typeId].size.x);
+                }
+
+                // 修改size
+                
             }
         }
     },
@@ -100,7 +109,7 @@ cc.Class({
     start () {
         
     },
-    init(id, level){
+    init(index, uniqueId, typeId, level){
         // 游戏管理员
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         // 游戏全局数据
@@ -109,31 +118,42 @@ cc.Class({
         this.rhombusWidth = this.GameGlobalData.rhombusWidth;
         this.rhombusHeight = this.GameGlobalData.rhombusHeight;
         this.lineCount = this.GameGlobalData.lineCount;
-        // 设置建筑id
-        this.buildingId = id;
+        // 设置建筑下标
+        this.index = index,
+        // 设置建筑唯一id
+        this.uniqueId = uniqueId;
+        // 设置建筑类型id
+        this.typeId = typeId;
         // 获得建筑产出属性
-        this.science = this.GameGlobalData.BuildingType[id].science;
-        this.culture = this.GameGlobalData.BuildingType[id].culture;
-        this.charm   = this.GameGlobalData.BuildingType[id].charm;
+        this.science = this.GameGlobalData.BuildingType[typeId].science;
+        this.culture = this.GameGlobalData.BuildingType[typeId].culture;
+        this.charm   = this.GameGlobalData.BuildingType[typeId].charm;
+        // 设置建筑旋转
+        this.isRotate = this.GameGlobalData.ExistingBuildingArray[this.index].isRotate;
         // 设置建筑等级
         this.level = level;
 
         cc.resources.load(this.imageUrl, cc.SpriteFrame, (err, sprite)=>{
             this.Sprite = sprite;
-            this.isRotate = false;
+            if(!this.GameGlobalData.ExistingBuildingArray[this.index].isRotate)
+                this.getComponent(cc.Sprite).spriteFrame = this.Sprite;
         });
         cc.resources.load(this.imageUrl + 'R', cc.SpriteFrame, (err, sprite)=>{
             this.SpriteR = sprite;
+            if(this.GameGlobalData.ExistingBuildingArray[this.index].isRotate)
+                this.getComponent(cc.Sprite).spriteFrame = this.SpriteR;
         });
     },
     rotate(){
         this.isRotate = !this.isRotate;
-        this.size = cc.v2(this.size.y, this.size.x);
     },
     getProduct(){
-        // 非史诗建筑才需要算产出
         let record = 0;
-        if(this.epicType == 0){
+        // 非史诗建筑才需要算产出
+        if(this.epicType != 0){
+            return cc.v3(0, 0, 0);
+        }
+        else{
             for(let i = 0; i < this.size.y; ++i){
                 for(let j = 0; j < this.size.x; ++j){
                     let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
@@ -157,10 +177,16 @@ cc.Class({
     },
     putDown(parent, x, y){
         this.node.parent = parent;
-        //cc.log(x + ' ' + y);
         this.node.setPosition(x, y);
         let coord = this.gridPosToGridCoord(this.node.x + this.gridOffset.x, this.node.y + this.gridOffset.y);
         this.node.zIndex = this.calculateZIndex(coord.x, coord.y);
+
+        // 修改游戏全局数据中该建筑的值
+        this.GameGlobalData.ExistingBuildingArray[this.index].isBackpack = false;
+        this.GameGlobalData.ExistingBuildingArray[this.index].posX = x;
+        this.GameGlobalData.ExistingBuildingArray[this.index].posY = y;
+        if(this.isRotate)
+            this.GameGlobalData.ExistingBuildingArray[this.index].isRotate = this.isRotate;
 
         this.GameAdmin.computeProduct();
     },

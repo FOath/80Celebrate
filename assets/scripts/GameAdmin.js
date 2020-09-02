@@ -97,6 +97,10 @@ cc.Class({
         // 根据GameGlobalData的数据放置建筑
         let buildingArray = this.GameGlobalData.ExistingBuildingArray;
         for (let i = 0; i < buildingArray.length; ++i) {
+            // 检测在不在背包,若在则不生成在场景中
+            if(buildingArray[i].isBackpack)
+                continue;
+
             switch (buildingArray[i].typeId) {
                 case 0:
                 case 1:
@@ -105,7 +109,8 @@ cc.Class({
                         if (err != undefined)
                             cc.log(err);
                         let building = cc.instantiate(prefab);
-                        building.getComponent('BuildingController').init(buildingArray[i].typeId, buildingArray[i].level);
+                        
+                        building.getComponent('BuildingController').init(buildingArray[i].index, buildingArray[i].uniqueId, buildingArray[i].typeId, buildingArray[i].level);
                         building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
                     });
                     break;
@@ -116,9 +121,8 @@ cc.Class({
                         if (err != undefined)
                             cc.log(err);
                         let building = cc.instantiate(prefab);
-                        building.getComponent('BuildingController').init(buildingArray[i].typeId, buildingArray[i].level);
+                        building.getComponent('BuildingController').init(buildingArray[i].index, buildingArray[i].uniqueId, buildingArray[i].typeId, buildingArray[i].level);
                         building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
-
                     });
                     break;
                 case 6:
@@ -131,7 +135,7 @@ cc.Class({
                         if (err != undefined)
                             cc.log(err);
                         let building = cc.instantiate(prefab);
-                        building.getComponent('BuildingController').init(buildingArray[i].typeId, buildingArray[i].level);
+                        building.getComponent('BuildingController').init(buildingArray[i].index, buildingArray[i].uniqueId, buildingArray[i].typeId, buildingArray[i].level);
                         building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
                     });
                     break;
@@ -166,55 +170,56 @@ cc.Class({
                 scienceSum += buildingController.getProduct().x;
             }
         }, null);
-        let res = scienceSum * (1 + cultureSum / 100);
-        this.ScienceLabel.getComponent(cc.Label).string = "科技值: " + this.GameGlobalData.science + " + " + scienceSum + "/分钟"; 
+        let res = Math.round(scienceSum * (1 + cultureSum / 100));
+        this.ScienceLabel.getComponent(cc.Label).string = "科技值: " + this.GameGlobalData.science + " + " + res + "/分钟"; 
     },
     // update (dt) {},
-    initBuilding(event, customData) {
+    initBuilding(event, index, uniqueId, typeId, level) {
         if (this.EditCanvas.childrenCount >= 3)
             return;
         // 改变游戏运行态
         this.GameState = 1;
 
-        let index = parseInt(customData);
-        switch (index) {
+        switch (typeId) {
+            case 0:
             case 1:
             case 2:
-            case 3:
-                cc.resources.load('prefabs/woodBuilding' + index, (err, prefab) => {
+                cc.resources.load('prefabs/woodBuilding' + (typeId + 1), (err, prefab) => {
                     if (err != undefined)
                         cc.log(err);
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-                    building.getComponent('BuildingController').init(index - 1, 0);
+                    building.getComponent('BuildingController').init(index, uniqueId, typeId, level);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
+            case 3:
             case 4:
             case 5:
-            case 6:
-                cc.resources.load('prefabs/cinema' + (index - 3), (err, prefab) => {
+                cc.resources.load('prefabs/cinema' + (typeId - 2), (err, prefab) => {
                     if (err != undefined)
                         cc.log(err);
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-                    building.getComponent('BuildingController').init(index - 1, 0);
+                    building.getComponent('BuildingController').init(index, uniqueId, typeId, level);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
+            case 6:
             case 7:
             case 8:
             case 9:
             case 10:
             case 11:
-            case 12:
-                cc.resources.load('prefabs/pennyMall' + (index - 6), (err, prefab) => {
+                cc.resources.load('prefabs/pennyMall' + (typeId - 5), (err, prefab) => {
+                    if (err != undefined)
+                        cc.log(err);
                     let building = cc.instantiate(prefab);
                     building.parent = this.GameCanvas;
                     building.setPosition(0, 0);
-                    building.getComponent('BuildingController').init(index - 1);
+                    building.getComponent('BuildingController').init(index, uniqueId, typeId, level);
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
