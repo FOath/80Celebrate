@@ -75,7 +75,21 @@ cc.Class({
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         this.PurchaseBtn.on(cc.Node.EventType.TOUCH_START, (event)=>{
             this.GameAdmin.setBuildingMuseum(event, false);
-            this.GameAdmin.initBuilding(event, this.typeId + 1);
+
+            let building = new this.GameGlobalData.ExistingBuildingTemplate().init(
+                this.GameGlobalData.ExistingBuildingArray.length, // index
+                new Date().valueOf(), // uniqueId
+                this.typeId, // typeId
+                1, // level
+                false, // isRotate
+                true, // isBackpack
+                0, // posX
+                0, // posY
+                new Date().valueOf(), // lastProduce
+            );
+
+            this.GameGlobalData.ExistingBuildingArray.push(building);
+            this.GameAdmin.initBuilding(event, building.index, building.uniqueId, building.typeId, building.level);
         })
     },
     init(id){

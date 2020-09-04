@@ -1,7 +1,7 @@
 {
   "title": "80Celebrate",
   "packageName": "org.cocos2d.demo",
-  "startScene": "efc1c538-f422-4570-9254-aa8578ecd082",
+  "startScene": "e00e2845-c3d8-422e-ba19-2db825888ba9",
   "excludeScenes": [],
   "orientation": {
     "landscapeLeft": true,
@@ -12,7 +12,7 @@
   "webOrientation": "auto",
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "mainCompressionType": "default",
+  "mainCompressionType": "subpackage",
   "mainIsRemote": false,
   "optimizeHotUpdate": false,
   "md5Cache": true,

@@ -84,9 +84,9 @@ cc.Class({
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
 
         this.Product = cc.find('/Canvas/UICanvas/Product');
-        this.ScienceLabel = this.Product.getChildByName('ScienceLabel');
-        this.CultureLabel = this.Product.getChildByName('CultureLabel');
-        this.CharmLabel = this.Product.getChildByName('CharmLabel');
+        this.ScienceLabel = this.Product.getChildByName('Science').getChildByName('ScienceLabel');
+        this.CultureLabel = this.Product.getChildByName('Culture').getChildByName('CultureLabel');
+        this.CharmLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
 
         this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
         this.EditCanvas.zIndex = 1000;
@@ -152,7 +152,7 @@ cc.Class({
                 charmSum += buildingController.getProduct().z;
             }
         }, null);
-        this.CharmLabel.getComponent(cc.Label).string = "魅力值: " + this.GameGlobalData.charm + " + " + charmSum + "/分钟";
+        this.CharmLabel.getComponent(cc.Label).string = this.GameGlobalData.charm + " + " + charmSum + "/分钟";
         // 计算总文化
         let cultureSum = 0;
         this.GameCanvas.walk((target) => {
@@ -161,7 +161,7 @@ cc.Class({
                 cultureSum += buildingController.culture;
             }
         }, null);
-        this.CultureLabel.getComponent(cc.Label).string = "文化值: " + cultureSum;
+        this.CultureLabel.getComponent(cc.Label).string = cultureSum;
         // 计算总科技产出
         let scienceSum = 0;
         this.GameCanvas.walk((target) => {
@@ -171,7 +171,7 @@ cc.Class({
             }
         }, null);
         let res = Math.round(scienceSum * (1 + cultureSum / 100));
-        this.ScienceLabel.getComponent(cc.Label).string = "科技值: " + this.GameGlobalData.science + " + " + res + "/分钟"; 
+        this.ScienceLabel.getComponent(cc.Label).string = this.GameGlobalData.science + " + " + res + "/分钟"; 
     },
     // update (dt) {},
     initBuilding(event, index, uniqueId, typeId, level) {

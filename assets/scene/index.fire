@@ -280,7 +280,7 @@
       "array": [
         0,
         0,
-        572.4371305960409,
+        565.6389134661171,
         0,
         0,
         0,
@@ -1019,6 +1019,12 @@
     },
     "_enabled": true,
     "GameGlobalData": null,
+    "NameText": {
+      "__id__": 23
+    },
+    "StudentIdText": {
+      "__id__": 34
+    },
     "_id": "98WQV538JPlrtmT1UGcUcP"
   },
   {
@@ -2393,8 +2399,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1419,
-      "height": 814
+      "width": 1529,
+      "height": 820
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2446,10 +2452,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "fae067b5-e512-49a6-a0a0-ba5730d85abf"
+      "__uuid__": "fbb5f53c-ffdb-486e-8f91-a6dfab2e1e59"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

@@ -10,7 +10,7 @@
 			"op": "dialog-switch",
 			"content": {
 				"id": 1,
-				"url": "dialog"
+				"state": true
 			}
 		},{
 			"op": "speak",

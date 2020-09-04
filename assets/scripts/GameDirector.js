@@ -46,6 +46,14 @@ cc.Class({
         linesIndex: 0,
         backColor: new cc.Color(125, 125, 125),
         frontColor: new cc.Color(255, 255, 255),
+        // 自动播放按钮
+        AutoPlay: cc.Node,
+        APSprite: cc.SpriteFrame,
+        APSpritePressed: cc.SpriteFrame,
+        // 加速按钮
+        SpeedUp: cc.Node,
+        SUSprite: cc.SpriteFrame,
+        SUSpritePressed: cc.SpriteFrame,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -88,14 +96,32 @@ cc.Class({
     },
     setAutoPlay(){
         this.isAutoPlay = !this.isAutoPlay;
+        // 自动播放未开启
+        if(!this.isAutoPlay){
+            this.AutoPlay.getComponent(cc.Button).normalSprite = this.APSprite;
+            this.AutoPlay.getComponent(cc.Button).pressedSprite = this.APSpritePressed;
+            this.AutoPlay.getComponent(cc.Button).hoverSprite = this.APSprite;
+        }
+        else{
+            this.AutoPlay.getComponent(cc.Button).normalSprite = this.APSpritePressed;
+            this.AutoPlay.getComponent(cc.Button).pressedSprite = this.APSprite;
+            this.AutoPlay.getComponent(cc.Button).hoverSprite = this.APSpritePressed;
+        }
+        
     },
     setSpeedUp(){
         this.isSpeedUp = !this.isSpeedUp;
-        if(this.isSpeedUp){
-            this.playSpeed = 0.05;
+        if(!this.isSpeedUp){
+            this.playSpeed = 0.1;
+            this.SpeedUp.getComponent(cc.Button).normalSprite = this.SUSprite;
+            this.SpeedUp.getComponent(cc.Button).pressedSprite = this.SUSpritePressed;
+            this.SpeedUp.getComponent(cc.Button).hoverSprite = this.SUSprite;
         }
         else{
-            this.playSpeed = 0.1;
+            this.playSpeed = 0.05;
+            this.SpeedUp.getComponent(cc.Button).normalSprite = this.SUSpritePressed;
+            this.SpeedUp.getComponent(cc.Button).pressedSprite = this.SUSprite;
+            this.SpeedUp.getComponent(cc.Button).hoverSprite = this.SUSpritePressed;
         }
     },
     backToMain(){
@@ -119,17 +145,20 @@ cc.Class({
                     if(err !== undefined)
                         cc.log(err);
                     this.Background.getComponent(cc.Sprite).spriteFrame = sprite;
-                });
-                this.scheduleOnce(()=>{
-                    this.playScirpt();
-                }, item.content.delay);
+                    this.scheduleOnce(()=>{
+                        this.playScirpt();
+                    }, item.content.delay);
+                });    
                 break;
             case "dialog-switch":
                 this.isComplete = false;
-                cc.resources.load(item.content.url, cc.SpriteFrame, (err, sprite)=>{
-                    if(err !== undefined)
-                        cc.log(err);
-                    this.Dialog.getComponent(cc.Sprite).spriteFrame = sprite;
+                action = new Promise((resolve, reject)=>{
+                    this.Dialog.active = item.content.state;
+                    this.AutoPlay.active = item.content.state;
+                    this.SpeedUp.active = item.content.state;
+                    resolve();
+                });
+                action.then(()=>{
                     this.playScirpt();
                 });
                 break;

@@ -215,11 +215,11 @@ cc.Class({
             // 更新可放置区域
             for(let j = 0; j < size.y; ++j){
                 for(let k = 0; k < size.x; ++k){
-                    let offset = cc.v2((j - i) * this.rhombusWidth / 2, -(i + j) * this.rhombusHeight / 2);
+                    let offset = cc.v2((k - j) * this.rhombusWidth / 2, -(j + k) * this.rhombusHeight / 2);
                     let gridPos = cc.v2(x, y).add(gridOffset).add(offset);
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                     
-                    this.BuildingBuffArray[gridCoord.x][gridCoord.y] = 1;
+                    this.BuildingSpaceArray[gridCoord.x][gridCoord.y] = 1;
                 }
             }
             // 若为史诗建筑，更新buff作用区域
