@@ -41,7 +41,7 @@ cc.Class({
                 this.buildingName = this.GameGlobalData.BuildingType[value].name;
                 this.science      = this.GameGlobalData.BuildingType[value].science;
                 this.culture      = this.GameGlobalData.BuildingType[value].culture;
-                this.charm        = this.GameGlobalData.BuildingType[value].charm;
+                this.money        = this.GameGlobalData.BuildingType[value].charm;
                 this.size         = this.GameGlobalData.BuildingType[value].size;
                 this.epicType     = this.GameGlobalData.BuildingType[value].epicType;
                 this.imageUrl     = this.GameGlobalData.BuildingType[value].imageUrl;
@@ -50,7 +50,7 @@ cc.Class({
         buildingName: "实验楼",
         science: 0,
         culture: 0,
-        charm: 0,
+        money: 0,
         size: {
             get(){
                 return this._size;
@@ -96,10 +96,10 @@ cc.Class({
     },
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-        this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
+        this.node.on(cc.Node.EventType.TOUCH_END, (event)=>{
             // 检查游戏是否处于编辑态
             if(this.GameAdmin.GameState == 0){
-
+                this.GameAdmin.openBuildingDetail(this);
             }
             else if(this.GameAdmin.GameState == 1){
                 let EditCanvas = this.GameAdmin.EditCanvas;
@@ -127,10 +127,6 @@ cc.Class({
         this.uniqueId = uniqueId;
         // 设置建筑类型id
         this.typeId = typeId;
-        // 获得建筑产出属性
-        this.science = this.GameGlobalData.BuildingType[typeId].science;
-        this.culture = this.GameGlobalData.BuildingType[typeId].culture;
-        this.charm   = this.GameGlobalData.BuildingType[typeId].charm;
         // 设置建筑旋转
         this.isRotate = this.GameGlobalData.ExistingBuildingArray[this.index].isRotate;
         // 设置建筑等级
@@ -168,15 +164,15 @@ cc.Class({
             }
         }
         let science = this.science;
-        let charm = this.charm;
+        let money = this.money;
         for(let i = 0; i < this.GameGlobalData.EpicBuildingBuff.length; ++i){
             let sign = 1 << i;
             if((record & sign) != 0){
                 science *= this.GameGlobalData.EpicBuildingBuff[i].x;
-                charm *= this.GameGlobalData.EpicBuildingBuff[i].z;                
+                money *= this.GameGlobalData.EpicBuildingBuff[i].z;                
             }
         }
-        return cc.v3(science, this.culture, charm);
+        return cc.v3(science, this.culture, money);
     },
     putDown(parent, x, y){
         this.node.parent = parent;

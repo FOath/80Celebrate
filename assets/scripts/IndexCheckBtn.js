@@ -116,7 +116,7 @@ cc.Class({
             return;
         }
         // 先进行判断
-        let url="http://49.233.54.160:8000/check?id="+studentId+"&name="+name;
+        let url="https://wxxyx.m0yuqi.cn/wxxyx/check?id="+studentId+"&name="+name;
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("load", ()=>{
             let res = JSON.parse(xhr.responseText);

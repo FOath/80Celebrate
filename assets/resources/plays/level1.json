@@ -1,10 +1,17 @@
 {
 	"script": [{
-			"op": "background-switch",
+			"op": "backgroundl-switch",
 			"content": {
 				"id": 0,
 				"delay": 2,
-				"url": "backgrounds/1-1"
+				"url": "backgrounds/1-1l"
+			}
+		},{
+			"op": "backgroundr-switch",
+			"content": {
+				"id": 0,
+				"delay": 2,
+				"url": "backgrounds/1-1r"
 			}
 		},{
 			"op": "dialog-switch",

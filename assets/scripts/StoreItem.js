@@ -48,12 +48,12 @@ cc.Class({
                     let charm = this.GameGlobalData.BuildingType[value].charm * 100;
                     this.Science.getComponent(cc.Label).string = "科技加成：" + science + "%";
                     this.Culture.getComponent(cc.Label).string = "文化：" + culture;
-                    this.Charm.getComponent(cc.Label).string   = "魅力加成：" + charm + "%";
+                    this.Charm.getComponent(cc.Label).string   = "金币加成：" + charm + "%";
                 }
                 else{
                     this.Science.getComponent(cc.Label).string = "科技：" + this.GameGlobalData.BuildingType[value].science;
                     this.Culture.getComponent(cc.Label).string = "文化：" + this.GameGlobalData.BuildingType[value].culture;
-                    this.Charm.getComponent(cc.Label).string   = "魅力：" + this.GameGlobalData.BuildingType[value].charm;
+                    this.Charm.getComponent(cc.Label).string   = "金币：" + this.GameGlobalData.BuildingType[value].charm;
                 }
                 
             }

@@ -41,6 +41,9 @@ cc.Class({
         // 预设的12种建筑及存放的数组
         BuildingTemplate: null,
         BuildingType: [],
+        // 建筑升级
+        BuildingLevel: null,
+        BuildingLevelArray: [],
         // 预设的史诗建筑属性
         EpicBuildingBuff: [],
         // 已拥有的建筑数组
@@ -131,6 +134,38 @@ cc.Class({
             cc.v3(1.5, 40, 2),
             cc.v3(1,   40, 3)
         ];
+        // 预设的建筑升级数据类
+        this.BuildingLevel = cc.Class({
+            name: "BuildingLevel",
+            properties: {
+                price: 6000, // 升级消耗的金币
+                scienceState: true, // state为假是固定值增长，state为真是比例增长
+                science: 0.5,
+                cultureState: false, // state为假是固定值增长，state为真是比例增长
+                culture: 1,
+                moneyState: false, // state为假是固定值增长，state为真是比例增长
+                money: 10,
+            },
+            init(price, scienceState, science, cultureState, culture, moneyState, money){
+                this.price = price;
+                this.scienceState = scienceState;
+                this.science = science;
+                this.cultureState = cultureState;
+                this.culture = culture;
+                this.moneyState = moneyState;
+                this.money = money;
+                return this;
+            },
+        });
+        // 初始化建筑升级, 按顺序与BuildingType对应，别乱动
+        this.BuildingLevelArray=[
+            new this.BuildingLevel().init(6000,   true,  0.5, false, 1, false, 10), 
+            new this.BuildingLevel().init(4500,   false, 10,  false, 2, false, 10),
+            new this.BuildingLevel().init(3000,   false, 10,  false, 1, true,  0.3),
+            new this.BuildingLevel().init(20000,  true,  0.5, false, 1, false, 10),
+            new this.BuildingLevel().init(15000,  false, 10,  false, 3, false, 10),
+            new this.BuildingLevel().init(10000,  false, 10,  false, 1, true,  0.3),
+        ]
 
         // 预设的现存建筑类
         this.ExistingBuildingTemplate = cc.Class({
@@ -174,8 +209,8 @@ cc.Class({
         // 初始化游戏数据
         this.science = sceneDataJson.game_data.score.science;
         this.culture = sceneDataJson.game_data.score.culture;
-        this.charm   = sceneDataJson.game_data.score.charm
-
+        this.money   = sceneDataJson.game_data.score.charm;
+        
         let buildings = sceneDataJson.game_data.buildings;
         for(let i = 0; i < buildings.length; ++i){
             this.ExistingBuildingArray.push(
@@ -203,7 +238,7 @@ cc.Class({
             let y = this.ExistingBuildingArray[i].posY;
             let isRotate = this.ExistingBuildingArray[i].isRotate;
             let size = this.BuildingType[typeId].size;
-            let epicType = this.BuildingType[i].epicType;
+            let epicType = this.BuildingType[typeId].epicType;
             // 若建筑已旋转，则建筑的size的x与y互换
             if(isRotate && size.x != size.y){
                 let temp = size.x;
@@ -225,43 +260,43 @@ cc.Class({
             // 若为史诗建筑，更新buff作用区域
             if(epicType != 0){
                 // 从最上面的边缘点开始赋值buff作用区域
-                let origin = cc.v2(this.node.x, this.node.y).add(this.GridOffset).add(cc.v2(0, this.rhombusHeight));
+                let origin = cc.v2(this.node.x, this.node.y).add(gridOffset).add(cc.v2(0, this.rhombusHeight));
                 let lineCount = (2 * this.lineCount + 1);
                 // 上左
-                for(let i = 0; i < this.GridSize.x + 2; ++i){
-                    let offset = cc.v2( i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
+                for(let j = 0; j < size.x + 2; ++j){
+                    let offset = cc.v2( j * this.rhombusWidth / 2, -j * this.rhombusHeight / 2);
                     let gridPos = origin.add(offset);
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
+
                     if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){
-                        //cc.log("buff作用坐标：" + gridCoord.x + " " + gridCoord.y);
-                        this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
+                        this.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
                     }
                 }
                 // 上右
-                for(let i = 1; i < this.GridSize.y + 2; ++i){
-                    let offset = cc.v2( -i * this.rhombusWidth / 2, -i * this.rhombusHeight / 2);
+                for(let j = 1; j < size.y + 2; ++j){
+                    let offset = cc.v2( -j * this.rhombusWidth / 2, -j * this.rhombusHeight / 2);
                     let gridPos = origin.add(offset);
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                     if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){              
-                        this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
+                        this.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
                     }
                 }
                 // 下左
-                for(let i = 1; i < this.GridSize.x + 2; ++i){
-                    let offset = cc.v2((i - this.GridSize.y - 1) * this.rhombusWidth / 2, -(this.GridSize.y + 1 + i) * this.rhombusHeight / 2);
+                for(let j = 1; j < size.x + 2; ++j){
+                    let offset = cc.v2((j - size.y - 1) * this.rhombusWidth / 2, -(size.y + 1 + j) * this.rhombusHeight / 2);
                     let gridPos = origin.add(offset);
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                     if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){  
-                        this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
+                        this.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
                     }
                 }
                 // 下右
-                for(let i = 1; i < this.GridSize.y + 1; ++i){
-                    let offset = cc.v2((this.GridSize.x + 1 -i) * this.rhombusWidth / 2, -(this.GridSize.x + 1 + i) * this.rhombusHeight / 2);
+                for(let j = 1; j < size.y + 1; ++j){
+                    let offset = cc.v2((size.x + 1 -j) * this.rhombusWidth / 2, -(size.x + 1 + j) * this.rhombusHeight / 2);
                     let gridPos = origin.add(offset);
                     let gridCoord = this.gridPosToGridCoord(gridPos.x, gridPos.y);
                     if(gridCoord.x >= 0 && gridCoord.x < lineCount && gridCoord.y >= 0 && gridCoord.y < lineCount){          
-                        this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.GameGlobalData.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
+                        this.BuildingBuffArray[gridCoord.x][gridCoord.y] = this.BuildingBuffArray[gridCoord.x][gridCoord.y] | epicType;
                     }
                 }   
             }

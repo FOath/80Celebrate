@@ -93,7 +93,7 @@ cc.Class({
         this.Product = cc.find('/Canvas/UICanvas/Product');
         this.ScienceLabel = this.Product.getChildByName('Science').getChildByName('ScienceLabel');
         this.CultureLabel = this.Product.getChildByName('Culture').getChildByName('CultureLabel');
-        this.CharmLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
+        this.MoneyLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
         
         this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
         
@@ -103,6 +103,10 @@ cc.Class({
         this.RankBtn     = JumpBtns.getChildByName('Rank');
         this.HistoryBtn  = JumpBtns.getChildByName('History');
         this.MuseumBtn   = JumpBtns.getChildByName('Museum'); 
+
+        this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
+
+        this.SettingCanvas = cc.find('/Canvas/UICanvas/SettingCanvas');
 
         this.init();
     },
@@ -187,14 +191,14 @@ cc.Class({
     },
     computeProduct() {
         // 计算总魅力值
-        let charmSum = 0;
+        let moneySum = 0;
         this.GameCanvas.walk((target) => {
             let buildingController = target.getComponent('BuildingController');
             if (buildingController) {
-                charmSum += buildingController.getProduct().z;
+                moneySum += buildingController.getProduct().z;
             }
         }, null);
-        this.CharmLabel.getComponent(cc.Label).string = this.GameGlobalData.charm + " + " + charmSum + "/分钟";
+        this.MoneyLabel.getComponent(cc.Label).string = this.GameGlobalData.money + " + " + moneySum + "/分钟";
         // 计算总文化
         let cultureSum = 0;
         this.GameCanvas.walk((target) => {
@@ -279,6 +283,17 @@ cc.Class({
         }
         else {
             this.BuildingMuseum.active = false;
+        }
+    },
+    openBuildingDetail(building){
+        this.BuildingDetailCanvas.getComponent("BuildingDetailController").init(building);
+    },
+    switchSettingCanvas(){
+        if(this.SettingCanvas.active){
+            this.SettingCanvas.active = false;
+        }
+        else{
+            this.SettingCanvas.active = true;
         }
     }
 });
