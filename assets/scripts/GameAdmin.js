@@ -67,7 +67,12 @@ cc.Class({
         BuildingMuseum: {
             default: null,
             visible: false,
-        }
+        },
+        // UI界面
+        SendWordBtn: cc.Node,
+        RankBtn: cc.Node,
+        HistoryBtn: cc.Node,
+        MuseumBtn: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -78,20 +83,57 @@ cc.Class({
     },
 
     start() {
-        this.GameState = 1;
+        this.GameState = 0;
+
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData'); // 全局数据记录区
         this.GameCanvas = cc.find('/Canvas/GameCanvas');
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
+        this.EditCanvas.zIndex = 1000;
 
         this.Product = cc.find('/Canvas/UICanvas/Product');
         this.ScienceLabel = this.Product.getChildByName('Science').getChildByName('ScienceLabel');
         this.CultureLabel = this.Product.getChildByName('Culture').getChildByName('CultureLabel');
         this.CharmLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
-
-        this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
-        this.EditCanvas.zIndex = 1000;
         
+        this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
+        
+        
+        let JumpBtns = cc.find('/Canvas/UICanvas/JumpBtns');
+        this.SendWordBtn = JumpBtns.getChildByName('SendWord');
+        this.RankBtn     = JumpBtns.getChildByName('Rank');
+        this.HistoryBtn  = JumpBtns.getChildByName('History');
+        this.MuseumBtn   = JumpBtns.getChildByName('Museum'); 
+
         this.init();
+    },
+    switchGameState(){
+        // 游戏处于普通运行态
+        if(this.GameState == 0){
+            this.GameState = 1; // 转为编辑态
+
+            this.SendWordBtn.getComponent(cc.Animation).play();
+
+            this.RankBtn.getComponent(cc.Animation).play();
+
+            this.HistoryBtn.getComponent(cc.Animation).play();
+
+            this.MuseumBtn.getComponent(cc.Animation).play();
+        }
+        // 游戏处于编辑态
+        else if(this.GameState == 1){
+            this.GameState = 0;
+            this.SendWordBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.SendWordBtn.getComponent(cc.Animation).stop();
+
+            this.RankBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.RankBtn.getComponent(cc.Animation).stop();
+
+            this.HistoryBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.HistoryBtn.getComponent(cc.Animation).stop();
+
+            this.MuseumBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.MuseumBtn.getComponent(cc.Animation).stop();
+        }
     },
     init() {
         // 根据GameGlobalData的数据放置建筑

@@ -9,9 +9,12 @@
   ],
   "excluded-modules": [
     "DragonBones",
+    "Mesh",
     "MotionStreak",
+    "PageView",
+    "PageViewIndicator",
+    "ParticleSystem",
     "Spine Skeleton",
-    "StudioComponent",
     "TiledMap",
     "VideoPlayer",
     "3D",

@@ -112,16 +112,14 @@ cc.Class({
         let name = this.NameText.getComponent(cc.EditBox).string;
         let studentId = this.StudentIdText.getComponent(cc.EditBox).string;
         if(name == "" || studentId == ""){
-            cc.log("姓名学号不能为空");
+            console.log("姓名学号不能为空");
             return;
         }
         // 先进行判断
         let url="http://49.233.54.160:8000/check?id="+studentId+"&name="+name;
-        cc.log(url);
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("load", ()=>{
             let res = JSON.parse(xhr.responseText);
-            cc.log(res);
             // 0为老用户，1为新用户
             if(res.check_state != 2){
                 // 加载结果

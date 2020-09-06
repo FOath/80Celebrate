@@ -98,7 +98,10 @@ cc.Class({
     onLoad () {
         this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             // 检查游戏是否处于编辑态
-            if(this.GameAdmin.GameState == 1){
+            if(this.GameAdmin.GameState == 0){
+
+            }
+            else if(this.GameAdmin.GameState == 1){
                 let EditCanvas = this.GameAdmin.EditCanvas;
                 if(!EditCanvas || this.node.parent == EditCanvas)
                     return;
