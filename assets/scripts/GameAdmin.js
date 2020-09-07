@@ -112,13 +112,13 @@ cc.Class({
         this.MoneyLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
         */
         this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
-        
+
         let JumpBtns = cc.find('/Canvas/UICanvas/JumpBtns');
         //this.SendWordBtn    = JumpBtns.getChildByName('SendWord');
-        this.RankBtn        = JumpBtns.getChildByName('Rank');
-        this.HistoryBtn     = JumpBtns.getChildByName('History');
-        this.MuseumBtn      = JumpBtns.getChildByName('Museum'); 
-        this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox'); 
+        this.RankBtn = JumpBtns.getChildByName('Rank');
+        this.HistoryBtn = JumpBtns.getChildByName('History');
+        this.MuseumBtn = JumpBtns.getChildByName('Museum');
+        this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox');
 
         //this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
 
@@ -126,9 +126,9 @@ cc.Class({
 
         this.init();
     },
-    switchGameState(){
+    switchGameState() {
         // 游戏处于普通运行态
-        if(this.GameState == 0){
+        if (this.GameState == 0) {
             this.GameState = 1; // 转为编辑态
 
             //this.SendWordBtn.getComponent(cc.Animation).play();
@@ -140,15 +140,15 @@ cc.Class({
             this.MuseumBtn.getComponent(cc.Animation).play();
 
             this.TreasureBoxBtn.getComponent(cc.Animation).play();
-            
+
         }
         // 游戏处于编辑态
-        else if(this.GameState == 1){
+        else if (this.GameState == 1) {
             this.GameState = 0;
             //this.SendWordBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
             //this.SendWordBtn.getComponent(cc.Animation).stop();
 
-            if(this.EditCanvas.getComponent('EditBuilding').Building != null){
+            if (this.EditCanvas.getComponent('EditBuilding').Building != null) {
                 this.EditCanvas.getComponent('EditBuilding').closeEditCanvas();
             }
 
@@ -170,10 +170,18 @@ cc.Class({
         let buildingArray = this.GameGlobalData.ExistingBuildingArray;
         for (let i = 0; i < buildingArray.length; ++i) {
             // 检测在不在背包,若在则不生成在场景中
-            if(buildingArray[i].isBackpack)
+            if (buildingArray[i].isBackpack)
                 continue;
 
-            switch (buildingArray[i].typeId) {
+            cc.resources.load(this.GameGlobalData.BuildingType[buildingArray[i].typeId].prefabUrl, (err, prefab) => {
+                if (err != undefined)
+                    cc.log(err);
+                let building = cc.instantiate(prefab);
+
+                building.getComponent('BuildingController').init(buildingArray[i].index, buildingArray[i].uniqueId, buildingArray[i].typeId, buildingArray[i].level);
+                building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
+            });
+            /*switch (buildingArray[i].typeId) {
                 case 0:
                 case 1:
                 case 2:
@@ -181,7 +189,7 @@ cc.Class({
                         if (err != undefined)
                             cc.log(err);
                         let building = cc.instantiate(prefab);
-                        
+
                         building.getComponent('BuildingController').init(buildingArray[i].index, buildingArray[i].uniqueId, buildingArray[i].typeId, buildingArray[i].level);
                         building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
                     });
@@ -211,7 +219,7 @@ cc.Class({
                         building.getComponent('BuildingController').putDown(this.GameCanvas, buildingArray[i].posX, buildingArray[i].posY);
                     });
                     break;
-            }
+            }*/
         }
 
     },
@@ -246,12 +254,20 @@ cc.Class({
         this.ScienceLabel.getComponent(cc.Label).string = this.GameGlobalData.science + " + " + res + "/分钟"; 
     },*/
     // update (dt) {},
-    initBuilding(event, index, uniqueId, typeId, level) {
+    initBuilding(event, index, uniqueId, typeId) {
         if (this.EditCanvas.childrenCount >= 3)
             return;
-        // 改变游戏运行态
-        this.GameState = 1;
 
+        cc.resources.load(this.GameGlobalData.BuildingType[typeId].prefabUrl, (err, prefab) => {
+            if (err != undefined)
+                cc.log(err);
+            let building = cc.instantiate(prefab);
+            building.parent = this.GameCanvas;
+            building.setPosition(0, 0);
+            building.getComponent('BuildingController').init(index, uniqueId, typeId);
+            this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
+        });
+        /*
         switch (typeId) {
             case 0:
             case 1:
@@ -295,7 +311,7 @@ cc.Class({
                     this.EditCanvas.getComponent('EditBuilding').setBuilding(building, 0);
                 });
                 break;
-        }
+        }*/
     },
     switchToHistory() {
         cc.game.addPersistRootNode(this.GameGlobalData);
@@ -307,19 +323,17 @@ cc.Class({
                 this.BuildingMuseum.getComponent('BuildingMuseum').init();
             }
             this.BuildingMuseum.active = true;
-        }
-        else {
+        } else {
             this.BuildingMuseum.active = false;
         }
     },
     /*openBuildingDetail(building){
         this.BuildingDetailCanvas.getComponent("BuildingDetailController").init(building);
     },*/
-    switchSettingCanvas(){
-        if(this.SettingCanvas.active){
+    switchSettingCanvas() {
+        if (this.SettingCanvas.active) {
             this.SettingCanvas.active = false;
-        }
-        else{
+        } else {
             this.SettingCanvas.active = true;
         }
     }

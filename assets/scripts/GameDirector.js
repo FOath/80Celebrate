@@ -69,7 +69,7 @@ cc.Class({
     onLoad() {
         // 初始化变量
         this.isComplete = false; // 刚开始无动作。
-        this.playSpeed = 0.1;
+        this.playSpeed = 0.05;
         
         // 打字机效果
         this.typeWriter = (str) => {
@@ -161,20 +161,20 @@ cc.Class({
     setSpeedUp() {
         this.isSpeedUp = !this.isSpeedUp;
         if (!this.isSpeedUp) {
-            this.playSpeed = 0.1;
+            this.playSpeed = 0.05;
             this.SpeedUp.getComponent(cc.Button).normalSprite = this.SUSprite;
             this.SpeedUp.getComponent(cc.Button).pressedSprite = this.SUSpritePressed;
             this.SpeedUp.getComponent(cc.Button).hoverSprite = this.SUSprite;
         }
         else {
-            this.playSpeed = 0.05;
+            this.playSpeed = 0.02;
             this.SpeedUp.getComponent(cc.Button).normalSprite = this.SUSpritePressed;
             this.SpeedUp.getComponent(cc.Button).pressedSprite = this.SUSprite;
             this.SpeedUp.getComponent(cc.Button).hoverSprite = this.SUSpritePressed;
         }
     },
     backToMain() {
-        cc.director.loadScene("main");
+        cc.director.loadScene("selectLevel");
     },
     playScirpt() {
         if (this.scriptIndex >= this.playJson.script.length)

@@ -1,0 +1,654 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-1r"
+            }
+        }, {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "快点，快点，我们要赶去逸夫楼参加典礼了"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这么隆重！ 这是庆祝什么呢？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "2000年9月23日，是我们成为第十所进入“985工程”建设的高校的日子，这是庆祝我们成为首批“985工程”高效的典礼。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "还有，2002年12月20日，咱们良乡校区也开始建设了。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哇！新的校区！居然开始建设新校区了！我太期待了！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的对的！新校区完全建起来可是比两个中关村校区还大的呢！你看，2007年9月17日，良乡校区也迎来了首批学子呢。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "成为985学校、建新校区，每一件事情都能感受到咱北理越来越奋发图强呢。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "那我再考考你，咱们良乡校区是什么时候开始建的呢？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 1997年",
+                "answer2": "B. 2002年",
+                "answer3": "C. 2007年",
+                "answer4": "D. 2008年",
+                "corrent_answer": 2
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是2002年",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是2002年"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-2r"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "你应该知道北京奥运会吧？"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "那必须是记忆犹新，这样的盛事，牵动了每一个中国人的心。开幕式上的“大脚印”烟花可太震撼了！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这可是由北理工的烟火技术团队研制的呢，还有“奥运五环”“倒计时”等烟花表演，带给全世界观众无语伦比的惊喜与赞叹。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哇，我理的科技太“绚”了！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不仅如此，北理工的新能源汽车技术服务绿色奥运，实施了国际奥运史上首次奥运中心区零排放公交工程。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北理工的数字与仿真技术助力奥运会开闭幕式，让全世界看到了 “文字”“太极”等精彩绝伦的节目。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这也太酷了吧，科技奥运背后居然有这么多北理工\"黑科技\"。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北理工不仅科技服务奥运，中关村校区的“鳐鱼”体育馆曾被用作奥运会正式比赛场馆，承担了奥运会男女排球预赛和残奥会盲人门球比赛。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这么说，我们还跟奥运健将们同“场”运动过呢^_^"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "黑科技太多啦，我来复习下吧"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "下面哪个不是咱们学校的黑科技呢？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. \"奥运五环\"的烟花表演",
+                "answer2": "B. 奥运中的新能源汽车",
+                "answer3": "C. 数字仿真表演",
+                "answer4": "D. 天眼射电望远镜",
+                "corrent_answer": 4
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"天眼射电望远镜\"",
+                "skip": true
+            }
+        },
+
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是\"天眼射电望远镜\""
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "诶，你看那边来了个人。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这不是北理工足球队第一任教授金志扬吗！他可是我的偶像！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "自北理工足球队从2000年9月组建以来，在他的带领下，我们几乎包揽了大学生足球联赛的冠军。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这我知道！北理工足球队曾两次代表中国大学生出战世界大学生运动会，并取得过世界第七名的战绩。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "2006年，北理工足球队首次参加中国乙级联赛，便拿下了总冠军，更是顺利晋级中国足球甲级联赛，太厉害了！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "2019年，北理工足球队更是在全国青少年校园足球联赛（大学组）中，加冕“十冠王”！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哈哈哈，看来是个真球迷呀。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "那是！京橙风暴横扫全场，北理工永远向前！"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-3l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-3r"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "看！2009年国庆60周年阅兵！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "你看这上飞的、地上跑的、水里游的装备都有咱北理工的影子。"
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在阅兵的30个方阵中，学校参与了22个方阵的装备设计和研制"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "包括具有世界先进水平的主战坦克、两栖突击车、步兵战车、自行火炮、战术导弹、机动雷达、空中预警机等"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "参与的数量和深度居全国高校第一"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不愧是国防七子！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "服务国家重大战略需求，瞄准世界科技前沿，北理工永远践行！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+               
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+            "op": "end",
+            "content": {
+
+            }
+        }
+    ]
+}

@@ -117,18 +117,18 @@ cc.Class({
         });
         this.BuildingType = new Array();
         this.BuildingType.push(
-            new this.BuildingTemplate().init(0,  "实验室",       200, 1,  50,  new cc.v2(2, 2), 0, "woodBuilding", "prefabs/woodBuilding1"),
-            new this.BuildingTemplate().init(1,  "教室",         70,  3,  50,  new cc.v2(2, 2), 0, "woodBuilding", "prefabs/woodBuilding2"),
-            new this.BuildingTemplate().init(2,  "活动室",       0,   1,  200, new cc.v2(1, 1), 0, "huodongshi", "prefabs/woodBuilding3"),
-            new this.BuildingTemplate().init(3,  "实验楼",       600, 2,  100, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema1"),
-            new this.BuildingTemplate().init(4,  "教学楼",       200, 9,  100, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema2"),
-            new this.BuildingTemplate().init(5,  "艺术设计馆",   0,   2,  600, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema3"),
-            new this.BuildingTemplate().init(6,  "西山实验室",   3,   30, 1,   new cc.v2(3, 3), 1,  "pennyMall",   "prefabs/pennyMall1"),
-            new this.BuildingTemplate().init(7,  "工科大楼",     2,   45, 1,   new cc.v2(3, 3), 2,  "pennyMall",   "prefabs/pennyMall2"),
-            new this.BuildingTemplate().init(8,  "中心教学楼",   1.5, 80, 1,   new cc.v2(3, 3), 4,  "pennyMall",   "prefabs/pennyMall3"),
-            new this.BuildingTemplate().init(9,  "徐特立图书馆", 1.5, 50, 1.5, new cc.v2(3, 3), 8,  "pennyMall",   "prefabs/pennyMall4"),
-            new this.BuildingTemplate().init(10, "北理工的恶龙", 1.5, 40, 2,   new cc.v2(3, 3), 16,  "pennyMall",  "prefabs/pennyMall5"),
-            new this.BuildingTemplate().init(11, "体育馆",       1,   40, 3,   new cc.v2(3, 3), 32,  "pennyMall",  "prefabs/pennyMall6")
+            new this.BuildingTemplate().init(0,  "实验室",       200, 1,  50,  new cc.v2(2, 2), 0,  "shiyanshi",  "prefabs/shiyanshi"),
+            new this.BuildingTemplate().init(1,  "教室",         70,  3,  50,  new cc.v2(2, 2), 0,  "jiaoshi",    "prefabs/jiaoshi"),
+            new this.BuildingTemplate().init(2,  "活动室",       0,   1,  200, new cc.v2(2, 2), 0,  "huodongshi", "prefabs/huodongshi"),
+            new this.BuildingTemplate().init(3,  "实验楼",       600, 2,  100, new cc.v2(2, 3), 0,  "shiyanlou",  "prefabs/shiyanlou"),
+            new this.BuildingTemplate().init(4,  "教学楼",       200, 9,  100, new cc.v2(2, 3), 0,  "jiaoxuelou", "prefabs/jiaoxuelou"),
+            new this.BuildingTemplate().init(5,  "丹枫楼",       0,   2,  600, new cc.v2(3, 3), 0,  "danfenglou", "prefabs/danfenglou"),
+            new this.BuildingTemplate().init(6,  "西山实验室",   3,   30, 1,   new cc.v2(3, 3), 0,  "pennyMall",  "prefabs/xishanshiyanshi"),
+            new this.BuildingTemplate().init(7,  "工科大楼",     2,   45, 1,   new cc.v2(3, 3), 0,  "pennyMall",   "prefabs/gongkedalou"),
+            new this.BuildingTemplate().init(8,  "中心教学楼",   1.5, 80, 1,   new cc.v2(3, 3), 0,  "zhongxinjiaoxuelou",   "prefabs/zhongxinjiaoxuelou"),
+            new this.BuildingTemplate().init(9,  "徐特立图书馆", 1.5, 50, 1.5, new cc.v2(3, 3), 0,  "xutelitushuguan",   "prefabs/xutelitushuguan"),
+            new this.BuildingTemplate().init(10, "北理工的恶龙", 1.5, 40, 2,   new cc.v2(2, 3), 0,  "long",        "prefabs/long"),
+            new this.BuildingTemplate().init(11, "体育馆",       1,   40, 3,   new cc.v2(3, 3), 0, "tiyuguan",   "prefabs/tiyuguan")
         );
         // 初始化史诗建筑属性
         /*this.EpicBuildingBuff = [

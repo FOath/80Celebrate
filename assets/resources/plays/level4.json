@@ -1,0 +1,523 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-1r"
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "好大的风沙啊，这是怎么了？咳咳"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": ":目前，我们正处于前所未有的特殊时期，面对困难，咳咳……"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "你没事吧？！ 还好吗？"
+            }
+        },
+
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "咳咳…… 没事！越是困难的时刻，我们越要坚持自己的职责。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "作为中国共产党创办的第一所国防工业院校，我们在这个环境下更要以服务国家、培养人才为己任，恪守大学的使命与责任。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "说的对！在这种环境下我们更要坚韧不拔！为国家分忧！"
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "困境重重，教学活动还能继续吗？"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "当然，无论何时我们都要坚守学校职责。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们仍在坚持力所能及的教学活动，我们还要派出师生小分队深入工厂一线，到基层去，切实提高社会生产。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "果然是我理！这一阶段，我们的教育工作是不是陷入了缓慢发展时期？"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不会的，毛主席已经发出指示\"理工科大学还是要办的\"。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们已经制定新一届的招生计划，并且根据生产实际，制定教学计划，编写教材。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "到目前为止，我们已经校出版了教材、讲义、习题集39种，共24500册；图书馆整理出教材1136种，25000册，并修补了一大批损坏的书籍。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "只要教育不停，我相信我们的科技也一定不会停下来的！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是的，我们从来没有停下过科技创新的脚步。"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-2r"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们参与了研制东方红1型内燃机车设计工作"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "也研制出中国第一台地面远程照相机并投入使用"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-3l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-3r"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "还研发了“双37”双管电控自动化高炮、“红箭-73”和“J-201”反坦克导弹、“8701”高能炸药。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "以上只是我们在这个特殊时期的一些代表成果，还有众多科技成果被研发出来并投入到生产生活中去"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "刚说了那么多，你估计都懵了吧，来我问你以下哪个不是我们在特殊时期的研发成果？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 地面远程照相机",
+                "answer2": "B. \"双37\"双管电控自动化高炮",
+                "answer3": "C. \"J-201\"反坦克导弹",
+                "answer4": "D. 东风41核导弹",
+                "corrent_answer": 4
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对,是\"东风41核导弹\",这可是我们新时期的装备",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是\"东风41核导弹\"，这可是好多年以后的事了"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在这个困难时期坚持培育人才、服务国家的职责，各方面都不懈怠，相信我们一定会胜利的！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我也相信一定会的！继续加油！"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/4-1r"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "人类社会总是呈螺旋式上升的"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "黄沙消失，环境也逐渐变好了"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "风沙终于停了！我们坚持下来了！我们胜利了！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "终于等到了胜利，环境渐渐向好，但回首困难时期，我们仍是眼含热泪。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我校广大师生员工始终坚信党的领导，顶住压力，恪守使命"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在艰难岁月中，仍以服务国家、培养人才为己任，坚持开展好教学科研工作，产生了一批重要的科研成果。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1978年在人民大会堂召开的全国科学大会上，学校有33项科研成果受到大会奖励，位居全国高校前列。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "无论何时，我们都任重道远！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+			"op": "end",
+			"content":{
+				
+			}
+		}
+    ]
+}

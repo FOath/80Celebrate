@@ -1,0 +1,690 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-3l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-3r"
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        }, {
+            "op": "speak",
+            "content": {
+                "lines": "1978年，中共中央召开十一届三中全会，将全党的工作重点转移到社会主义现代化建设上来。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "学校对各方面工作进行了一系列的深入整顿，恢复办学秩序，拨乱反正，广泛开展真理标准问题的学习讨论，以新的面貌迎来改革开放，迎来学校发展的又一个重要时期。"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗨！你在干什么呀！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我正忙着恢复办学秩序，大力整顿各方面工作呢。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这一时期，学校全面恢复考试制度，恢复基础课部，进行教学检查，复刊《北工教育》，编写和出版了一批新教材，恢复和建设教师队伍。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这个我了解，刚恢复了高考制度，可不得赶紧整顿学校建设嘛！你现在在忙什么呀?"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们刚复刊了《北京工业学院学报》，作为学校发表学术论文的阵地，这样学校教师就可以广泛参加全国各类学术报告会等学术交流活动。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "还颁布了《北京工业学院科学技术成果奖励条例》，对科研成果、科技人员进行奖励表彰，鼓励大家积极进行科研工作。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哇，看起来科研管理工作正在规范开展了呢！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我忘了《北京工业学院学报》与《北工教育》哪个期刊更早复刊，你能告诉我吗？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A.《北工教育》",
+                "answer2": "B.《北京工业学院学报》",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是《北工教育》",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是《北工教育》"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不过学校的一些房屋有些破旧，校园环境需要重新整顿，还有各种后勤服务工作也要开展起来啦，最好再增新一些师生文体活动的场所。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "而且你看，14400平方米图书馆落成了！还有这个泳池，可是符合国际比赛标准的呢！"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "看起来好棒呀，学校的基础设施越来越好了。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "当然，我也时刻不忘精神文化的凝练与建设，延安精神要一直传承下去！ 北理工人，永远凝聚在一起！"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对，无论是“老北理”，还是“新北理”，都是延安根，军工魂！"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-2r"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这是？"
+            }
+        },
+
+
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "你猜猜这块石头叫做什么名字？"
+            }
+        },
+
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 校史纪念碑",
+                "answer2": "B. 校训纪念碑",
+                "answer3": "C. 校址迁徙石",
+                "answer4": "D. 就是一个普通的石头",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！这是我们的\"校史纪念碑\"",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！这是\"校史纪念碑\""
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我的45岁生日的时候成立了校友总会，后面在校友们的强烈要求和支持下，就建了这个记载着学校光荣历史和发展沿革的校史纪念碑。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我再带你走走吧！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-4l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-4r"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这是我们的老校长—徐特立同志，我校前身“延安自然科学院”的主要创建者、无产阶级革命家和教育家。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "你知道我们学校的学风是什么吗？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 实事求是，不自以为是",
+                "answer2": "B. 德以明理，学以精工",
+                "answer3": "C. 上网不涉密，涉密不上网",
+                "answer4": "D. 我不知道",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"实事求是，不自以为是\"",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "好吧，其实是\"实事求是，不自以为是\""
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我校的学风“实事求是，不自以为是”正是徐老的思想，激励了一代又一代北理工人。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "学校设立了最高荣誉奖学金“徐特立奖学金”，以纪念徐老并发扬其教育思想，激励青年学生勇攀科学技术高峰。 "
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "奋斗路上先立一个“小目标”，获一次徐特立奖学金！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-2r"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北小理！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗨，正好和你说一下，学校更名了，现在叫\"我叫北京理工大学。\""
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "现在北小理我有16个系了，由单一的工科院校向以工为主，理、工、管、文相结合的综合性大学转变。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "恭喜恭喜！什么时候的事情呀。"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 1988年",
+                "answer2": "B. 2008年",
+                "answer3": "C. 1949年",
+                "answer4": "D. 2000年",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的，具体是1988年5月11日那天",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是1988年年5月11日"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1988年5月11 号，经国家教委批准，学校正式启用新校名\"北京理工大学\""
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "时任国务委员、原机械电子工业部部长邹家华同志为新校名揭幕，北京理工大学校名是由著名书法家赵朴初题写"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这也太厉害了吧！那你可要努力加油，不负众望哦"
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        }, {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我要继续努力，向世界一流大学迈进!"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+        
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1988年5月11日，北京工业学院正式更名为北京理工大学"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "它乘着中华人民共和国快速发展的快车，一路乘风破浪"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+            "op": "end",
+            "content": {
+
+            }
+        }
+    ]
+}

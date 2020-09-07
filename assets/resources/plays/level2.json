@@ -1,0 +1,733 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-1r"
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "雄赳赳，气昂昂，跨过鸭绿江……"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北小理，这首歌是……"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这是中国人民志愿军军歌，是由咱们在前线浴血奋战的志愿军战士们创作的。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗯，看今天的报纸，咱们又打了大胜仗呢！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我也看到消息了，真是振奋人心！面对外敌的侵略，我们必须强硬回应！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "为了响应毛主席和中央建设强大的人民军队的号召，我即将投身于国防建设中去。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "那你是成为咱们党建立的第一所国防工业大学了？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对对，你来猜猜我现在叫什么名字？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 北京工业学院",
+                "answer2": "B. 北京理工大学",
+                "answer3": "C. 北方工业学院",
+                "answer4": "D. 北方理工大学",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！改成了\"北京工业学院\"",
+                "skip": true
+            }
+        },
+
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对！改成了\"北京工业学院\""
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1952年1月1日那天我改名成了北京工业学院，在咱们重工业部的大力支持下，校园里扩建了实验室、实习工厂、添置了新的仪器设备，可以更好的投入到科学研究中去了。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "太好了！这样就可以让更多的有志青年和你一同成长，一起实现军工强国的梦想，让咱们自己的国家更加的强大！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗯嗯，你也要加油呀！相信总有一天我们会强大起来，打造属于我们自己的大国利器！"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗯！我们一起守护好来之不易的和平年代。"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1950年抗美援朝战争爆发，北理此时名为北京工业学院，毛主席指示要建设自己的国防力量"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "作为一座在战火中诞生的学校，义不容辞的担任了这个任务，向着国防工业高校进行新的建设，为国家培养一代又一代的军工栋梁，为国防事业贡献力量"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-2r"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "咦，这些人他们都在干什么呀？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哦，你说那些专家呀，你看中间那个大家伙，没见过吧，探空火箭，而且是我们自主研发的,你知道是什么型号的吗？"
+            }
+        }, {
+            "op": "question",
+            "content": {
+                "answer1": "A. 505探空火箭",
+                "answer2": "B. 长征系列火箭",
+                "answer3": "C. 风暴系列火箭",
+                "answer4": "D. 远征系列火箭",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"505探空火箭\"",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是\"505探空火箭\""
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们都能自主研发火箭了，太厉害了吧！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这其中离不开中央的支持。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在之前苏联专家的帮助下，这些年我们重新进行了院系调整，重新整合了办学力量，建立了6个系，17个兵工专业门"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "一批又一批的老师和同学加入了我们的队伍，这些伙伴们都和我一样，想要为祖国的军工事业贡献自己的力量，不断的进行着科学研究"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "现在国际上的大国将目光投向了太空，咱们也不能落后呀，也要将目光放在国防尖端专业上"
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "相信这次咱们的探空火箭也将是献给祖国母亲的一份惊喜。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这份献礼可真的意义非凡！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对呀，如果成功了，咱们就相当于向宇宙成功投出了咱们自己到问路石。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嘘，听，是发射倒计时的声音！"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "10,9,8,7,6,5,4,3,2,1,发射！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "群众：\"太好了！我们成功了！\""
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speck",
+            "content": {
+                "lines": "1958年到1960年三年间，505探空火箭共7次升空，北京工业学院的师生在实验中总结经验，不断探索改进。"
+            }
+        },
+        {
+            "op": "speck",
+            "content": {
+                "lines": "数百位参与研制和发射的师生们，此前却无人见识过真正的火箭发射"
+            }
+        },
+        {
+            "op": "speck",
+            "content": {
+                "lines": "但他们带着满腔的报国志向和严谨的科学精神，克服了缺乏技术资料、实验设备和实践经验等各种困难，终于成功完成了这一壮举"
+            }
+        },
+        {
+            "op": "speck",
+            "content": {
+                "lines": "为新中国的航天事业作出了划时代的探索与贡献"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/2-2r"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor-man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor-woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "考考你！1958年，师生们仅仅用了100天就创造了另一个“新中国第一”的科技奇迹，你知道是什么吗？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 新中国第一台大型天象仪",
+                "answer2": "B. 氢弹爆炸成功",
+                "answer3": "C. 东风一号导弹发射成功 ",
+                "answer4": "D. 第一颗人造卫星发射成功",
+                "corrent_answer": 1
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"新中国第一台大型天象仪\"",
+                "skip": true
+            }
+        },
+
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是\"新中国第一台大型天象仪\""
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "大型天象仪是当时世界上最复杂的光学仪器之一"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "为了向建国9周年献礼，仪器系师生们夜以继日，仅用三个月时间，就成功研制出了新中国第一台大型天象仪原理样机"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1958年的首台大型天象仪原理样机虽然在研制水平上还尚显稚嫩"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "但这是中国人独立自主完成的对大型天象仪整套技术体系的探索与实践"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "成功填补了该领域的空白，实现了从无到有的历史突破!"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "那中国第一台大型天象仪是何时投入正式使用的呀？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "鲜有人知，大型天象仪的研制工作，从提出到正式“登台”展示，经历了整整二十年的艰难探索"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1976年，我们设计制造出了具有国际领先水平的大型天象仪，并正式在北京天文馆进行实际演示"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这也是新中国第一台正式投入实际使用的大型天象仪。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "真是太不容易了！我们耳熟能详的大型天象仪背后，凝结了一大批矢志强国的北理工人的梦想与情怀呢！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "从1976年到2007年的31年里"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这道北理工的“璀璨之光”为两千多万观众展示了宇宙万象，成为了几代中国人的集体记忆。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+			"op": "end",
+			"content":{
+				
+			}
+		}
+    ]
+}

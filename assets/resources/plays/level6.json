@@ -1,0 +1,461 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-1r"
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哇，又是几年没见了，你发生了好大的变化呀"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "时代在快速发展，我也要时刻保持自己的进步才行"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哈哈，快来和我说说，你这些年的变化，我真的快认不出你啦。"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "好！我来给你展示下我的变化"
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1990年的时候，建成了求是楼"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/5-1r"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1993年的时候，理工科技大厦开始动工"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-2l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-2r"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1994年，机电一体化中心也完成了呢，在1995年，\"爆炸灾害预防和控制\"国家重点实验室及国防科技重点实验室实验大楼建成，在1998年，逸夫科技交流中心也建好了。"
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-3l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/6-3r"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1999年，我们的中心教学楼也落地完成了！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "说的太多了，我来问你，下列哪栋建筑不是我们学校的？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 理工科技大夏",
+                "answer2": "B. 中心教学楼",
+                "answer3": "C. 文体楼",
+                "answer4": "D. 机电一体化中心",
+                "corrent_answer": 3
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"文体楼\"",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！是\"文体楼\""
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "谢谢你为我们建成了这么多明亮宽敞的教室和先进的实验室，为我们提供了良好的学习和科研环境，太棒了！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "有了良好的环境，大家更要努力奋斗，以我理工人之能强国家之力！。"
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "请放心，必不负所望！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "：嗯，学校是新中国成立以来国家历批次重点建设的高校"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "：首批进入国家“211工程”和“985工程”，首批进入“世界一流大学”建设高校A类行列"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "建校以来，学校为国家培养了一大批领袖人才和优秀建设者。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "能不能跟我说说优秀的前辈们？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在北理工的毕业生中，有李鹏、曾庆红、叶选平等党和国家领导人，以及120余位省部级以上党政领导和将军；"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "有国家最高科学技术奖获得者王小谟、我国第一艘核潜艇总设计师彭士禄等40余位院士……"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "来个传统吧，下列四位杰出人才中，哪一个不是我们北理的呢？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 李鹏",
+                "answer2": "B. 王小谟",
+                "answer3": "C. 杨振宁",
+                "answer4": "D. 彭士禄",
+                "corrent_answer": 3
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "答对了！",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对呢！杨振宁老先生并不是北理的"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "前辈们真的是太优秀了，好想成为前辈们那样的人！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "咦，好像有歌声传来。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "“清清延河水抚育你茁壮成长，悠悠岁月长磨练你意志如钢……”"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是《北京理工大学校歌》"
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "团结勤奋，为祖国和平播撒希望，求实创新，为中华富强造就栋梁……"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+               
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "清清延河水  抚育你茁壮成长"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "悠悠岁月长 磨练你意志如钢……"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+            "op": "end",
+            "content": {
+
+            }
+        }
+    ]
+}

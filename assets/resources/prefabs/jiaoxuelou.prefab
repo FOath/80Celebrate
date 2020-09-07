@@ -39,13 +39,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 440,
-      "height": 500
+      "width": 519,
+      "height": 517
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.2
+      "y": 0.25
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -92,10 +92,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e1a06271-3c4f-44c9-a4d4-84f7e4cf546c"
+      "__uuid__": "9f041077-aeab-49f2-aeaa-6efa2f655ae7"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -118,14 +118,11 @@
     "_enabled": true,
     "GameAdmin": null,
     "GameGlobalData": null,
+    "index": 0,
+    "uniqueId": "1598267019",
     "buildingName": "实验楼",
-    "science": 0,
-    "culture": 0,
-    "charm": 0,
-    "epicType": 0,
     "imageUrl": "woodBuilding",
     "offsetY": 100,
-    "level": 1,
     "gridOffset": null,
     "Sprite": null,
     "SpriteR": null,
@@ -137,7 +134,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "244cdbe9-ea65-4c2d-869f-e76e09c517f7"
+      "__uuid__": "e284862d-4110-4c2a-8539-d1b81c6abfed"
     },
     "fileId": "4aUeeQfi5NzKOGP9s2HEYY",
     "sync": false

@@ -96,7 +96,7 @@ cc.Class({
         this.PutdownBtn.on(cc.Node.EventType.TOUCH_START, (event)=>{
             this.ChangeLayoutBtn.getComponent('ChangeLayoutBtn').onClick();
             this.GameAdmin.setBuildingMuseum(event, false);
-            this.GameAdmin.initBuilding(event, this.index, this.uniqueId, this.typeId, this.level);
+            this.GameAdmin.initBuilding(event, this.index, this.uniqueId, this.typeId);
         })
     },
     init(index, uniqueId, typeId/*, level*/){

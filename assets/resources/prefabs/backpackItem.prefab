@@ -389,7 +389,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
+      "width": 180,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -444,7 +444,7 @@
     "_useOriginalSize": false,
     "_string": "北理工的恶龙",
     "_N$string": "北理工的恶龙",
-    "_fontSize": 25,
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,

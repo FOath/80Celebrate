@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "brickBuilding",
+    "_name": "Building",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -32,20 +32,20 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 115,
-      "g": 221,
-      "b": 115,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 440,
-      "height": 500
+      "width": 386,
+      "height": 332
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.2
+      "y": 0.3
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -92,10 +92,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e1a06271-3c4f-44c9-a4d4-84f7e4cf546c"
+      "__uuid__": "b7fa72ff-4360-4dfc-9eee-69f9ee8f2b9a"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -118,14 +118,11 @@
     "_enabled": true,
     "GameAdmin": null,
     "GameGlobalData": null,
+    "index": 0,
+    "uniqueId": "1598267019",
     "buildingName": "实验楼",
-    "science": 0,
-    "culture": 0,
-    "charm": 0,
-    "epicType": 0,
     "imageUrl": "woodBuilding",
     "offsetY": 100,
-    "level": 1,
     "gridOffset": null,
     "Sprite": null,
     "SpriteR": null,
@@ -137,9 +134,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "cb2dbda7-f43e-4083-ae89-f88630f7c8cc"
+      "__uuid__": "88a16614-57d6-4033-b0e5-33918f267bdc"
     },
-    "fileId": "4aUeeQfi5NzKOGP9s2HEYY",
+    "fileId": "8c/So5PF5Co6F2CQP9xjOq",
     "sync": false
   }
 ]

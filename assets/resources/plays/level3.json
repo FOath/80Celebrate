@@ -1,0 +1,511 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/3-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/3-1r"
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "呀，小理，许久没见了，最近在忙什么呢？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "学校近几年壮大挺快的，到1960年底，我们可是已经有了39个专业了，而且都是国防尖端专业。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "国防尖端专业？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对，因为都是为火箭导弹、常规武器服务的产品专业的。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "听起来就好厉害！！！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "而且61年底我们这所国防高等学校，就划归为国防科学技术委员会领导"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "诶？这有什么区别吗"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这标志着我们正式进入了导弹专业与兵工专业相结合的新的历史发展阶段，算一个正式的突破呢！从此刻起，我们就要开始对于导弹相关专业的建设了！"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "原来是这样呀，那可是一件好事呢！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是的啊，从此刻起，我们就要开始对于导弹相关专业的建设啦！"
+            }
+        },
+
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "一定要加油呀！等着你的好消息。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "没问题的！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "最后来个传统项目，请问北京理工大学是从什么时候开始对于导弹相关专业的建设的？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 1949年",
+                "answer2": "B. 1959年",
+                "answer3": "C. 1961年",
+                "answer4": "D. 1969年",
+                "corrent_answer": 3
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！就是\"1961年\"",
+                "skip": true
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对，我刚刚都说了，是\"1961年\""
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "罗布泊中，一群人遥望远方，神情凝重。伴随着一声惊天巨响，地平线上升起了一朵硕大的蘑菇云，人们顿时欢喜雀跃，甚至相拥而泣。因为中国人拥有了自己的原子弹！"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "小理，好久不见呀。你们这是在庆祝什么呢！"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们在在庆祝中国第一颗原子弹爆炸成功和氢弹爆炸成功呢！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "1964年10月16日，中国第一颗原子弹爆炸成功；1967年6月17日，中国第一颗氢弹爆炸成功！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "虽然爆炸成功了，但是你知道哪种说法不代表着两弹的成功给我们带来的好处吗？"
+            }
+        },
+        {
+            "op": "question",
+            "content": {
+                "answer1": "A. 打破了西方国家的核垄断",
+                "answer2": "B. 可以随意对其他国家进行核威胁",
+                "answer3": "C. 奠定了我国国防安全体系的基石",
+                "answer4": "D. 提高了我国的国际地位",
+                "corrent_answer": 2
+            }
+        },
+
+
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "对的！我们自古以来就倡导和平",
+                "skip": true
+            }
+        },
+
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "不对！提出严重批评！答案是\"可以随意对其他国家进行核威胁\"，这个做法是极其错误的！"
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在张劲夫、钱学森等专家的亲自指导下，我们开始建设导弹专业。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "在那之后，作为国家重要的国防院校，我们为“两弹一星” 这项神圣的工作输送了大量的各类人才，而且组成了“群英谱”来铭记他们昔日的光荣。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这些优秀的科技工作者们，以身许国，怀着对新中国的满腔热爱，响应党和国家的召唤，义无反顾地投身到这一神圣而伟大的事业中来。"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "他们在条件十分艰苦的情况下，自力更生，发愤图强，完全依靠自己的力量，取得了举世瞩目的辉煌成就。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是啊，一腔热血报国，无惧寒霜劲雪，对先辈们由衷敬佩！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "所以咱们现在国家强大后，条件可比以前好多了，我们更要努力去追赶先人们！"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "嗯嗯！我们一定要更发奋图强，做好他们的接班人！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "听你这么说，我相信那些前辈们一定会欣慰！我相信你，一定要加油呀！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "落后就要挨打，原子弹和氢弹的爆炸不仅打破了西方的核垄断，证明了我们一点也输于西方国家，也给我们带来了更加实质的安全"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+			"op": "end",
+			"content":{
+				
+			}
+		}
+    ]
+}

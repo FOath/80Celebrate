@@ -1,0 +1,298 @@
+{
+    "script": [{
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/8-3l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/8-3r"
+            }
+        }, {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        }, 
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北小理，北小理，你在电脑前码什么呢，你脸都快贴到屏幕啦。"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是你呀，我在做仿真呢，就是之前我们70周年国庆用到的表演仿真。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这个我知道，这个我知道！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "咱们的数字表演可是在多次的重要场合崭露头角的。"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "哦？那你说说看。"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这还真难不倒我！"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北理工是国内首家且唯一开设数字表演与仿真技术相关课程的院校，我们还拥有数字表演与仿真技术北京市重点实验室"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "BINGO，近9年的春晚，元宵晚会都会邀请北理工数字表演团队承担动态舞美仿真设计与实施运行的研发和技术支持"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "团队还为2008年奥运会、残奥会开、闭幕式、国庆60周年庆典、平昌冬奥会北京8分钟、国庆70周年庆典等等大型活动提供仿真系统的研发服务"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "70周年国庆总导演张艺谋都对咱们的技术赞叹不止"
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "是的呢，创新使我们更加进步，让你的想象力飞一会儿~"
+            }
+        },
+
+        {
+            "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
+            "content": {
+
+            }
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "一起共勉哦，小北理！"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor1-front",
+            "content": {
+
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "一起努力！"
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "2020年9月19日，北京理工大学成立80周年"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这是很特殊的一年，历史或许将会铭记2020.风险与机会同在"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北理工与它的莘莘学子们，又将创造出什么样的历史呢？"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "就让他们用下一个十年来回答你们"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "本章结束"
+            }
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "欢迎来到第九章…"
+            }
+        },
+        {
+            "op": "end",
+            "content": {
+
+            }
+        }
+    ]
+}

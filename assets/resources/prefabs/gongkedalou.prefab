@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Building",
+    "_name": "pennyMall",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -39,13 +39,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 450,
-      "height": 400
+      "width": 600,
+      "height": 452
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.25
+      "y": 0.3
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "17b0ecb0-f028-4674-9b98-0599d369247d"
+      "__uuid__": "f4a7aa5a-c726-47d0-b12f-21e43fa37d35"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -117,21 +117,15 @@
     },
     "_enabled": true,
     "GameAdmin": null,
-    "Name": "woodBuilding",
-    "OffsetY": 100,
-    "BuildingSize": {
-      "__type__": "cc.Vec2",
-      "x": 2,
-      "y": 2
-    },
-    "BuildingBuff": 0,
+    "GameGlobalData": null,
+    "index": 0,
+    "uniqueId": "1598267019",
+    "buildingName": "实验楼",
+    "imageUrl": "woodBuilding",
+    "offsetY": 100,
+    "gridOffset": null,
     "Sprite": null,
     "SpriteR": null,
-    "buildingId": 0,
-    "level": 1,
-    "Science": 200,
-    "Culture": 1,
-    "Charm": 0,
     "_id": ""
   },
   {
@@ -140,9 +134,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "577ec860-9094-4839-bfe4-4a4254977339"
+      "__uuid__": "5d1fac27-b8f8-4b00-b358-2e78adb8c30c"
     },
-    "fileId": "8c/So5PF5Co6F2CQP9xjOq",
+    "fileId": "c30QhUlEJPIYeNR6Y48UU6",
     "sync": false
   }
 ]

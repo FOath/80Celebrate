@@ -38,7 +38,7 @@ cc.Class({
         postTest.addEventListener("load", ()=>{
             cc.log("发送成功");
         });
-        let url = "http://49.233.54.160:8000/postPersonalInformation";
+        let url = "https://wxxyx.m0yuqi.cn/wxxyx/postPersonalInformation";
         postTest.open("POST", url);
         var sendData = {
             "personal_information": {
@@ -49,7 +49,8 @@ cc.Class({
                 "score": {
                     "science": 500,
                     "culture": 0,
-                    "charm": 1000
+                    "charm": 1000,
+                    "level": 1
                 },
                 "buildings": [
                 {
@@ -59,7 +60,7 @@ cc.Class({
                     "position_x": -300,
                     "position_y": 0,
                     "is_rotate": false,
-                    "is_backpack": false,
+                    "is_backpack": true,
                     "last_produce": "1598267030"
                 },
                 {
@@ -69,7 +70,7 @@ cc.Class({
                     "position_x": 150,
                     "position_y": -375,
                     "is_rotate": false,
-                    "is_backpack": false,
+                    "is_backpack": true,
                     "last_produce": "1598267030"
                 },
                 {
@@ -79,11 +80,41 @@ cc.Class({
                     "position_x": -600,
                     "position_y": 100,
                     "is_rotate": true,
-                    "is_backpack": false,
+                    "is_backpack": true,
                     "last_produce": "1598267030"
                 },
                 {
                     "unique_id": "1598267022",
+                    "type_id": 0,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267023",
+                    "type_id": 1,
+                    "level": 1,
+                    "position_x": -300,
+                    "position_y": 0,
+                    "is_rotate": false,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267024",
+                    "type_id": 2,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267025",
                     "type_id": 3,
                     "level": 1,
                     "position_x": -600,
@@ -93,15 +124,86 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267013",
-                    "type_id": 0,
+                    "unique_id": "1598267026",
+                    "type_id": 4,
                     "level": 1,
-                    "position_x": -300,
-                    "position_y": 0,
-                    "is_rotate": false,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
                     "is_backpack": true,
                     "last_produce": "1598267030"
-                }]
+                },
+                {
+                    "unique_id": "1598267027",
+                    "type_id": 5,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267028",
+                    "type_id": 6,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267029",
+                    "type_id": 7,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267030",
+                    "type_id": 8,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267031",
+                    "type_id": 9,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267032",
+                    "type_id": 10,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267033",
+                    "type_id": 11,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                }
+                ]
             }
         };
         postTest.send(JSON.stringify(sendData));*/
