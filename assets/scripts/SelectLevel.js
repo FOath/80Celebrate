@@ -24,7 +24,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-
+        GameGlobalData: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,38 +32,24 @@ cc.Class({
     // onLoad () {},
 
     start () {
+        this.GameGlobalData = cc.find('/GameGlobalData');
+
         this.Levels = new Array();
-        for(let i = 0; i < 8; ++i){
-            this.Levels[i] = this.node.getChildByName("Level" + (i + 1));
+        for(let i = 1; i <= 8; ++i){
+            this.Levels[i] = this.node.getChildByName("Level" + i);
         }
 
-        for(let i = 1; i < 8; ++i){
+        let level = this.GameGlobalData.getComponent('GameGlobalData').level;
+        for(let i = level + 1; i <= 8; ++i){
             this.Levels[i].getComponent(cc.Button).interactable = false;
             this.Levels[i].getChildByName("Background").color = cc.color(180, 180, 180);
         }
     },
     selectLevel(event, level){
         cc.log("load level " + level);
-        switch(parseInt(level)){
-            case 1:
-                cc.director.loadScene("levelScene");
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            
-        }
+        cc.game.addPersistRootNode(this.GameGlobalData);
+        this.GameGlobalData.getComponent('GameGlobalData').currentLevel = parseInt(level);
+        cc.director.loadScene("levelScene");
     },
     backToMain(){
         cc.director.loadScene("main");

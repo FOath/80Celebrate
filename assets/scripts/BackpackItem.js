@@ -44,7 +44,7 @@ cc.Class({
                     this.Thumbnail.getComponent(cc.Sprite).spriteFrame = sprite;
                 });
                 // 科技 文化 魅力
-                if(this.GameGlobalData.BuildingType[value].epicType != 0){
+                /*if(this.GameGlobalData.BuildingType[value].epicType != 0){
                     let science = this.GameGlobalData.BuildingType[value].science * 100;
                     let culture = this.GameGlobalData.BuildingType[value].culture;
                     let charm = this.GameGlobalData.BuildingType[value].charm * 100;
@@ -56,11 +56,11 @@ cc.Class({
                     this.Science.getComponent(cc.Label).string = "科技：" + this.GameGlobalData.BuildingType[value].science;
                     this.Culture.getComponent(cc.Label).string = "文化：" + this.GameGlobalData.BuildingType[value].culture;
                     this.Charm.getComponent(cc.Label).string   = "金币：" + this.GameGlobalData.BuildingType[value].charm;
-                }
+                }*/
                 
             }
         },
-        level: {
+        /*level: {
             get(){
                 return this._level;
             },
@@ -73,13 +73,15 @@ cc.Class({
                     this.Level.getComponent(cc.Label).string = "等级："+ value;
                 }
             }
-        },
+        },*/
+        //Level: cc.Node,
+        //Science: cc.Node,
+        //Culture: cc.Node,
+        //Charm: cc.Node,
         Thumbnail: cc.Node,
-        Level: cc.Node,
-        Science: cc.Node,
-        Culture: cc.Node,
-        Charm: cc.Node,
         PutdownBtn: cc.Node,
+        Description: cc.Node,
+        ChangeLayoutBtn: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -90,17 +92,20 @@ cc.Class({
 
     start () {
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
+        this.ChangeLayoutBtn = cc.find('/Canvas/GameCanvas/ChangeLayoutBtn');
         this.PutdownBtn.on(cc.Node.EventType.TOUCH_START, (event)=>{
+            this.ChangeLayoutBtn.getComponent('ChangeLayoutBtn').onClick();
             this.GameAdmin.setBuildingMuseum(event, false);
             this.GameAdmin.initBuilding(event, this.index, this.uniqueId, this.typeId, this.level);
         })
     },
-    init(index, uniqueId, typeId, level){
+    init(index, uniqueId, typeId/*, level*/){
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
         this.index = index;
         this.uniqueId = uniqueId;
         this.typeId = typeId;
-        this.level = level;
+        this.Description.getComponent(cc.Label).string = this.GameGlobalData.BuildingType[this.typeId].name;
+        //this.level = level;
     }
     // update (dt) {},
 });

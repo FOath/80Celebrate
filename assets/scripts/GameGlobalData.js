@@ -30,6 +30,10 @@ cc.Class({
         userId: "3220190920",
         // 玩家姓名
         userName: "张政",
+        // 主线关卡相关数据
+        currentLevel: 0,
+        level: 1,
+        completeLevel: false, // 记录是否完成一个关卡
         // 菱形网格数据
         rhombusWidth: 200, // 地形菱形网格宽
         rhombusHeight: 100, // 地形菱形网格高
@@ -37,22 +41,22 @@ cc.Class({
         // 可放置区域标记
         BuildingSpaceArray: [], // 标记为1则该区域已有建筑，标记为0则该区域没有建筑
         // 建筑buff区域标记
-        BuildingBuffArray: [], // 标记该区域的buff，范围为0到1111111(二进制)
+        //BuildingBuffArray: [], // 标记该区域的buff，范围为0到1111111(二进制)
         // 预设的12种建筑及存放的数组
         BuildingTemplate: null,
         BuildingType: [],
         // 建筑升级
-        BuildingLevel: null,
-        BuildingLevelArray: [],
+        //BuildingLevel: null,
+        //BuildingLevelArray: [],
         // 预设的史诗建筑属性
-        EpicBuildingBuff: [],
+        //EpicBuildingBuff: [],
         // 已拥有的建筑数组
         ExistingBuildingTemplate: null,
         ExistingBuildingArray: [],
         // 当前生产情况
-        science: 5000, // 科技
-        culture: 30, // 文化
-        charm: 10000 // 魅力
+        //science: 5000, // 科技
+        //culture: 30, // 文化
+        //charm: 10000 // 魅力
     },
     // LIFE-CYCLE CALLBACKS:
 
@@ -75,6 +79,7 @@ cc.Class({
             this.BuildingSpaceArray[i][this.lineCount] = 1;
         }
         // 初始化buff作用区域
+        /*
         this.BuildingBuffArray = new Array();
         for(let i = 0; i < (2 * this.lineCount + 1); ++i){
             this.BuildingBuffArray[i] = new Array();
@@ -82,6 +87,7 @@ cc.Class({
                 this.BuildingBuffArray[i][j] = 0;
             }
         }
+        */
         // 预设的建筑模板类
         this.BuildingTemplate = cc.Class({
             name: "BuildingTemplate",
@@ -113,7 +119,7 @@ cc.Class({
         this.BuildingType.push(
             new this.BuildingTemplate().init(0,  "实验室",       200, 1,  50,  new cc.v2(2, 2), 0, "woodBuilding", "prefabs/woodBuilding1"),
             new this.BuildingTemplate().init(1,  "教室",         70,  3,  50,  new cc.v2(2, 2), 0, "woodBuilding", "prefabs/woodBuilding2"),
-            new this.BuildingTemplate().init(2,  "活动室",       0,   1,  200, new cc.v2(2, 2), 0, "woodBuilding", "prefabs/woodBuilding3"),
+            new this.BuildingTemplate().init(2,  "活动室",       0,   1,  200, new cc.v2(1, 1), 0, "huodongshi", "prefabs/woodBuilding3"),
             new this.BuildingTemplate().init(3,  "实验楼",       600, 2,  100, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema1"),
             new this.BuildingTemplate().init(4,  "教学楼",       200, 9,  100, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema2"),
             new this.BuildingTemplate().init(5,  "艺术设计馆",   0,   2,  600, new cc.v2(2, 3), 0, "cinema",       "prefabs/cinema3"),
@@ -125,7 +131,7 @@ cc.Class({
             new this.BuildingTemplate().init(11, "体育馆",       1,   40, 3,   new cc.v2(3, 3), 32,  "pennyMall",  "prefabs/pennyMall6")
         );
         // 初始化史诗建筑属性
-        this.EpicBuildingBuff = [
+        /*this.EpicBuildingBuff = [
             //    科技 文化 魅力 （与BuildingType中保持一致）
             cc.v3(3,   30, 1),
             cc.v3(2,   45, 1),
@@ -133,9 +139,9 @@ cc.Class({
             cc.v3(1.5, 50, 1.5),
             cc.v3(1.5, 40, 2),
             cc.v3(1,   40, 3)
-        ];
+        ];*/
         // 预设的建筑升级数据类
-        this.BuildingLevel = cc.Class({
+        /*this.BuildingLevel = cc.Class({
             name: "BuildingLevel",
             properties: {
                 price: 6000, // 升级消耗的金币
@@ -165,7 +171,7 @@ cc.Class({
             new this.BuildingLevel().init(20000,  true,  0.5, false, 1, false, 10),
             new this.BuildingLevel().init(15000,  false, 10,  false, 3, false, 10),
             new this.BuildingLevel().init(10000,  false, 10,  false, 1, true,  0.3),
-        ]
+        ]*/
 
         // 预设的现存建筑类
         this.ExistingBuildingTemplate = cc.Class({
@@ -205,11 +211,18 @@ cc.Class({
         // 初始化用户信息
         this.userId = sceneDataJson.personal_information.id;
         this.userName = sceneDataJson.personal_information.user_name;
-
+        this.currentLevel = 0;
+        if(sceneDataJson.game_data.score.level){
+            this.level = parseInt(sceneDataJson.game_data.score.level);
+        }
+        else
+            this.level = 1;
+        
+        this.completeLevel = false;
         // 初始化游戏数据
-        this.science = sceneDataJson.game_data.score.science;
-        this.culture = sceneDataJson.game_data.score.culture;
-        this.money   = sceneDataJson.game_data.score.charm;
+        // this.science = sceneDataJson.game_data.score.science;
+        // this.culture = sceneDataJson.game_data.score.culture;
+        // this.money   = sceneDataJson.game_data.score.charm;
         
         let buildings = sceneDataJson.game_data.buildings;
         for(let i = 0; i < buildings.length; ++i){
@@ -257,6 +270,7 @@ cc.Class({
                     this.BuildingSpaceArray[gridCoord.x][gridCoord.y] = 1;
                 }
             }
+            /*
             // 若为史诗建筑，更新buff作用区域
             if(epicType != 0){
                 // 从最上面的边缘点开始赋值buff作用区域
@@ -300,6 +314,7 @@ cc.Class({
                     }
                 }   
             }
+            */
         }
     },
     gridPosToGridCoord(x, y){

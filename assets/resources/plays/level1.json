@@ -28,7 +28,30 @@
 		{
 			"op": "speak",
 			"content": {
-				"lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，名为\"自然科学院\""
+				"lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，请问它的名字是？"
+			}
+		},
+		{
+			"op": "question",
+			"content": {
+				"answer1": "A. 延安科学院",
+				"answer2": "B. 理工科学院",
+				"answer3": "C. 西北科学院",
+				"answer4": "D. 中国科学院",
+				"corrent_answer": 1
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "对，就是\"延安科学院\"",
+				"skip" : true
+			}
+		},
+		{
+			"op": "speak",
+			"content": {
+				"lines": "不对喔，其实是\"延安科学院\""
 			}
 		},
 		{
@@ -767,6 +790,12 @@
 			"op": "speak",
 			"content": {
 				"lines": "本章结束"
+			}
+		},
+		{
+			"op": "end",
+			"content":{
+				
 			}
 		}
 	]

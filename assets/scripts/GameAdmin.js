@@ -47,7 +47,7 @@ cc.Class({
             visible: false,
         },
         // 产出标签界面
-        Product: {
+        /*Product: {
             default: null,
             visible: false,
         },
@@ -62,25 +62,40 @@ cc.Class({
         CharmLabel:{
             default: null,
             visible: false,
-        },
-        // 商店界面
+        },*/
+        // 珍藏馆界面
         BuildingMuseum: {
             default: null,
             visible: false,
         },
         // UI界面
-        SendWordBtn: cc.Node,
-        RankBtn: cc.Node,
-        HistoryBtn: cc.Node,
-        MuseumBtn: cc.Node
+        /*SendWordBtn: {
+            default: null,
+            visible: false,
+        },*/
+        RankBtn: {
+            default: null,
+            visible: false,
+        },
+        HistoryBtn: {
+            default: null,
+            visible: false,
+        },
+        MuseumBtn: {
+            default: null,
+            visible: false,
+        },
+        TreasureBoxBtn: {
+            default: null,
+            visible: false,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad() {
-        // 初始化各种数据
+    /*onLoad() {
         this.CultureSum = 0;
-    },
+    },*/
 
     start() {
         this.GameState = 0;
@@ -90,21 +105,22 @@ cc.Class({
         this.EditCanvas = cc.find('/Canvas/GameCanvas/EditCanvas');
         this.EditCanvas.zIndex = 1000;
 
+        /*
         this.Product = cc.find('/Canvas/UICanvas/Product');
         this.ScienceLabel = this.Product.getChildByName('Science').getChildByName('ScienceLabel');
         this.CultureLabel = this.Product.getChildByName('Culture').getChildByName('CultureLabel');
         this.MoneyLabel = this.Product.getChildByName('Money').getChildByName('MoneyLabel');
-        
+        */
         this.BuildingMuseum = cc.find('/Canvas/UICanvas/BuildingMuseum');
         
-        
         let JumpBtns = cc.find('/Canvas/UICanvas/JumpBtns');
-        this.SendWordBtn = JumpBtns.getChildByName('SendWord');
-        this.RankBtn     = JumpBtns.getChildByName('Rank');
-        this.HistoryBtn  = JumpBtns.getChildByName('History');
-        this.MuseumBtn   = JumpBtns.getChildByName('Museum'); 
+        //this.SendWordBtn    = JumpBtns.getChildByName('SendWord');
+        this.RankBtn        = JumpBtns.getChildByName('Rank');
+        this.HistoryBtn     = JumpBtns.getChildByName('History');
+        this.MuseumBtn      = JumpBtns.getChildByName('Museum'); 
+        this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox'); 
 
-        this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
+        //this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
 
         this.SettingCanvas = cc.find('/Canvas/UICanvas/SettingCanvas');
 
@@ -115,19 +131,26 @@ cc.Class({
         if(this.GameState == 0){
             this.GameState = 1; // 转为编辑态
 
-            this.SendWordBtn.getComponent(cc.Animation).play();
+            //this.SendWordBtn.getComponent(cc.Animation).play();
 
             this.RankBtn.getComponent(cc.Animation).play();
 
             this.HistoryBtn.getComponent(cc.Animation).play();
 
             this.MuseumBtn.getComponent(cc.Animation).play();
+
+            this.TreasureBoxBtn.getComponent(cc.Animation).play();
+            
         }
         // 游戏处于编辑态
         else if(this.GameState == 1){
             this.GameState = 0;
-            this.SendWordBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
-            this.SendWordBtn.getComponent(cc.Animation).stop();
+            //this.SendWordBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            //this.SendWordBtn.getComponent(cc.Animation).stop();
+
+            if(this.EditCanvas.getComponent('EditBuilding').Building != null){
+                this.EditCanvas.getComponent('EditBuilding').closeEditCanvas();
+            }
 
             this.RankBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
             this.RankBtn.getComponent(cc.Animation).stop();
@@ -137,6 +160,9 @@ cc.Class({
 
             this.MuseumBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
             this.MuseumBtn.getComponent(cc.Animation).stop();
+
+            this.TreasureBoxBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.TreasureBoxBtn.getComponent(cc.Animation).stop();
         }
     },
     init() {
@@ -189,7 +215,7 @@ cc.Class({
         }
 
     },
-    computeProduct() {
+    /*computeProduct() {
         // 计算总魅力值
         let moneySum = 0;
         this.GameCanvas.walk((target) => {
@@ -218,7 +244,7 @@ cc.Class({
         }, null);
         let res = Math.round(scienceSum * (1 + cultureSum / 100));
         this.ScienceLabel.getComponent(cc.Label).string = this.GameGlobalData.science + " + " + res + "/分钟"; 
-    },
+    },*/
     // update (dt) {},
     initBuilding(event, index, uniqueId, typeId, level) {
         if (this.EditCanvas.childrenCount >= 3)
@@ -272,6 +298,7 @@ cc.Class({
         }
     },
     switchToHistory() {
+        cc.game.addPersistRootNode(this.GameGlobalData);
         cc.director.loadScene("selectLevel");
     },
     setBuildingMuseum(event, state) {
@@ -285,9 +312,9 @@ cc.Class({
             this.BuildingMuseum.active = false;
         }
     },
-    openBuildingDetail(building){
+    /*openBuildingDetail(building){
         this.BuildingDetailCanvas.getComponent("BuildingDetailController").init(building);
-    },
+    },*/
     switchSettingCanvas(){
         if(this.SettingCanvas.active){
             this.SettingCanvas.active = false;

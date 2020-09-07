@@ -47,6 +47,13 @@ cc.Class({
         linesIndex: 0,
         backColor: new cc.Color(125, 125, 125),
         frontColor: new cc.Color(255, 255, 255),
+        // 四个选项
+        AnswerCanvas: cc.Node,
+        Answer1: cc.Node,
+        Answer2: cc.Node,
+        Answer3: cc.Node,
+        Answer4: cc.Node,
+        correntAnswer: -1,
         // 自动播放按钮
         AutoPlay: cc.Node,
         APSprite: cc.SpriteFrame,
@@ -63,12 +70,7 @@ cc.Class({
         // 初始化变量
         this.isComplete = false; // 刚开始无动作。
         this.playSpeed = 0.1;
-        cc.resources.load('plays/level1', (err, json) => {
-            this.playJson = json.json;
-            this.scriptIndex = 0;
-            this.maxScriptIndex = this.playJson.script.length;
-            this.playScirpt();
-        });
+        
         // 打字机效果
         this.typeWriter = (str) => {
             this.DialogLabel.getComponent(cc.Label).string = str.substr(0, this.linesIndex);
@@ -84,8 +86,48 @@ cc.Class({
                 }
             }
         };
+        this.Answer1.on(cc.Node.EventType.TOUCH_END, (event)=>{
+            if(this.correntAnswer >= 0 && this.correntAnswer == 1){
+                this.playScirpt();
+            }
+            else{
+                ++this.scriptIndex;
+                this.playScirpt();
+            }
+            this.AnswerCanvas.active = false;
+        }, this);
+        this.Answer2.on(cc.Node.EventType.TOUCH_END, (event)=>{
+            if(this.correntAnswer >= 0 && this.correntAnswer == 2){
+                this.playScirpt();
+            }
+            else{
+                ++this.scriptIndex;
+                this.playScirpt();
+            }
+            this.AnswerCanvas.active = false;
+        }, this);
+        this.Answer3.on(cc.Node.EventType.TOUCH_END, (event)=>{
+            if(this.correntAnswer >= 0 && this.correntAnswer == 3){
+                this.playScirpt();
+            }
+            else{
+                ++this.scriptIndex;
+                this.playScirpt();
+            }
+            this.AnswerCanvas.active = false;
+        }, this);
+        this.Answer4.on(cc.Node.EventType.TOUCH_END, (event)=>{
+            if(this.correntAnswer >= 0 && this.correntAnswer == 4){
+                this.playScirpt();
+            }
+            else{
+                ++this.scriptIndex;
+                this.playScirpt();
+            }
+            this.AnswerCanvas.active = false;
+        }, this);
         // 点击进行下一个动作
-        this.node.on(cc.Node.EventType.TOUCH_START, (event) => {
+        this.node.on(cc.Node.EventType.TOUCH_END, (event) => {
             if (this.isComplete) {
                 this.playScirpt();
             }
@@ -93,7 +135,13 @@ cc.Class({
     },
 
     start() {
-
+        this.GameGlobalData = cc.find('/GameGlobalData');
+        cc.resources.load('plays/level' + this.GameGlobalData.getComponent('GameGlobalData').currentLevel, (err, json) => {
+            this.playJson = json.json;
+            this.scriptIndex = 0;
+            this.maxScriptIndex = this.playJson.script.length;
+            this.playScirpt();
+        });
     },
     setAutoPlay() {
         this.isAutoPlay = !this.isAutoPlay;
@@ -140,16 +188,29 @@ cc.Class({
                 this.linesIndex = 0;
                 let content = this.playJson.script[this.scriptIndex].content.lines;
                 this.schedule(this.typeWriter.bind(this, content), this.playSpeed, content.length);
+                if(item.content.skip)
+                    ++this.scriptIndex;
+                break;
+            case "question":
+                this.AnswerCanvas.active = true;
+                this.Answer1.getComponent(cc.Label).string = item.content.answer1;
+                this.Answer2.getComponent(cc.Label).string = item.content.answer2;
+                this.Answer3.getComponent(cc.Label).string = item.content.answer3;
+                this.Answer4.getComponent(cc.Label).string = item.content.answer4;
+                this.correntAnswer = item.content.corrent_answer;
                 break;
             case "backgroundl-switch":
                 cc.resources.load(item.content.url, cc.SpriteFrame, (err, sprite) => {
                     if (err !== undefined)
                         cc.log(err);
                     this.BackgroundL.getComponent(cc.Sprite).spriteFrame = sprite;
-                    this.scheduleOnce(() => {
-                        this.playScirpt();
-                    }, item.content.delay);
                 });
+                action = new Promise((resolve, reject) => {
+                    resolve();
+                });
+                action.then(() => {
+                    this.playScirpt();
+                })
                 break;
             case "backgroundr-switch":
                 cc.resources.load(item.content.url, cc.SpriteFrame, (err, sprite) => {
@@ -247,6 +308,15 @@ cc.Class({
                     this.playScirpt();
                 })
                 break;
+            case "end":
+                if(this.GameGlobalData.getComponent('GameGlobalData').level <= (this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1))
+                        this.GameGlobalData.getComponent('GameGlobalData').level = this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1;
+                    
+                console.log(this.GameGlobalData.getComponent('GameGlobalData').level);
+                this.currentLevel = 0;
+                this.GameGlobalData.getComponent('GameGlobalData').completeLevel = true;
+                cc.game.addPersistRootNode(this.GameGlobalData);
+                cc.director.loadScene('selectLevel');
         }
         ++this.scriptIndex;
     }

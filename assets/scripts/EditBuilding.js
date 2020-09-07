@@ -245,7 +245,16 @@ cc.Class({
         
         // 将现在建筑所在地盘的BuildingSpaceArray归1
         this.setBuildingSpaceArray(this.node.x + this.GridOffset.x, this.node.y + this.GridOffset.y, 1);
+        this.Building.getComponent('BuildingController').putDown(this.GameCanvas, this.node.x, this.node.y);
+        this.Building = null;
+
+        // 停止接受点击事件
+        this.node.pauseSystemEvents();
+        // 隐藏编辑界面
+        this.Setting.active = false;
+        this.EditGrid.active = false;
         // 如果建筑是史诗建筑，则给周围一圈设置buff
+        /*
         if(this.Building.getComponent('BuildingController').epicType != 0){
             cc.log('史诗建筑放置');
             let origin = cc.v2(this.node.x, this.node.y).add(this.GridOffset).add(cc.v2(0, this.rhombusHeight));
@@ -292,15 +301,7 @@ cc.Class({
                 }
             }
         }
-        
-        this.Building.getComponent('BuildingController').putDown(this.GameCanvas, this.node.x, this.node.y);
-        this.Building = null;
-
-        // 停止接受点击事件
-        this.node.pauseSystemEvents();
-        // 隐藏编辑界面
-        this.Setting.active = false;
-        this.EditGrid.active = false;
+        */
     },
     setBuildingSpaceArray(x, y, state){
         // 更改GameAdmin的BuildingSpaceArray和BuildingBuffArray
@@ -346,19 +347,14 @@ cc.Class({
     },
     // 建筑放回背包
     putBackBuilding(){
-        let uniqueId = this.Building.getComponent('BuildingController').uniqueId;
+        let index = this.Building.getComponent('BuildingController').index;
+        this.GameGlobalData.ExistingBuildingArray[index].isBackpack = true;
 
-        for(let i = 0; i < this.GameGlobalData.ExistingBuildingArray.length; ++i){
-            if(this.GameGlobalData.ExistingBuildingArray[i].uniqueId == uniqueId){
-                this.GameGlobalData.ExistingBuildingArray[i].isBackpack = true;
-                break;
-            }
-        }
         this.Building.removeFromParent(false);
         this.Building = null;
 
         // 更新建筑的产出
-        this.GameAdmin.computeProduct();
+        // this.GameAdmin.computeProduct();
 
         this.node.pauseSystemEvents();
         // 隐藏编辑界面

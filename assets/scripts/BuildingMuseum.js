@@ -24,21 +24,22 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        canvasState: 0, // 0 表示商店打开， 1表示背包打开
+
+        //canvasState: 0, // 0 表示商店打开， 1表示背包打开
         
-        StoreBtn: cc.Node,
-        StoreScrollView: cc.Node,
-        StoreContent: cc.Node,
+        //StoreBtn: cc.Node,
+        //StoreScrollView: cc.Node,
+        //StoreContent: cc.Node,
 
         BackpackBtn: cc.Node,
         BackpackScrollView: cc.Node,
         BackpackContent: cc.Node,
         
         // 帮助界面
-        HelpCanvas: cc.Node,
-        HelpBtn: cc.Node,
-        HelpSprite: cc.SpriteFrame,
-        HelpSpriteDisable: cc.SpriteFrame,
+        //HelpCanvas: cc.Node,
+        //HelpBtn: cc.Node,
+        //HelpSprite: cc.SpriteFrame,
+        //HelpSpriteDisable: cc.SpriteFrame,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -49,27 +50,27 @@ cc.Class({
 
     start () {
         // 商店初始化一次即可
-        for(let i = 0; i < 12; ++i){
+        /*for(let i = 0; i < 12; ++i){
             cc.resources.load("prefabs/storeItem", (err, item)=>{
                 var storeItem = cc.instantiate(item);
                 storeItem.getComponent('StoreItem').init(i);
                 this.StoreContent.addChild(storeItem);
             });
-        }
+        }*/
     },
     init(){
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
-        switch(this.canvasState){
+        this.openBackpack();
+        /*switch(this.canvasState){
             case 0:
                 this.openStore();
                 break;
             case 1:
                 this.openBackpack();
                 break;
-        }
-        
+        }*/
     },
-    openStore(){
+    /*openStore(){
         this.canvasState = 0;
         // 商店初始化一次即可，不需要每次都开都初始化
         // 设置商店界面显示，商店按钮不可用
@@ -78,7 +79,7 @@ cc.Class({
         // 设置背包界面显示，背包按钮可用
         this.BackpackBtn.getComponent(cc.Button).interactable = true;
         this.BackpackScrollView.active = false;
-    },
+    },*/
     openBackpack(){
         this.canvasState = 1;
         // 初始化背包
@@ -100,20 +101,19 @@ cc.Class({
                     let index = buildings[i].index;
                     let uniqueId = buildings[i].uniqueId;
                     let typeId = buildings[i].typeId;
-                    let level = buildings[i].level;
-                    backpackItem.getComponent('BackpackItem').init(index, uniqueId, typeId, level);
+                    backpackItem.getComponent('BackpackItem').init(index, uniqueId, typeId);
                     this.BackpackContent.addChild(backpackItem);
                 });
             }
         }
         // 设置背包界面显示，背包按钮不可用
-        this.BackpackBtn.getComponent(cc.Button).interactable = false;
-        this.BackpackScrollView.active = true;
+        // this.BackpackBtn.getComponent(cc.Button).interactable = false;
+        // this.BackpackScrollView.active = true;
         // 设置背包界面显示，背包按钮可用
-        this.StoreBtn.getComponent(cc.Button).interactable = true;
-        this.StoreScrollView.active = false;
+        // this.StoreBtn.getComponent(cc.Button).interactable = true;
+        // this.StoreScrollView.active = false;
     },
-    openInstruction(){
+    /*openInstruction(){
         if(this.HelpCanvas.active){
             this.HelpCanvas.active = false;
             this.HelpBtn.getComponent(cc.Button).normalSprite = this.HelpSprite;
@@ -128,6 +128,6 @@ cc.Class({
             this.HelpBtn.getComponent(cc.Button).hoverSprite = this.HelpSpriteDisable;
             this.HelpBtn.getComponent(cc.Button).disabledSprite = this.HelpSpriteDisable;
         }
-    }
+    }*/
     // update (dt) {},
 });

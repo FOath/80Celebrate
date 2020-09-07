@@ -39,18 +39,18 @@ cc.Class({
             set(value){
                 this._typeId = value;
                 this.buildingName = this.GameGlobalData.BuildingType[value].name;
-                this.science      = this.GameGlobalData.BuildingType[value].science;
-                this.culture      = this.GameGlobalData.BuildingType[value].culture;
-                this.money        = this.GameGlobalData.BuildingType[value].charm;
+                //this.science      = this.GameGlobalData.BuildingType[value].science;
+                //this.culture      = this.GameGlobalData.BuildingType[value].culture;
+                //this.money        = this.GameGlobalData.BuildingType[value].charm;
                 this.size         = this.GameGlobalData.BuildingType[value].size;
-                this.epicType     = this.GameGlobalData.BuildingType[value].epicType;
+                //this.epicType     = this.GameGlobalData.BuildingType[value].epicType;
                 this.imageUrl     = this.GameGlobalData.BuildingType[value].imageUrl;
             }
         },
         buildingName: "实验楼",
-        science: 0,
-        culture: 0,
-        money: 0,
+        //science: 0,
+        //culture: 0,
+        //money: 0,
         size: {
             get(){
                 return this._size;
@@ -61,12 +61,12 @@ cc.Class({
                                          (this.size.x + this.size.y - 2) * this.rhombusHeight / 4);
             }
         },
-        epicType: 0,
+        //epicType: 0,
         imageUrl: 'woodBuilding',
 
         // 预置体自身的数据
         offsetY: 100,
-        level: 0, // 建筑等级
+        //level: 0, // 建筑等级
         gridOffset: null,
 
         Sprite: cc.SpriteFrame,
@@ -99,7 +99,7 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_END, (event)=>{
             // 检查游戏是否处于编辑态
             if(this.GameAdmin.GameState == 0){
-                this.GameAdmin.openBuildingDetail(this);
+                //this.GameAdmin.openBuildingDetail(this);
             }
             else if(this.GameAdmin.GameState == 1){
                 let EditCanvas = this.GameAdmin.EditCanvas;
@@ -130,7 +130,7 @@ cc.Class({
         // 设置建筑旋转
         this.isRotate = this.GameGlobalData.ExistingBuildingArray[this.index].isRotate;
         // 设置建筑等级
-        this.level = level;
+        //this.level = level;
 
         cc.resources.load(this.imageUrl, cc.SpriteFrame, (err, sprite)=>{
             this.Sprite = sprite;
@@ -146,6 +146,7 @@ cc.Class({
     rotate(){
         this.isRotate = !this.isRotate;
     },
+    /*
     getProduct(){
         let record = 0;
         // 非史诗建筑才需要算产出
@@ -174,6 +175,7 @@ cc.Class({
         }
         return cc.v3(science, this.culture, money);
     },
+    */
     putDown(parent, x, y){
         this.node.parent = parent;
         this.node.setPosition(x, y);
@@ -184,10 +186,10 @@ cc.Class({
         this.GameGlobalData.ExistingBuildingArray[this.index].isBackpack = false;
         this.GameGlobalData.ExistingBuildingArray[this.index].posX = x;
         this.GameGlobalData.ExistingBuildingArray[this.index].posY = y;
-        if(this.isRotate)
+        if(this.isRotate != undefined)
             this.GameGlobalData.ExistingBuildingArray[this.index].isRotate = this.isRotate;
 
-        this.GameAdmin.computeProduct();
+        // this.GameAdmin.computeProduct();
     },
     calculateZIndex(x, y){
         let newX = (2 * this.lineCount)- y;
