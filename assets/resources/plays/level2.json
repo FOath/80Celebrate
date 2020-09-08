@@ -1,4 +1,5 @@
 {
+    "bgm": "2",
     "script": [{
             "op": "backgroundl-switch",
             "content": {
@@ -40,6 +41,10 @@
         },
         {
             "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
             "content": {}
         },
         {

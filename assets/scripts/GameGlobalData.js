@@ -119,10 +119,10 @@ cc.Class({
         this.BuildingType = new Array();
         this.BuildingType.push(
             new this.BuildingTemplate().init(0,  "路灯",         0, 0, 0, new cc.v2(1, 1), 0,  "ludeng",             "prefabs/ludeng"),
-            new this.BuildingTemplate().init(1,  "木灯",         0, 0, 0, new cc.v2(2, 2), 0,  "mudeng",             "prefabs/mudeng"), // 这个暂时不让摆，记住
+            new this.BuildingTemplate().init(1,  "木灯",         0, 0, 0, new cc.v2(1, 1), 0,  "mudeng",             "prefabs/mudeng"), // 这个暂时不让摆，记住
             new this.BuildingTemplate().init(2,  "BIT路灯",      0, 0, 0, new cc.v2(1, 2), 0,  "BITludeng",          "prefabs/BITludeng"),
             new this.BuildingTemplate().init(3,  "人工湖",       0, 0, 0, new cc.v2(2, 2), 0,  "rengonghu",          "prefabs/rengonghu"),
-            new this.BuildingTemplate().init(4,  "花丛",         0, 0, 0, new cc.v2(2, 2), 0,  "huacong",            "prefabs/huacong"),
+            new this.BuildingTemplate().init(4,  "花丛",         0, 0, 0, new cc.v2(1, 1), 0,  "huacong",            "prefabs/huacong"),
 
 
             new this.BuildingTemplate().init(5,  "超市",         0, 0, 0, new cc.v2(2, 2), 0,  "chaoshi",            "prefabs/chaoshi"), // 2

@@ -1,6 +1,6 @@
 {
-  "script": [
-    {
+  "bgm": "8",
+  "script": [{
       "op": "backgroundl-switch",
       "content": {
         "id": 0,
@@ -42,8 +42,11 @@
 
     {
       "op": "actor1-back",
-      "content": {
-      }
+      "content": {}
+    },
+    {
+      "op": "actor2-front",
+      "content": {}
     },
 
     {
@@ -54,13 +57,11 @@
     },
     {
       "op": "actor2-back",
-      "content": {
-      }
+      "content": {}
     },
     {
       "op": "actor1-front",
-      "content": {
-      }
+      "content": {}
     },
     {
       "op": "speak",
@@ -70,13 +71,11 @@
     },
     {
       "op": "actor1-back",
-      "content": {
-      }
+      "content": {}
     },
     {
       "op": "actor2-front",
-      "content": {
-      }
+      "content": {}
     },
 
     {

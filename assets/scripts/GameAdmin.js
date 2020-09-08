@@ -120,6 +120,7 @@ cc.Class({
 
         //this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
 
+        this.getComponent(cc.AudioSource).loop = true;
         this.SettingCanvas = cc.find('/Canvas/UICanvas/SettingCanvas');
 
         this.init();

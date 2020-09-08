@@ -142,6 +142,14 @@ cc.Class({
             this.playJson = json.json;
             this.scriptIndex = 0;
             this.maxScriptIndex = this.playJson.script.length;
+            // 设置背景音乐
+            cc.resources.load("/bgm/" + this.playJson.bgm, cc.AudioClip, (err, clip)=>{
+                if(err != undefined)
+                    console.log(err);
+                this.getComponent(cc.AudioSource).clip = clip;
+                this.getComponent(cc.AudioSource).loop = true;
+                this.getComponent(cc.AudioSource).play();
+            });
             this.playScirpt();
         });
     },

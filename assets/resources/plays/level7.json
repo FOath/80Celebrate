@@ -1,4 +1,5 @@
 {
+    "bgm": "7",
     "script": [{
             "op": "backgroundl-switch",
             "content": {

@@ -1,4 +1,5 @@
 {
+    "bgm": "1",
     "script": [
         {
 			"op": "backgroundl-switch",
@@ -49,6 +50,10 @@
                 "posX": 700,
                 "posY": -160
             }
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
         },
         {
             "op": "actor2-back",
@@ -247,6 +252,12 @@
         },
         {
             "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
             "content": {
 
             }
@@ -559,6 +570,12 @@
         },
         {
             "op": "actor1-back",
+            "content": {
+
+            }
+        },
+        {
+            "op": "actor2-front",
             "content": {
 
             }
