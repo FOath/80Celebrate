@@ -53,6 +53,7 @@ cc.Class({
         // 已拥有的建筑数组
         ExistingBuildingTemplate: null,
         ExistingBuildingArray: [],
+        ExistingTypeArray:[],
         // 当前生产情况
         //science: 5000, // 科技
         //culture: 30, // 文化
@@ -117,18 +118,38 @@ cc.Class({
         });
         this.BuildingType = new Array();
         this.BuildingType.push(
-            new this.BuildingTemplate().init(0,  "实验室",       200, 1,  50,  new cc.v2(2, 2), 0,  "shiyanshi",  "prefabs/shiyanshi"),
-            new this.BuildingTemplate().init(1,  "教室",         70,  3,  50,  new cc.v2(2, 2), 0,  "jiaoshi",    "prefabs/jiaoshi"),
-            new this.BuildingTemplate().init(2,  "活动室",       0,   1,  200, new cc.v2(2, 2), 0,  "huodongshi", "prefabs/huodongshi"),
-            new this.BuildingTemplate().init(3,  "实验楼",       600, 2,  100, new cc.v2(2, 3), 0,  "shiyanlou",  "prefabs/shiyanlou"),
-            new this.BuildingTemplate().init(4,  "教学楼",       200, 9,  100, new cc.v2(2, 3), 0,  "jiaoxuelou", "prefabs/jiaoxuelou"),
-            new this.BuildingTemplate().init(5,  "丹枫楼",       0,   2,  600, new cc.v2(3, 3), 0,  "danfenglou", "prefabs/danfenglou"),
-            new this.BuildingTemplate().init(6,  "西山实验室",   3,   30, 1,   new cc.v2(3, 3), 0,  "pennyMall",  "prefabs/xishanshiyanshi"),
-            new this.BuildingTemplate().init(7,  "工科大楼",     2,   45, 1,   new cc.v2(3, 3), 0,  "pennyMall",   "prefabs/gongkedalou"),
-            new this.BuildingTemplate().init(8,  "中心教学楼",   1.5, 80, 1,   new cc.v2(3, 3), 0,  "zhongxinjiaoxuelou",   "prefabs/zhongxinjiaoxuelou"),
-            new this.BuildingTemplate().init(9,  "徐特立图书馆", 1.5, 50, 1.5, new cc.v2(3, 3), 0,  "xutelitushuguan",   "prefabs/xutelitushuguan"),
-            new this.BuildingTemplate().init(10, "北理工的恶龙", 1.5, 40, 2,   new cc.v2(2, 3), 0,  "long",        "prefabs/long"),
-            new this.BuildingTemplate().init(11, "体育馆",       1,   40, 3,   new cc.v2(3, 3), 0, "tiyuguan",   "prefabs/tiyuguan")
+            new this.BuildingTemplate().init(0,  "路灯",         0, 0, 0, new cc.v2(1, 1), 0,  "ludeng",             "prefabs/ludeng"),
+            new this.BuildingTemplate().init(1,  "木灯",         0, 0, 0, new cc.v2(2, 2), 0,  "mudeng",             "prefabs/mudeng"), // 这个暂时不让摆，记住
+            new this.BuildingTemplate().init(2,  "BIT路灯",      0, 0, 0, new cc.v2(1, 2), 0,  "BITludeng",          "prefabs/BITludeng"),
+            new this.BuildingTemplate().init(3,  "人工湖",       0, 0, 0, new cc.v2(2, 2), 0,  "rengonghu",          "prefabs/rengonghu"),
+            new this.BuildingTemplate().init(4,  "花丛",         0, 0, 0, new cc.v2(2, 2), 0,  "huacong",            "prefabs/huacong"),
+
+
+            new this.BuildingTemplate().init(5,  "超市",         0, 0, 0, new cc.v2(2, 2), 0,  "chaoshi",            "prefabs/chaoshi"), // 2
+            new this.BuildingTemplate().init(6,  "打印店",       0, 0, 0, new cc.v2(2, 2), 0,  "dayindian",          "prefabs/dayindian"), // 2
+            new this.BuildingTemplate().init(7,  "书店",         0, 0, 0, new cc.v2(2, 2), 0,  "shudian",            "prefabs/shudian"), // 3
+            new this.BuildingTemplate().init(8,  "小卖部",       0, 0, 0, new cc.v2(2, 1), 0,  "xiaomaibu",          "prefabs/xiaomaibu"), // 3
+
+            new this.BuildingTemplate().init(9,  "活动室",        0, 0, 0, new cc.v2(2, 2), 0,  "huodongshi",         "prefabs/huodongshi"), // 1
+            new this.BuildingTemplate().init(10,  "工科大楼",     0, 0, 0, new cc.v2(2, 2), 0,  "gongkedalou",         "prefabs/gongkedalou"), // 1
+            new this.BuildingTemplate().init(11,  "教室",         0, 0, 0, new cc.v2(2, 2), 0,  "jiaoshi",            "prefabs/jiaoshi"), // 6
+            new this.BuildingTemplate().init(12,  "教学楼",       0, 0, 0, new cc.v2(2, 3), 0,  "jiaoxuelou",         "prefabs/jiaoxuelou"), // 5
+            new this.BuildingTemplate().init(13,  "实验楼",       0, 0, 0, new cc.v2(2, 3), 0,  "shiyanlou",          "prefabs/shiyanlou"), // 5
+            new this.BuildingTemplate().init(14,  "实验室",       0, 0, 0, new cc.v2(2, 2), 0,  "shiyanshi",          "prefabs/shiyanshi"), // 4
+            new this.BuildingTemplate().init(15,  "西山实验室",   0, 0, 0, new cc.v2(2, 3), 0,  "xishanshiyanshi",    "prefabs/xishanshiyanshi"), // 6
+            new this.BuildingTemplate().init(16,  "艺术馆",       0, 0, 0, new cc.v2(3, 2), 0,  "yishuguan",          "prefabs/yishuguan"), // 7
+
+
+            new this.BuildingTemplate().init(17,  "京工食堂",     0, 0, 0, new cc.v2(2, 2), 0,  "jinggongshitang",     "prefabs/jinggongshitang"), // 7
+            new this.BuildingTemplate().init(18,  "丹枫楼",       0, 0, 0, new cc.v2(3, 3), 0,  "danfenglou",          "prefabs/danfenglou"), // 4
+            new this.BuildingTemplate().init(19,  "北理工的恶龙", 0, 0, 0, new cc.v2(2, 3), 0,  "long",                "prefabs/long"), // 8
+            new this.BuildingTemplate().init(20,  "体育馆",       0, 0, 0, new cc.v2(3, 3), 0,  "tiyuguan",            "prefabs/tiyuguan"), // 1
+            new this.BuildingTemplate().init(21,  "徐特立图书馆", 0, 0, 0, new cc.v2(3, 3), 0,  "xutelitushuguan",     "prefabs/xutelitushuguan"), // 7
+            new this.BuildingTemplate().init(22,  "游泳馆",       0, 0, 0, new cc.v2(3, 3), 0,  "youyongguan",         "prefabs/youyongguan"), // 8
+            new this.BuildingTemplate().init(23,  "中心教学楼",   0, 0, 0, new cc.v2(3, 3), 0,  "zhongxinjiaoxuelou",  "prefabs/zhongxinjiaoxuelou"), // 8
+            new this.BuildingTemplate().init(24,  "主楼",         0, 0, 0, new cc.v2(3, 3), 0,  "zhulou",              "prefabs/zhulou"), // 6
+            new this.BuildingTemplate().init(25,  "理科教学楼",   0, 0, 0, new cc.v2(3, 3), 0,  "likejiaoxuelou",      "prefabs/likejiaoxuelou"), // 5
+            
         );
         // 初始化史诗建筑属性
         /*this.EpicBuildingBuff = [
@@ -201,6 +222,15 @@ cc.Class({
             }
         });
         this.ExistingBuildingArray = new Array();
+
+        this.ExistingTypeArray = new Array();
+        for(let i = 0; i < this.BuildingType.length; ++i){
+            this.ExistingTypeArray[i] = false;
+        }
+        this.ExistingTypeArray[0] = true;
+        this.ExistingTypeArray[2] = true;
+        this.ExistingTypeArray[3] = true;
+        this.ExistingTypeArray[4] = true;
     },
 
     start () {
@@ -242,16 +272,19 @@ cc.Class({
         }
         // 根据获得的建筑信息更新可放置区域和buff作用区域
         for(let i = 0; i < this.ExistingBuildingArray.length; ++i){
+            let typeId = this.ExistingBuildingArray[i].typeId;
+            if(typeId != 1)
+                this.ExistingTypeArray[typeId] = true;
             // 如果建筑在背包，直接跳过
             if(this.ExistingBuildingArray[i].isBackpack)
                 continue;
 
-            let typeId = this.ExistingBuildingArray[i].typeId;
             let x = this.ExistingBuildingArray[i].posX;
             let y = this.ExistingBuildingArray[i].posY;
             let isRotate = this.ExistingBuildingArray[i].isRotate;
             let size = this.BuildingType[typeId].size;
             let epicType = this.BuildingType[typeId].epicType;
+
             // 若建筑已旋转，则建筑的size的x与y互换
             if(isRotate && size.x != size.y){
                 let temp = size.x;

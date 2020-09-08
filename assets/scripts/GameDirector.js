@@ -37,6 +37,8 @@ cc.Class({
         // 背景节点
         BackgroundL: cc.Node,
         BackgroundR: cc.Node,
+        spriteL: cc.spriteFrame,
+        spriteR: cc.spriteFrame,
         // 两个人物
         Actor1: cc.Node,
         Actor2: cc.Node,
@@ -70,7 +72,7 @@ cc.Class({
         // 初始化变量
         this.isComplete = false; // 刚开始无动作。
         this.playSpeed = 0.05;
-        
+
         // 打字机效果
         this.typeWriter = (str) => {
             this.DialogLabel.getComponent(cc.Label).string = str.substr(0, this.linesIndex);
@@ -86,41 +88,41 @@ cc.Class({
                 }
             }
         };
-        this.Answer1.on(cc.Node.EventType.TOUCH_END, (event)=>{
-            if(this.correntAnswer >= 0 && this.correntAnswer == 1){
+        this.Answer1.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if (this.correntAnswer >= 0 && this.correntAnswer == 1) {
                 this.playScirpt();
             }
-            else{
+            else {
                 ++this.scriptIndex;
                 this.playScirpt();
             }
             this.AnswerCanvas.active = false;
         }, this);
-        this.Answer2.on(cc.Node.EventType.TOUCH_END, (event)=>{
-            if(this.correntAnswer >= 0 && this.correntAnswer == 2){
+        this.Answer2.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if (this.correntAnswer >= 0 && this.correntAnswer == 2) {
                 this.playScirpt();
             }
-            else{
+            else {
                 ++this.scriptIndex;
                 this.playScirpt();
             }
             this.AnswerCanvas.active = false;
         }, this);
-        this.Answer3.on(cc.Node.EventType.TOUCH_END, (event)=>{
-            if(this.correntAnswer >= 0 && this.correntAnswer == 3){
+        this.Answer3.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if (this.correntAnswer >= 0 && this.correntAnswer == 3) {
                 this.playScirpt();
             }
-            else{
+            else {
                 ++this.scriptIndex;
                 this.playScirpt();
             }
             this.AnswerCanvas.active = false;
         }, this);
-        this.Answer4.on(cc.Node.EventType.TOUCH_END, (event)=>{
-            if(this.correntAnswer >= 0 && this.correntAnswer == 4){
+        this.Answer4.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if (this.correntAnswer >= 0 && this.correntAnswer == 4) {
                 this.playScirpt();
             }
-            else{
+            else {
                 ++this.scriptIndex;
                 this.playScirpt();
             }
@@ -188,34 +190,43 @@ cc.Class({
                 this.linesIndex = 0;
                 let content = this.playJson.script[this.scriptIndex].content.lines;
                 this.schedule(this.typeWriter.bind(this, content), this.playSpeed, content.length);
-                if(item.content.skip)
+                if (item.content.skip)
                     ++this.scriptIndex;
                 break;
             case "question":
                 this.AnswerCanvas.active = true;
                 this.Answer1.getComponent(cc.Label).string = item.content.answer1;
                 this.Answer2.getComponent(cc.Label).string = item.content.answer2;
-                this.Answer3.getComponent(cc.Label).string = item.content.answer3;
-                this.Answer4.getComponent(cc.Label).string = item.content.answer4;
+                if (item.content.answer3) {
+                    this.Answer3.active = true;
+                    this.Answer3.getComponent(cc.Label).string = item.content.answer3;
+                }
+                else {
+                    this.Answer3.active = false;
+                    this.Answer3.getComponent(cc.Label).string = item.content.answer3;
+                }
+                if (item.content.answer4) {
+                    this.Answer4.active = true;
+                    this.Answer4.getComponent(cc.Label).string = item.content.answer4;
+                }
+                else {
+                    this.Answer4.active = false;
+                }
                 this.correntAnswer = item.content.corrent_answer;
                 break;
             case "backgroundl-switch":
                 cc.resources.load(item.content.url, cc.SpriteFrame, (err, sprite) => {
                     if (err !== undefined)
                         cc.log(err);
-                    this.BackgroundL.getComponent(cc.Sprite).spriteFrame = sprite;
-                });
-                action = new Promise((resolve, reject) => {
-                    resolve();
-                });
-                action.then(() => {
+                    this.spriteL = sprite;
                     this.playScirpt();
-                })
+                });
                 break;
             case "backgroundr-switch":
                 cc.resources.load(item.content.url, cc.SpriteFrame, (err, sprite) => {
                     if (err !== undefined)
                         cc.log(err);
+                    this.BackgroundL.getComponent(cc.Sprite).spriteFrame = this.spriteL;
                     this.BackgroundR.getComponent(cc.Sprite).spriteFrame = sprite;
                     this.scheduleOnce(() => {
                         this.playScirpt();
@@ -309,12 +320,11 @@ cc.Class({
                 })
                 break;
             case "end":
-                if(this.GameGlobalData.getComponent('GameGlobalData').level <= (this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1))
-                        this.GameGlobalData.getComponent('GameGlobalData').level = this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1;
-                    
+                if (this.GameGlobalData.getComponent('GameGlobalData').level <= (this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1)) {
+                    this.GameGlobalData.getComponent('GameGlobalData').completeLevel = true;
+                    this.GameGlobalData.getComponent('GameGlobalData').level = this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1;
+                }
                 console.log(this.GameGlobalData.getComponent('GameGlobalData').level);
-                this.currentLevel = 0;
-                this.GameGlobalData.getComponent('GameGlobalData').completeLevel = true;
                 cc.game.addPersistRootNode(this.GameGlobalData);
                 cc.director.loadScene('selectLevel');
         }

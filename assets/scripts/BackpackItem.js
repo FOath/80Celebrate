@@ -26,16 +26,14 @@ cc.Class({
         // },
         GameAdmin: cc.Node,
 
-        index: 0,
-        uniqueId: "1598267019",
+        //index: 0,
+        //uniqueId: "1598267019",
         typeId: {
             get(){
                 return this._typeId;
             },
             set(value){
                 // 剔除无效的id
-                if(value < 0 || value > 11)
-                    return;
                 this._typeId = value;
                 // 缩略图
                 cc.resources.load(this.GameGlobalData.BuildingType[value].imageUrl, cc.SpriteFrame, (err, sprite)=>{
@@ -93,16 +91,30 @@ cc.Class({
     start () {
         this.GameAdmin = cc.find('/GameAdmin').getComponent('GameAdmin');
         this.ChangeLayoutBtn = cc.find('/Canvas/GameCanvas/ChangeLayoutBtn');
-        this.PutdownBtn.on(cc.Node.EventType.TOUCH_START, (event)=>{
-            this.ChangeLayoutBtn.getComponent('ChangeLayoutBtn').onClick();
+        this.PutdownBtn.on(cc.Node.EventType.TOUCH_END, (event)=>{
+            if(this.GameAdmin.GameState != 1)
+                this.ChangeLayoutBtn.getComponent('ChangeLayoutBtn').onClick();
             this.GameAdmin.setBuildingMuseum(event, false);
-            this.GameAdmin.initBuilding(event, this.index, this.uniqueId, this.typeId);
+
+            let building = new this.GameGlobalData.ExistingBuildingTemplate().init(
+                this.GameGlobalData.ExistingBuildingArray.length, // index
+                new Date().valueOf(), // uniqueId
+                this.typeId, // typeId
+                1, // level
+                false, // isRotate
+                true, // isBackpack
+                0, // posX
+                0, // posY
+                new Date().valueOf(), // lastProduce
+            );
+            this.GameGlobalData.ExistingBuildingArray.push(building);
+            this.GameAdmin.initBuilding(event, building.index, building.uniqueId, building.typeId);
         })
     },
-    init(index, uniqueId, typeId/*, level*/){
+    init(/*index, uniqueId,*/ typeId/*, level*/){
         this.GameGlobalData = cc.find('/GameGlobalData').getComponent('GameGlobalData');
-        this.index = index;
-        this.uniqueId = uniqueId;
+        //this.index = index;
+        //this.uniqueId = uniqueId;
         this.typeId = typeId;
         this.Description.getComponent(cc.Label).string = this.GameGlobalData.BuildingType[this.typeId].name;
         //this.level = level;

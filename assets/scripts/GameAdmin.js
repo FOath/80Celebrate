@@ -72,20 +72,16 @@ cc.Class({
         /*SendWordBtn: {
             default: null,
             visible: false,
-        },*/
+        },
         RankBtn: {
             default: null,
             visible: false,
-        },
+        },*/
         HistoryBtn: {
             default: null,
             visible: false,
         },
         MuseumBtn: {
-            default: null,
-            visible: false,
-        },
-        TreasureBoxBtn: {
             default: null,
             visible: false,
         }
@@ -115,10 +111,12 @@ cc.Class({
 
         let JumpBtns = cc.find('/Canvas/UICanvas/JumpBtns');
         //this.SendWordBtn    = JumpBtns.getChildByName('SendWord');
-        this.RankBtn = JumpBtns.getChildByName('Rank');
+        //this.RankBtn = JumpBtns.getChildByName('Rank');
         this.HistoryBtn = JumpBtns.getChildByName('History');
         this.MuseumBtn = JumpBtns.getChildByName('Museum');
-        this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox');
+        this.SettingBtn = JumpBtns.getChildByName('RightCanvas').getChildByName('Setting');
+        this.ShareBtn = JumpBtns.getChildByName('RightCanvas').getChildByName('Share');
+        //this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox');
 
         //this.BuildingDetailCanvas = cc.find('/Canvas/UICanvas/BuildingDetailCanvas');
 
@@ -133,13 +131,20 @@ cc.Class({
 
             //this.SendWordBtn.getComponent(cc.Animation).play();
 
-            this.RankBtn.getComponent(cc.Animation).play();
+            //this.RankBtn.getComponent(cc.Animation).play();
 
             this.HistoryBtn.getComponent(cc.Animation).play();
+            this.HistoryBtn.getComponent(cc.Button).interactable = false;
 
-            this.MuseumBtn.getComponent(cc.Animation).play();
+            //this.MuseumBtn.getComponent(cc.Animation).play();
 
-            this.TreasureBoxBtn.getComponent(cc.Animation).play();
+            this.SettingBtn.getComponent(cc.Animation).play();
+            this.SettingBtn.getComponent(cc.Button).interactable = false;
+            
+            this.ShareBtn.getComponent(cc.Animation).play();
+            this.ShareBtn.getComponent(cc.Button).interactable = false;
+
+            //this.TreasureBoxBtn.getComponent(cc.Animation).play();
 
         }
         // 游戏处于编辑态
@@ -152,17 +157,29 @@ cc.Class({
                 this.EditCanvas.getComponent('EditBuilding').closeEditCanvas();
             }
 
-            this.RankBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
-            this.RankBtn.getComponent(cc.Animation).stop();
+            //this.RankBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            //this.RankBtn.getComponent(cc.Animation).stop();
 
+            this.HistoryBtn.active = true;
+            this.HistoryBtn.getComponent(cc.Button).interactable = true;
             this.HistoryBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
             this.HistoryBtn.getComponent(cc.Animation).stop();
 
-            this.MuseumBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
-            this.MuseumBtn.getComponent(cc.Animation).stop();
+            //this.MuseumBtn.active = true;
+            //this.MuseumBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            //this.MuseumBtn.getComponent(cc.Animation).stop();
 
-            this.TreasureBoxBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
-            this.TreasureBoxBtn.getComponent(cc.Animation).stop();
+            this.SettingBtn.active = true;
+            this.SettingBtn.getComponent(cc.Button).interactable = true;
+            this.SettingBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.SettingBtn.getComponent(cc.Animation).stop();
+
+            this.ShareBtn.active = true;
+            this.ShareBtn.getComponent(cc.Button).interactable = true;
+            this.ShareBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            this.ShareBtn.getComponent(cc.Animation).stop();
+            //this.TreasureBoxBtn.getComponent(cc.Animation).setCurrentTime(0, 'buttonFade');
+            //this.TreasureBoxBtn.getComponent(cc.Animation).stop();
         }
     },
     init() {
@@ -336,5 +353,14 @@ cc.Class({
         } else {
             this.SettingCanvas.active = true;
         }
+    },
+    switchBGM(){
+        if(this.getComponent(cc.AudioSource).isPlaying){
+            this.getComponent(cc.AudioSource).pause();
+        }
+        else{
+            this.getComponent(cc.AudioSource).play();
+        }
+        
     }
 });

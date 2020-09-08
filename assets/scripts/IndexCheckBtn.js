@@ -50,7 +50,7 @@ cc.Class({
                     "science": 500,
                     "culture": 0,
                     "charm": 1000,
-                    "level": 1
+                    "level": 8
                 },
                 "buildings": [
                 {
@@ -65,7 +65,7 @@ cc.Class({
                 },
                 {
                     "unique_id": "1598267020",
-                    "type_id": 3,
+                    "type_id": 1,
                     "level": 1,
                     "position_x": 150,
                     "position_y": -375,
@@ -75,36 +75,6 @@ cc.Class({
                 },
                 {
                     "unique_id": "1598267021",
-                    "type_id": 6,
-                    "level": 1,
-                    "position_x": -600,
-                    "position_y": 100,
-                    "is_rotate": true,
-                    "is_backpack": true,
-                    "last_produce": "1598267030"
-                },
-                {
-                    "unique_id": "1598267022",
-                    "type_id": 0,
-                    "level": 1,
-                    "position_x": -600,
-                    "position_y": 100,
-                    "is_rotate": true,
-                    "is_backpack": true,
-                    "last_produce": "1598267030"
-                },
-                {
-                    "unique_id": "1598267023",
-                    "type_id": 1,
-                    "level": 1,
-                    "position_x": -300,
-                    "position_y": 0,
-                    "is_rotate": false,
-                    "is_backpack": true,
-                    "last_produce": "1598267030"
-                },
-                {
-                    "unique_id": "1598267024",
                     "type_id": 2,
                     "level": 1,
                     "position_x": -600,
@@ -114,7 +84,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267025",
+                    "unique_id": "1598267022",
                     "type_id": 3,
                     "level": 1,
                     "position_x": -600,
@@ -124,17 +94,17 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267026",
+                    "unique_id": "1598267023",
                     "type_id": 4,
                     "level": 1,
-                    "position_x": -600,
-                    "position_y": 100,
-                    "is_rotate": true,
+                    "position_x": -300,
+                    "position_y": 0,
+                    "is_rotate": false,
                     "is_backpack": true,
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267027",
+                    "unique_id": "1598267024",
                     "type_id": 5,
                     "level": 1,
                     "position_x": -600,
@@ -144,7 +114,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267028",
+                    "unique_id": "1598267025",
                     "type_id": 6,
                     "level": 1,
                     "position_x": -600,
@@ -154,7 +124,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267029",
+                    "unique_id": "1598267026",
                     "type_id": 7,
                     "level": 1,
                     "position_x": -600,
@@ -164,7 +134,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267030",
+                    "unique_id": "1598267027",
                     "type_id": 8,
                     "level": 1,
                     "position_x": -600,
@@ -174,7 +144,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267031",
+                    "unique_id": "1598267028",
                     "type_id": 9,
                     "level": 1,
                     "position_x": -600,
@@ -184,7 +154,7 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267032",
+                    "unique_id": "1598267029",
                     "type_id": 10,
                     "level": 1,
                     "position_x": -600,
@@ -194,8 +164,145 @@ cc.Class({
                     "last_produce": "1598267030"
                 },
                 {
-                    "unique_id": "1598267033",
+                    "unique_id": "1598267030",
                     "type_id": 11,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267031",
+                    "type_id": 12,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267032",
+                    "type_id": 13,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267033",
+                    "type_id": 14,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267034",
+                    "type_id": 15,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267035",
+                    "type_id": 16,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267036",
+                    "type_id": 17,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267037",
+                    "type_id": 18,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267038",
+                    "type_id": 19,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },
+                {
+                    "unique_id": "1598267039",
+                    "type_id": 20,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },{
+                    "unique_id": "1598267040",
+                    "type_id": 21,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },{
+                    "unique_id": "1598267041",
+                    "type_id": 22,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                },{
+                    "unique_id": "1598267042",
+                    "type_id": 23,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                }
+                ,{
+                    "unique_id": "1598267043",
+                    "type_id": 24,
+                    "level": 1,
+                    "position_x": -600,
+                    "position_y": 100,
+                    "is_rotate": true,
+                    "is_backpack": true,
+                    "last_produce": "1598267030"
+                }
+                ,{
+                    "unique_id": "1598267044",
+                    "type_id": 25,
                     "level": 1,
                     "position_x": -600,
                     "position_y": 100,

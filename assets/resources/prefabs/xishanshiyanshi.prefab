@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f4a7aa5a-c726-47d0-b12f-21e43fa37d35"
+      "__uuid__": "3fb61795-b81a-4491-b2c5-fac986178d8b"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -117,21 +117,15 @@
     },
     "_enabled": true,
     "GameAdmin": null,
-    "Name": "pennyMall",
-    "OffsetY": 100,
-    "BuildingSize": {
-      "__type__": "cc.Vec2",
-      "x": 3,
-      "y": 3
-    },
-    "BuildingBuff": 1,
+    "GameGlobalData": null,
+    "index": 0,
+    "uniqueId": "1598267019",
+    "buildingName": "实验楼",
+    "imageUrl": "woodBuilding",
+    "offsetY": 100,
+    "gridOffset": null,
     "Sprite": null,
     "SpriteR": null,
-    "buildingId": 6,
-    "level": 1,
-    "Science": 0,
-    "Culture": 0,
-    "Charm": 0,
     "_id": ""
   },
   {

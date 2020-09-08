@@ -48,19 +48,30 @@ cc.Class({
                 let touch0 = touches[0];
                 let touch1 = touches[1];
                 let dis = touch0.getLocation().sub(touch1.getLocation()).magSqr();
-                cc.log(dis);
+                let deltaDis = dis.magSqr() - this.touchDistance.magSqr();
                 if(dis > this.touchDistance){
                     this.node.scale = Math.min(this.node.scale + 0.1, 3);
+
+                    this.node.convertToNodeSpaceAR
                     
                 }
                 else if(dis < this.touchDistance){
                     this.node.scale = Math.max(this.node.scale - 0.1, 0.5);
                     // 防止缩小时露出边界
-                    let screenSize = cc.winSize;
-                    let x = this.clamp(this.node.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
-                    let y = this.clamp(this.node.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
-                    this.node.setPosition(x, y);
+                    //let screenSize = cc.winSize;
+                    //let x = this.clamp(this.node.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+                    //let y = this.clamp(this.node.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+                    //this.node.setPosition(x, y);
                 }
+                let screenSize = cc.winSize;
+                let x = (touch0.getLocationX() + touch1.getLocationX()) * 0.5;
+                let y = (touch0.getLocationY() + touch1.getLocationY()) * 0.5;
+                let delta = cc.v2(screenSize.width / 2 - x, screenSize.height / 2 - y).mulSelf(deltaDis * 4 / (screenSize.width * screenSize.width + screenSize.height * screenSize.height));
+                delta = cc.v2(delta.x + this.node.x, delta.y + this.node.y);
+                x = this.clamp(delta.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+                y = this.clamp(delta.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+                this.node.setPosition(x, y);
+
                 this.touchDistance = dis;
             }
         }, this);
@@ -72,11 +83,20 @@ cc.Class({
             else{
                 this.node.scale = Math.max(this.node.scale - 0.1, 0.5);
                 // 防止缩小时露出边界
-                let screenSize = cc.winSize;
-                let x = this.clamp(this.node.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
-                let y = this.clamp(this.node.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
-                this.node.setPosition(x, y);
+                //let x = this.clamp(event.getLocationX(), -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+                //let y = this.clamp(event.getLocationY(), -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+                //this.node.setPosition(x, y);
             }
+            let screenSize = cc.winSize;
+            //cc.log(screenSize.width + " " + screenSize.height);
+            //cc.log(event.getLocationX() + " " + event.getLocationY());
+            let delta = cc.v2(screenSize.width / 2 - event.getLocationX(), screenSize.height / 2 - event.getLocationY()).mulSelf(0.2);
+            //cc.log(screenSize.width / 2 + " " + screenSize.height / 2);
+            //cc.log(delta.x + " " + delta.y);
+            delta = cc.v2(delta.x + this.node.x, delta.y + this.node.y);
+            let x = this.clamp(delta.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+            let y = this.clamp(delta.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+            this.node.setPosition(x, y);
         }, this);
     },
 

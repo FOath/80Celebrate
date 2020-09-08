@@ -1,298 +1,618 @@
 {
-    "script": [{
-            "op": "backgroundl-switch",
-            "content": {
-                "id": 0,
-                "delay": 2,
-                "url": "backgrounds/8-3l"
-            }
-        },
-        {
-            "op": "backgroundr-switch",
-            "content": {
-                "id": 0,
-                "delay": 2,
-                "url": "backgrounds/8-3r"
-            }
-        }, {
-            "op": "dialog-switch",
-            "content": {
-                "id": 1,
-                "state": true
-            }
-        },
-        {
-            "op": "actor1-appear",
-            "content": {
-                "url": "actors/actor_man",
-                "posX": -700,
-                "posY": -140
-            }
-        },
-        {
-            "op": "actor2-appear",
-            "content": {
-                "url": "actors/actor_woman",
-                "posX": 700,
-                "posY": -160
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
+  "script": [
+    {
+      "op": "backgroundl-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-5l"
+      }
+    },
+    {
+      "op": "backgroundr-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-5r"
+      }
+    },
+    {
+      "op": "dialog-switch",
+      "content": {
+        "id": 1,
+        "state": true
+      }
+    },
+    {
+      "op": "actor1-appear",
+      "content": {
+        "url": "actors/actor_man",
+        "posX": -700,
+        "posY": -140
+      }
+    },
+    {
+      "op": "actor2-appear",
+      "content": {
+        "url": "actors/actor_woman",
+        "posX": 700,
+        "posY": -160
+      }
+    },
 
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
+    {
+      "op": "actor1-back",
+      "content": {
+      }
+    },
 
-            }
-        }, 
-        {
-            "op": "speak",
-            "content": {
-                "lines": "北小理，北小理，你在电脑前码什么呢，你脸都快贴到屏幕啦。"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
+    {
+      "op": "speak",
+      "content": {
+        "lines": "北小理，不知不觉，我们已经认识这么久了呢"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "是呀，步入新时代，踏上新征程，我们也应当有新的作为。"
+      }
+    },
+    {
+      "op": "actor1-back",
+      "content": {
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+      }
+    },
 
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
+    {
+      "op": "speak",
+      "content": {
+        "lines": "新时代我们的眼光是不是要瞄向更远的地方呢？"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "是你呀，我在做仿真呢，就是之前我们70周年国庆用到的表演仿真。"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "这是自然的，2011年，由我校牵头研制的“微流控芯片基因扩增装置”跟随着神州八号飞船成功飞入太空了！"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "你知道这意味着什么吗？"
+      }
+    },
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这个我知道，这个我知道！"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "咱们的数字表演可是在多次的重要场合崭露头角的。"
-            }
-        },
 
-        {
-            "op": "actor2-back",
-            "content": {
+    {
+      "op": "actor1-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "哦？那你说说看。"
-            }
-        },
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "我猜一定会是一项重大突破"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
 
-        {
-            "op": "actor1-back",
-            "content": {
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "它实现了北理工实验装置载荷登入太空、中国微流控芯片太空应用技术、中国在空间环境下开展基因实验三项\"零的突破\""
+      }
+    },
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这还真难不倒我！"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "北理工是国内首家且唯一开设数字表演与仿真技术相关课程的院校，我们还拥有数字表演与仿真技术北京市重点实验室"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
+    {
+      "op": "actor1-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "BINGO，近9年的春晚，元宵晚会都会邀请北理工数字表演团队承担动态舞美仿真设计与实施运行的研发和技术支持"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "团队还为2008年奥运会、残奥会开、闭幕式、国庆60周年庆典、平昌冬奥会北京8分钟、国庆70周年庆典等等大型活动提供仿真系统的研发服务"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "发射基因芯片上太空，听起来就觉得好科幻啊"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "70周年国庆总导演张艺谋都对咱们的技术赞叹不止"
-            }
-        },
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "在这个基础上，我们奋进开拓。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "2016年长征七号搭载北理工生物科学实验项目和载荷再次进入太空，展开细胞微生物在空间环境下增殖和变异研究。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "2017年4月20日，北理工微流控芯片生物培养与分析载荷搭乘天舟一号升入太空。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "两周内，该装置全自动地完成了神经细胞和免疫细胞的在轨共培养，同时实现在线观测分析、数据处理并成功回传"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "实现了中国首次获得在轨多细胞共培养实时图像。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "2017年6月4日，北理工研制的空间环境下在PCR反应中DNA错配规律研究的科学载荷，搭乘美国猎鹰9号火箭飞向太空，通过“龙”货运飞船登入国际空间站。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "成为首个登入国际空间站的中国空间科学项目，同时标志着中美空间科学合作取得了“零”的突破。"
+      }
+    },
 
-        {
-            "op": "actor2-back",
-            "content": {
 
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
+    {
+      "op": "actor1-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "是的呢，创新使我们更加进步，让你的想象力飞一会儿~"
-            }
-        },
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
 
-        {
-            "op": "actor1-back",
-            "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "没想到我们的空间载荷创造了这么多\"第一\"，太棒了北理工！"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
 
-            }
-        },
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "对的，也是同年的9月，我们成立了\"空间载荷技术研究院\"， 为我国空间载荷技术的创新与发展作出贡献。"
+      }
+    },
 
-        {
-            "op": "speak",
-            "content": {
-                "lines": "一起共勉哦，小北理！"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
+    {
+      "op": "actor1-back",
+      "content": {
 
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
 
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "一起努力！"
-            }
-        },
-        {
-            "op": "actor1-disappear",
-            "content": {
-                
-            }
-        },
-        {
-            "op": "actor2-disappear",
-            "content": {
-                
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "2020年9月19日，北京理工大学成立80周年"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这是很特殊的一年，历史或许将会铭记2020.风险与机会同在"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "北理工与它的莘莘学子们，又将创造出什么样的历史呢？"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "就让他们用下一个十年来回答你们"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "本章结束"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "欢迎来到第九章…"
-            }
-        },
-        {
-            "op": "end",
-            "content": {
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "不愧是我理，强国担当！"
+      }
+    },
 
-            }
-        }
-    ]
+
+    {
+      "op": "actor1-disappear",
+      "content": {
+        "url": "actors/actor-man",
+        "posX": -700,
+        "posY": -140
+      }
+    },
+    {
+      "op": "actor2-disappear",
+      "content": {
+        "url": "actors/actor-woman",
+        "posX": 700,
+        "posY": -160
+      }
+    },
+    {
+      "op": "background-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-3"
+      }
+    },
+    {
+      "op": "backgroundr-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-3r"
+      }
+    },
+
+    {
+      "op": "actor1-appear",
+      "content": {
+        "url": "actors/actor-man",
+        "posX": -700,
+        "posY": -140
+      }
+    },
+    {
+      "op": "actor2-appear",
+      "content": {
+        "url": "actors/actor-woman",
+        "posX": 700,
+        "posY": -160
+      }
+    },
+
+
+
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "北小理，北小理，你在电脑前码什么呢，你脸都快贴到屏幕啦。"
+      }
+    },
+
+    {
+      "op": "actor2-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "是你呀，我在做仿真呢，就是之前我们70周年国庆用到的表演仿真。"
+      }
+    },
+
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "这个我知道，这个我知道！"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "咱们的数字表演可是在多次的重要场合崭露头角的。"
+      }
+    },
+
+    {
+      "op": "actor2-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "那是必须的，那你说说，你还知道什么吗？"
+      }
+    },
+
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "嗯……这我真的有关注过，毕竟我也对数字表演感兴趣呢。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "我们是国内首家且唯一开设数字表演与仿真技术相关课程的院校"
+      }
+    },
+
+    {
+      "op": "speak",
+      "content": {
+        "lines": "\"数字表演与仿真技术\"还是北京市的重点实验室呢，按照验室主任丁刚毅教授的话来讲，就是要做到左手写代码，右手去画画。"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "BINGO，近9年的春晚，元宵晚会都会请到数字表演的团队去做仿真呢"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "还为2008年奥运会、残奥会开、闭幕式、国庆60周年庆典、平昌冬奥会北京8分钟、2019北京园博会等等大型活动仿真编排提供技术总支持"
+      }
+    },
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "70周年国庆总导演张艺谋都对咱们的技术赞叹不止，创造70周年联欢活动的\"世界奇迹\"的幕后黑科技就是咱们的数字表演啦！"
+      }
+    },
+
+    {
+      "op": "actor2-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "是的呢，你看把写代码与画画结合在一起，产生了多大的能量。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "创新才能使我们更加进步，让你的想象力飞一会儿~"
+      }
+    },
+    {
+      "op": "actor1-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor2-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "哈哈哈，让我想起了丁刚毅教授的一句话\"真正的立身之本不是知识，而是能力！\"。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "一起共勉哦，小北理！"
+      }
+    },
+    {
+      "op": "actor2-back",
+      "content": {
+
+      }
+    },
+    {
+      "op": "actor1-front",
+      "content": {
+
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "一起努力，在这个充满了际遇的时代！"
+      }
+    },
+
+
+    {
+      "op": "actor1-disappear",
+      "content": {
+        "url": "actors/actor-man",
+        "posX": -700,
+        "posY": -140
+      }
+    },
+    {
+      "op": "actor2-disappear",
+      "content": {
+        "url": "actors/actor-woman",
+        "posX": 700,
+        "posY": -160
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "2020年9月19日，北京理工大学成立80周年"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "在这80年中，北京理工大学经历了多次的转移和更名，经历过磨难，也迎来过丰收。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "它历经了岁月的洗礼，创造了诸多贡献，在历史长河中闪闪发光。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "但它仍默默矗立在这里，为我们国家的发展提供着助力。"
+      }
+    },
+    {
+      "op": "speak",
+      "content": {
+        "lines": "在它80岁的盛会上，北理师生、校友集聚一堂，为它献上最真挚的祝福，共祝北理80周年快乐！"
+      }
+    },
+
+    {
+      "op": "speak",
+      "content": {
+        "lines": "结束"
+      }
+    }
+  ]
 }

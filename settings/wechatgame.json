@@ -2,7 +2,7 @@
   "appid": "wx45be4113229a23f5",
   "orientation": "landscape",
   "separate_engine": false,
-  "REMOTE_SERVER_ROOT": "",
+  "REMOTE_SERVER_ROOT": "https://wxxyx.m0yuqi.cn",
   "subContext": "",
   "startSceneAssetBundle": true
 }

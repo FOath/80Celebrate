@@ -93,15 +93,15 @@ cc.Class({
                 this.BackpackContent.addChild(backpackItem);
             });
         }*/
-        let buildings = this.GameGlobalData.ExistingBuildingArray;
-        for(let i = 0; i < buildings.length; ++i){
-            if(buildings[i].isBackpack){
+        let types = this.GameGlobalData.ExistingTypeArray;
+        console.log(types);
+        for(let i = 0; i < types.length; ++i){
+            if(types[i]){
                 cc.resources.load("prefabs/backpackItem", (err, item)=>{
                     var backpackItem = cc.instantiate(item);
-                    let index = buildings[i].index;
-                    let uniqueId = buildings[i].uniqueId;
-                    let typeId = buildings[i].typeId;
-                    backpackItem.getComponent('BackpackItem').init(index, uniqueId, typeId);
+                    //let index = i;
+                    //let uniqueId = buildings[i].uniqueId;
+                    backpackItem.getComponent('BackpackItem').init(i);
                     this.BackpackContent.addChild(backpackItem);
                 });
             }

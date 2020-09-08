@@ -45,7 +45,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.3
+      "y": 0.35
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -92,7 +92,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f4a7aa5a-c726-47d0-b12f-21e43fa37d35"
+      "__uuid__": "21c12376-6fe1-445f-8a6f-786d797499f5"
     },
     "_type": 0,
     "_sizeMode": 0,
