@@ -39,7 +39,7 @@ cc.Class({
             "人就要吃苦耐劳",
             "上网不涉密？然后什么来着",
             "点我换换新布局吧",
-            "没事干的时候点点北边的石碑看看？"
+            "没事干？点点北边的石碑看看"
         ]
         this.timer = 0;
     },
@@ -99,7 +99,7 @@ cc.Class({
                 }
             };
             console.log(sendData);
-            /*postTest.send(JSON.stringify(sendData))*/;
+            postTest.send(JSON.stringify(sendData));
         }
         else if (this.GameAdmin.GameState == 1) {
             this.HintLabel.getComponent(cc.Label).string = "摆完记得点我";

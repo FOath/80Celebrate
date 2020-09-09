@@ -348,7 +348,7 @@ cc.Class({
                     this.GameGlobalData.getComponent('GameGlobalData').level = this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1;
 
                     // 发送结果到服务器
-                    let url = "https://wxxyx.m0yuqi.cn/wxxyx/updateLevel?id=3" +  this.GameGlobalData.getComponent('GameGlobalData').userId + "&level=" +  this.GameGlobalData.getComponent('GameGlobalData').level;
+                    let url = "https://wxxyx.m0yuqi.cn/wxxyx/updateLevel?id=" +  this.GameGlobalData.getComponent('GameGlobalData').userId + "&level=" +  this.GameGlobalData.getComponent('GameGlobalData').level;
                     var xhr = new XMLHttpRequest();
                     xhr.addEventListener("load", () => {
                         console.log(xhr.responseText);

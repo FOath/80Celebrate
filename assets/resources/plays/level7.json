@@ -198,7 +198,18 @@
                 "state": false
             }
         },
-        
+        {
+            "op": "actor1-disappear",
+            "content":{
+
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content":{
+                
+            }
+        },
         {
             "op": "backgroundl-switch",
             "content": {
@@ -402,7 +413,7 @@
         {
             "op": "speak",
             "content": {
-                "lines": "\"天眼射电望远镜\"如今在贵州深处，有机会你可以去看看",
+                "lines": "\"天眼射电望远镜\"确实不是咱们学校的黑科技，它如今在贵州深处，有机会你可以去看看",
                 "skip": true
             }
         },
@@ -411,7 +422,7 @@
         {
             "op": "speak",
             "content": {
-                "lines": "不对呢！是\"天眼射电望远镜\""
+                "lines": "不对呢！是\"天眼射电望远镜\"，它如今在贵州深处，有机会你可以去看看"
             }
         },
 

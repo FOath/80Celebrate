@@ -31,10 +31,18 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.node.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
+    onLoad() {
+        this.node.on(cc.Node.EventType.TOUCH_START, (event) => {
             let touches = event.getTouches();
-            if(touches.length == 1){
+            if (touches.length == 2) {
+                let touch0 = touches[0];
+                let touch1 = touches[1];
+
+            }
+        });
+        this.node.on(cc.Node.EventType.TOUCH_MOVE, (event) => {
+            let touches = event.getTouches();
+            if (touches.length == 1) {
                 // 单指触碰表示移动
                 let screenSize = cc.winSize;
                 let offset = event.getDelta();
@@ -43,44 +51,48 @@ cc.Class({
                 let y = this.clamp(des.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
                 this.node.setPosition(x, y);
             }
-            else if(touches.length == 2){
+            else if (touches.length == 2) {
                 // 双指触碰表示缩放
                 let touch0 = touches[0];
                 let touch1 = touches[1];
                 let dis = touch0.getLocation().sub(touch1.getLocation()).magSqr();
-                let deltaDis = dis.magSqr() - this.touchDistance.magSqr();
-                if(dis > this.touchDistance){
+                if (dis > this.touchDistance) {
+                    if (this.node.scale == 3)
+                        return;
                     this.node.scale = Math.min(this.node.scale + 0.1, 3);
-
-                    this.node.convertToNodeSpaceAR
                     
+
+                    let screenSize = cc.winSize;
+                    let origin = this.node.parent.convertToNodeSpaceAR(cc.v2(screenSize.width /2 , screenSize.height / 2));
+                    let newOrigin = this.node.parent.convertToNodeSpaceAR(cc.v2((touch0.getLocationX() + touch1.getLocationX()) / 2, (touch0.getLocationY() + touch1.getLocationY()) / 2));
+
+                    let delta = origin.sub(newOrigin).mulSelf(0.2);
+                    delta = cc.v2(delta.x + this.node.x, delta.y + this.node.y);
+                    let x = this.clamp(delta.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+                    let y = this.clamp(delta.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+                    this.node.setPosition(x, y);
                 }
-                else if(dis < this.touchDistance){
+                else if (dis < this.touchDistance) {
+                    if(this.node.scale == 0.5)
+                        return;
                     this.node.scale = Math.max(this.node.scale - 0.1, 0.5);
                     // 防止缩小时露出边界
-                    //let screenSize = cc.winSize;
-                    //let x = this.clamp(this.node.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
-                    //let y = this.clamp(this.node.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
-                    //this.node.setPosition(x, y);
+                    let screenSize = cc.winSize;
+                    let x = this.clamp(this.node.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
+                    let y = this.clamp(this.node.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
+                    this.node.setPosition(x, y);
                 }
-                let screenSize = cc.winSize;
-                let x = (touch0.getLocationX() + touch1.getLocationX()) * 0.5;
-                let y = (touch0.getLocationY() + touch1.getLocationY()) * 0.5;
-                let delta = cc.v2(screenSize.width / 2 - x, screenSize.height / 2 - y).mulSelf(deltaDis * 4 / (screenSize.width * screenSize.width + screenSize.height * screenSize.height));
-                delta = cc.v2(delta.x + this.node.x, delta.y + this.node.y);
-                x = this.clamp(delta.x, -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
-                y = this.clamp(delta.y, -(this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale, (this.node.height * this.node.scale - screenSize.height) / 2 + 40 * this.node.scale);
-                this.node.setPosition(x, y);
+
 
                 this.touchDistance = dis;
             }
         }, this);
 
-        this.node.on(cc.Node.EventType.MOUSE_WHEEL,(event)=>{
-            if(event.getScrollY() > 0){
+        this.node.on(cc.Node.EventType.MOUSE_WHEEL, (event) => {
+            if (event.getScrollY() > 0) {
                 this.node.scale = Math.min(this.node.scale + 0.1, 3);
             }
-            else{
+            else {
                 this.node.scale = Math.max(this.node.scale - 0.1, 0.5);
                 // 防止缩小时露出边界
                 //let x = this.clamp(event.getLocationX(), -(this.node.width * this.node.scale - screenSize.width) / 2, (this.node.width * this.node.scale - screenSize.width) / 2);
@@ -100,17 +112,17 @@ cc.Class({
         }, this);
     },
 
-    start () {
+    start() {
 
     },
-    clamp(num, min, max){
-        if(num < min){
+    clamp(num, min, max) {
+        if (num < min) {
             return min;
         }
-        else if(num > max){
+        else if (num > max) {
             return max;
         }
-        else 
+        else
             return num;
     },
     // update (dt) {},

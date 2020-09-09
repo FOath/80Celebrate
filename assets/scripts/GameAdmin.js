@@ -86,22 +86,22 @@ cc.Class({
             visible: false,
         },
 
-        ProducerCanvas:{
+        ProducerCanvas: {
             default: null,
             visible: false,
         },
 
-        btnClip:{
+        btnClip: {
             default: null,
             visible: false,
         },
 
-        closeClip:{
+        closeClip: {
             default: null,
             visible: false,
         },
 
-        openClip:{
+        openClip: {
             default: null,
             visible: false,
         }
@@ -133,7 +133,7 @@ cc.Class({
         //this.SendWordBtn    = JumpBtns.getChildByName('SendWord');
         //this.RankBtn = JumpBtns.getChildByName('Rank');
         this.HistoryBtn = JumpBtns.getChildByName('History');
-        this.MuseumBtn = JumpBtns.getChildByName('Museum');
+        this.MuseumBtn = JumpBtns.getChildByName('RightCanvas').getChildByName('Museum');
         this.SettingBtn = JumpBtns.getChildByName('RightCanvas').getChildByName('Setting');
         this.ShareBtn = JumpBtns.getChildByName('RightCanvas').getChildByName('Share');
         //this.TreasureBoxBtn = JumpBtns.getChildByName('TreasureBox');
@@ -168,7 +168,7 @@ cc.Class({
 
             this.SettingBtn.getComponent(cc.Animation).play();
             this.SettingBtn.getComponent(cc.Button).interactable = false;
-            
+
             this.ShareBtn.getComponent(cc.Animation).play();
             this.ShareBtn.getComponent(cc.Button).interactable = false;
 
@@ -359,7 +359,7 @@ cc.Class({
         }*/
     },
     switchToHistory() {
-        if(this.GameGlobalData.soundState){
+        if (this.GameGlobalData.soundState) {
             this.btnClip.play();
         }
         cc.game.addPersistRootNode(this.GameGlobalData);
@@ -370,13 +370,13 @@ cc.Class({
             if (!this.BuildingMuseum.getComponent('BuildingMuseum').hasInitialized) {
                 this.BuildingMuseum.getComponent('BuildingMuseum').init();
             }
-            if(this.GameGlobalData.soundState){
-                this.openClip.play(); 
+            if (this.GameGlobalData.soundState) {
+                this.openClip.play();
             }
             this.BuildingMuseum.active = true;
         } else {
-            if(this.GameGlobalData.soundState){
-                this.closeClip.play(); 
+            if (this.GameGlobalData.soundState) {
+                this.closeClip.play();
             }
             this.BuildingMuseum.active = false;
         }
@@ -386,46 +386,102 @@ cc.Class({
     },*/
     switchSettingCanvas() {
         if (this.SettingCanvas.active) {
-            if(this.GameGlobalData.soundState){
-                this.closeClip.play(); 
+            if (this.GameGlobalData.soundState) {
+                this.closeClip.play();
             }
             this.SettingCanvas.active = false;
         } else {
             console.log(this.GameGlobalData.soundState);
-            if(this.GameGlobalData.soundState){
-                this.openClip.play(); 
+            if (this.GameGlobalData.soundState) {
+                this.openClip.play();
             }
             this.SettingCanvas.active = true;
         }
     },
-    switchBGM(){
-        if(this.getComponent(cc.AudioSource).isPlaying){
+    switchBGM() {
+        if (this.getComponent(cc.AudioSource).isPlaying) {
             this.getComponent(cc.AudioSource).pause();
             this.GameGlobalData.musicState = false;
         }
-        else{
+        else {
             this.getComponent(cc.AudioSource).play();
             this.GameGlobalData.musicState = true;
         }
     },
-    switchSound(){
+    switchSound() {
         this.GameGlobalData.soundState = !this.GameGlobalData.soundState;
-        if(this.GameGlobalData.soundState){
-            this.btnClip.play(); 
+        if (this.GameGlobalData.soundState) {
+            this.btnClip.play();
         }
     },
-    switchProducerCanvas(){
-        if(this.ProducerCanvas.active){
-            if(this.GameGlobalData.soundState){
-                this.closeClip.play(); 
+    switchProducerCanvas() {
+        if (this.ProducerCanvas.active) {
+            if (this.GameGlobalData.soundState) {
+                this.closeClip.play();
             }
             this.ProducerCanvas.active = false;
         }
-        else{
-            if(this.GameGlobalData.soundState){
-                this.openClip.play(); 
+        else {
+            if (this.GameGlobalData.soundState) {
+                this.openClip.play();
             }
             this.ProducerCanvas.active = true;
         }
+    },
+    takePhoto() {
+        if (typeof wx === 'undefined') {
+            return;
+        }
+
+        // 隐藏按钮
+        this.HistoryBtn.active = false;
+        this.SettingBtn.active = false;
+        this.ShareBtn.active = false;
+        this.MuseumBtn.active = false;
+
+        wx.authorize({
+            scope: 'scope.writePhotosAlbum',   // 需要获取相册权限
+
+            success: (res) => {
+                let tempFilePath = cc.game.canvas.toTempFilePathSync({
+                    fileType: 'jpg',
+                    quality: '1'
+                });
+                // 将截图保存到相册中
+                wx.saveImageToPhotosAlbum({
+                    filePath: tempFilePath,
+                    success: (res) => {
+                        wx.showToast({
+                            title: '图片保存成功',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                    },
+                    fail: (res) => {
+                        console.log(res);
+                        console.log('图片保存失败');
+                        
+                    },
+                    complete: (res)=>{
+                        console.log(res);
+                        this.HistoryBtn.active = true;
+                        this.SettingBtn.active = true;
+                        this.ShareBtn.active = true;
+                        this.MuseumBtn.active = true;
+                    }
+                });
+            },
+
+            fail: (res) => {
+                console.log('授权失败');
+                console.log(res);
+                this.HistoryBtn.active = true;
+                this.SettingBtn.active = true;
+                this.ShareBtn.active = true;
+                this.MuseumBtn.active = true;
+            },
+            
+        });
+
     }
 });
