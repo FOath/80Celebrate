@@ -30,7 +30,9 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
-
+    start(){
+        this.GameAdmin = cc.find('GameAdmin').getComponent('GameAdmin');
+    },
     setSoundState(event){
         if(this.Check.active){
             this.Check.active = false;
@@ -38,6 +40,7 @@ cc.Class({
         else{
             this.Check.active = true;
         }
+        this.GameAdmin.switchSound();
         event.stopPropagation();
     }
 

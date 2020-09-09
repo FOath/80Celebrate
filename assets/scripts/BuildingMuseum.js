@@ -94,7 +94,6 @@ cc.Class({
             });
         }*/
         let types = this.GameGlobalData.ExistingTypeArray;
-        console.log(types);
         for(let i = 0; i < types.length; ++i){
             if(types[i]){
                 cc.resources.load("prefabs/backpackItem", (err, item)=>{

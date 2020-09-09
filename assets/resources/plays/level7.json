@@ -190,6 +190,15 @@
             "lines": "不是的，良乡校区动工是在2002年"
           }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        },
+        
         {
             "op": "backgroundl-switch",
             "content": {
@@ -206,6 +215,15 @@
                 "url": "backgrounds/7-2r"
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        
         {
             "op": "actor2-back",
             "content": {
@@ -519,6 +537,15 @@
                 "lines": "那是！京橙风暴横扫全场，北理工永远向前！"
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        },
+        
         {
             "op": "backgroundl-switch",
             "content": {
@@ -535,6 +562,15 @@
                 "url": "backgrounds/7-3r"
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        
         {
             "op": "actor1-back",
             "content": {

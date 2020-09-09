@@ -40,12 +40,12 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 188
+      "height": 250
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.3
+      "x": 0.6,
+      "y": 0.4
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -95,7 +95,7 @@
       "__uuid__": "36fea10a-f0f1-4eb8-9b7b-f1a00f4c2a9c"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

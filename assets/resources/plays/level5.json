@@ -250,6 +250,16 @@
                 "lines": "对，无论是“老北理”，还是“新北理”，都是延安根，军工魂！"
             }
         },
+        
+         {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        }, 
+
+
         {
             "op": "backgroundl-switch",
             "content": {
@@ -266,6 +276,15 @@
                 "url": "backgrounds/5-2r"
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+
         {
             "op": "actor1-back",
             "content": {
@@ -354,6 +373,14 @@
             }
         },
         {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        },
+        
+        {
             "op": "backgroundl-switch",
             "content": {
                 "id": 0,
@@ -369,6 +396,14 @@
                 "url": "backgrounds/5-4r"
             }
         },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+        
         {
             "op": "actor1-appear",
             "content": {
@@ -475,6 +510,15 @@
                 
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        },
+        
         {
             "op": "backgroundl-switch",
             "content": {
@@ -491,6 +535,15 @@
                 "url": "backgrounds/5-2r"
             }
         },
+        
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
+
         {
             "op": "actor1-appear",
             "content": {

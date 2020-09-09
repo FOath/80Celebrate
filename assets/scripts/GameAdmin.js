@@ -84,6 +84,26 @@ cc.Class({
         MuseumBtn: {
             default: null,
             visible: false,
+        },
+
+        ProducerCanvas:{
+            default: null,
+            visible: false,
+        },
+
+        btnClip:{
+            default: null,
+            visible: false,
+        },
+
+        closeClip:{
+            default: null,
+            visible: false,
+        },
+
+        openClip:{
+            default: null,
+            visible: false,
         }
     },
 
@@ -122,6 +142,13 @@ cc.Class({
 
         this.getComponent(cc.AudioSource).loop = true;
         this.SettingCanvas = cc.find('/Canvas/UICanvas/SettingCanvas');
+
+        this.ProducerCanvas = cc.find('/Canvas/UICanvas/ProducerCanvas');
+
+        this.btnClip = cc.find('/Btn').getComponent(cc.AudioSource);
+        this.closeClip = cc.find('/Close').getComponent(cc.AudioSource);
+        this.openClip = cc.find('/Open').getComponent(cc.AudioSource);
+        this.getComponent(cc.AudioSource).volume = 0.3;
 
         this.init();
     },
@@ -332,6 +359,9 @@ cc.Class({
         }*/
     },
     switchToHistory() {
+        if(this.GameGlobalData.soundState){
+            this.btnClip.play();
+        }
         cc.game.addPersistRootNode(this.GameGlobalData);
         cc.director.loadScene("selectLevel");
     },
@@ -340,8 +370,14 @@ cc.Class({
             if (!this.BuildingMuseum.getComponent('BuildingMuseum').hasInitialized) {
                 this.BuildingMuseum.getComponent('BuildingMuseum').init();
             }
+            if(this.GameGlobalData.soundState){
+                this.openClip.play(); 
+            }
             this.BuildingMuseum.active = true;
         } else {
+            if(this.GameGlobalData.soundState){
+                this.closeClip.play(); 
+            }
             this.BuildingMuseum.active = false;
         }
     },
@@ -350,18 +386,46 @@ cc.Class({
     },*/
     switchSettingCanvas() {
         if (this.SettingCanvas.active) {
+            if(this.GameGlobalData.soundState){
+                this.closeClip.play(); 
+            }
             this.SettingCanvas.active = false;
         } else {
+            console.log(this.GameGlobalData.soundState);
+            if(this.GameGlobalData.soundState){
+                this.openClip.play(); 
+            }
             this.SettingCanvas.active = true;
         }
     },
     switchBGM(){
         if(this.getComponent(cc.AudioSource).isPlaying){
             this.getComponent(cc.AudioSource).pause();
+            this.GameGlobalData.musicState = false;
         }
         else{
             this.getComponent(cc.AudioSource).play();
+            this.GameGlobalData.musicState = true;
         }
-        
+    },
+    switchSound(){
+        this.GameGlobalData.soundState = !this.GameGlobalData.soundState;
+        if(this.GameGlobalData.soundState){
+            this.btnClip.play(); 
+        }
+    },
+    switchProducerCanvas(){
+        if(this.ProducerCanvas.active){
+            if(this.GameGlobalData.soundState){
+                this.closeClip.play(); 
+            }
+            this.ProducerCanvas.active = false;
+        }
+        else{
+            if(this.GameGlobalData.soundState){
+                this.openClip.play(); 
+            }
+            this.ProducerCanvas.active = true;
+        }
     }
 });

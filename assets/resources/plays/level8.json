@@ -1,6 +1,7 @@
 {
   "bgm": "8",
-  "script": [{
+  "script": [
+    {
       "op": "backgroundl-switch",
       "content": {
         "id": 0,
@@ -294,12 +295,21 @@
         "posY": -160
       }
     },
+
     {
-      "op": "background-switch",
+      "op": "dialog-switch",
+      "content": {
+        "id": 1,
+        "state": false
+      }
+    },
+
+    {
+      "op": "backgroundl-switch",
       "content": {
         "id": 0,
         "delay": 2,
-        "url": "backgrounds/8-3"
+        "url": "backgrounds/8-3l"
       }
     },
     {
@@ -310,11 +320,17 @@
         "url": "backgrounds/8-3r"
       }
     },
-
+    {
+      "op": "dialog-switch",
+      "content": {
+        "id": 1,
+        "state": true
+      }
+    },
     {
       "op": "actor1-appear",
       "content": {
-        "url": "actors/actor-man",
+        "url": "actors/actor_man",
         "posX": -700,
         "posY": -140
       }
@@ -322,7 +338,7 @@
     {
       "op": "actor2-appear",
       "content": {
-        "url": "actors/actor-woman",
+        "url": "actors/actor_woman",
         "posX": 700,
         "posY": -160
       }
@@ -611,6 +627,12 @@
       "op": "speak",
       "content": {
         "lines": "结束"
+      }
+    },
+
+    {
+      "op": "end",
+      "content": {
       }
     }
   ]

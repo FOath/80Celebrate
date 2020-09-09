@@ -34,6 +34,9 @@ cc.Class({
         currentLevel: 0,
         level: 1,
         completeLevel: false, // 记录是否完成一个关卡
+        // 音频音效控制
+        musicState: true,
+        soundState: true,
         // 菱形网格数据
         rhombusWidth: 200, // 地形菱形网格宽
         rhombusHeight: 100, // 地形菱形网格高
@@ -121,7 +124,7 @@ cc.Class({
             new this.BuildingTemplate().init(0,  "路灯",         0, 0, 0, new cc.v2(1, 1), 0,  "ludeng",             "prefabs/ludeng"),
             new this.BuildingTemplate().init(1,  "木灯",         0, 0, 0, new cc.v2(1, 1), 0,  "mudeng",             "prefabs/mudeng"), // 这个暂时不让摆，记住
             new this.BuildingTemplate().init(2,  "BIT路灯",      0, 0, 0, new cc.v2(1, 2), 0,  "BITludeng",          "prefabs/BITludeng"),
-            new this.BuildingTemplate().init(3,  "人工湖",       0, 0, 0, new cc.v2(2, 2), 0,  "rengonghu",          "prefabs/rengonghu"),
+            new this.BuildingTemplate().init(3,  "人工湖",       0, 0, 0, new cc.v2(3, 3), 0,  "rengonghu",          "prefabs/rengonghu"),
             new this.BuildingTemplate().init(4,  "花丛",         0, 0, 0, new cc.v2(1, 1), 0,  "huacong",            "prefabs/huacong"),
 
 
@@ -131,7 +134,7 @@ cc.Class({
             new this.BuildingTemplate().init(8,  "小卖部",       0, 0, 0, new cc.v2(2, 1), 0,  "xiaomaibu",          "prefabs/xiaomaibu"), // 3
 
             new this.BuildingTemplate().init(9,  "活动室",        0, 0, 0, new cc.v2(2, 2), 0,  "huodongshi",         "prefabs/huodongshi"), // 1
-            new this.BuildingTemplate().init(10,  "工科大楼",     0, 0, 0, new cc.v2(2, 2), 0,  "gongkedalou",         "prefabs/gongkedalou"), // 1
+            new this.BuildingTemplate().init(10,  "工科大楼",     0, 0, 0, new cc.v2(3, 3), 0,  "gongkedalou",         "prefabs/gongkedalou"), // 1
             new this.BuildingTemplate().init(11,  "教室",         0, 0, 0, new cc.v2(2, 2), 0,  "jiaoshi",            "prefabs/jiaoshi"), // 6
             new this.BuildingTemplate().init(12,  "教学楼",       0, 0, 0, new cc.v2(2, 3), 0,  "jiaoxuelou",         "prefabs/jiaoxuelou"), // 5
             new this.BuildingTemplate().init(13,  "实验楼",       0, 0, 0, new cc.v2(2, 3), 0,  "shiyanlou",          "prefabs/shiyanlou"), // 5
@@ -238,6 +241,9 @@ cc.Class({
     },
 
     init(sceneDataJson){
+        this.soundState = true;
+        this.musicState = true;
+
         // 初始化用户信息
         this.userId = sceneDataJson.personal_information.id;
         this.userName = sceneDataJson.personal_information.user_name;
@@ -247,6 +253,41 @@ cc.Class({
         }
         else
             this.level = 1;
+
+        console.log(this.level);
+        switch (this.level) {
+            case 9:
+                this.ExistingTypeArray[19] = true;
+                this.ExistingTypeArray[22] = true;
+                this.ExistingTypeArray[23] = true;
+            case 8:        
+                this.ExistingTypeArray[16] = true;
+                this.ExistingTypeArray[17] = true;
+                this.ExistingTypeArray[21] = true;
+            case 7:
+                this.ExistingTypeArray[11] = true;
+                this.ExistingTypeArray[15] = true;
+                this.ExistingTypeArray[24] = true;
+            case 6:
+                this.ExistingTypeArray[12] = true;
+                this.ExistingTypeArray[13] = true;
+                this.ExistingTypeArray[25] = true;
+            case 5:  
+                this.ExistingTypeArray[14] = true;
+                this.ExistingTypeArray[18] = true;
+            case 4:  
+                this.ExistingTypeArray[7] = true;
+                this.ExistingTypeArray[8] = true;
+            case 3:  
+                this.ExistingTypeArray[5] = true;
+                this.ExistingTypeArray[6] = true;
+            case 2: 
+                this.ExistingTypeArray[9] = true;
+                this.ExistingTypeArray[10] = true;
+                this.ExistingTypeArray[20] = true;
+            case 1:  
+                break;
+        }
         
         this.completeLevel = false;
         // 初始化游戏数据
@@ -272,9 +313,9 @@ cc.Class({
         }
         // 根据获得的建筑信息更新可放置区域和buff作用区域
         for(let i = 0; i < this.ExistingBuildingArray.length; ++i){
-            let typeId = this.ExistingBuildingArray[i].typeId;
-            if(typeId != 1)
-                this.ExistingTypeArray[typeId] = true;
+            //let typeId = this.ExistingBuildingArray[i].typeId;
+            //if(typeId != 1)
+            //    this.ExistingTypeArray[typeId] = true;
             // 如果建筑在背包，直接跳过
             if(this.ExistingBuildingArray[i].isBackpack)
                 continue;

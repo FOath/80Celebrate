@@ -84,7 +84,9 @@ cc.Class({
                     this.isComplete = true;
                 }
                 else {
-                    this.playScirpt();
+                    this.scheduleOnce(() => {
+                        this.playScirpt();
+                    }, 0.5);
                 }
             }
         };
@@ -138,23 +140,30 @@ cc.Class({
 
     start() {
         this.GameGlobalData = cc.find('/GameGlobalData');
+
+        this.btnClip = cc.find('/Btn').getComponent(cc.AudioSource);
+
         cc.resources.load('plays/level' + this.GameGlobalData.getComponent('GameGlobalData').currentLevel, (err, json) => {
             this.playJson = json.json;
             this.scriptIndex = 0;
             this.maxScriptIndex = this.playJson.script.length;
             // 设置背景音乐
-            cc.resources.load("/bgm/" + this.playJson.bgm, cc.AudioClip, (err, clip)=>{
-                if(err != undefined)
+            cc.resources.load("/bgm/" + this.playJson.bgm, cc.AudioClip, (err, clip) => {
+                if (err != undefined)
                     console.log(err);
                 this.getComponent(cc.AudioSource).clip = clip;
-                this.getComponent(cc.AudioSource).loop = true;
                 this.getComponent(cc.AudioSource).play();
+                this.getComponent(cc.AudioSource).volume = 0.3;
+                this.getComponent(cc.AudioSource).loop = true;
             });
             this.playScirpt();
         });
     },
     setAutoPlay() {
         this.isAutoPlay = !this.isAutoPlay;
+        if(this.GameGlobalData.soundState){
+            this.btnClip.play();
+        }
         // 自动播放未开启
         if (!this.isAutoPlay) {
             this.AutoPlay.getComponent(cc.Button).normalSprite = this.APSprite;
@@ -169,6 +178,9 @@ cc.Class({
 
     },
     setSpeedUp() {
+        if(this.GameGlobalData.soundState){
+            this.btnClip.play();
+        }
         this.isSpeedUp = !this.isSpeedUp;
         if (!this.isSpeedUp) {
             this.playSpeed = 0.05;
@@ -184,6 +196,9 @@ cc.Class({
         }
     },
     backToMain() {
+        if(this.GameGlobalData.soundState){
+            this.btnClip.play();
+        }
         cc.director.loadScene("selectLevel");
     },
     playScirpt() {
@@ -328,9 +343,19 @@ cc.Class({
                 })
                 break;
             case "end":
-                if (this.GameGlobalData.getComponent('GameGlobalData').level <= (this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1)) {
+                if (this.GameGlobalData.getComponent('GameGlobalData').level < (this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1)) {
                     this.GameGlobalData.getComponent('GameGlobalData').completeLevel = true;
                     this.GameGlobalData.getComponent('GameGlobalData').level = this.GameGlobalData.getComponent('GameGlobalData').currentLevel + 1;
+
+                    // 发送结果到服务器
+                    let url = "https://wxxyx.m0yuqi.cn/wxxyx/updateLevel?id=3" +  this.GameGlobalData.getComponent('GameGlobalData').userId + "&level=" +  this.GameGlobalData.getComponent('GameGlobalData').level;
+                    var xhr = new XMLHttpRequest();
+                    xhr.addEventListener("load", () => {
+                        console.log(xhr.responseText);
+                    });
+                    xhr.open("GET", url);
+                    xhr.send();
+
                 }
                 console.log(this.GameGlobalData.getComponent('GameGlobalData').level);
                 cc.game.addPersistRootNode(this.GameGlobalData);

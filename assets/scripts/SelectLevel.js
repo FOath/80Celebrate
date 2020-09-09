@@ -37,6 +37,9 @@ cc.Class({
     start () {
         this.GameGlobalData = cc.find('/GameGlobalData');
 
+        this.btnClip = cc.find('Btn').getComponent(cc.AudioSource);
+        this.closeClip = cc.find('Close').getComponent(cc.AudioSource);
+
         this.Levels = new Array();
         for(let i = 1; i <= 8; ++i){
             this.Levels[i] = this.node.getChildByName("Level" + i);
@@ -114,15 +117,24 @@ cc.Class({
         this.GameGlobalData.getComponent('GameGlobalData').currentLevel = 0;
     },
     selectLevel(event, level){
+        if(this.GameGlobalData.getComponent('GameGlobalData').soundState){
+            this.btnClip.play();
+        }
         cc.log("load level " + level);
         cc.game.addPersistRootNode(this.GameGlobalData);
         this.GameGlobalData.getComponent('GameGlobalData').currentLevel = parseInt(level);
         cc.director.loadScene("levelScene");
     },
     closeHint(){
+        if(this.GameGlobalData.getComponent('GameGlobalData').soundState){
+            this.closeClip.play();
+        }
         this.Hint.active = false;
     },
     backToMain(){
+        if(this.GameGlobalData.getComponent('GameGlobalData').soundState){
+            this.btnClip.play();
+        }
         cc.director.loadScene("main");
     }
     // update (dt) {},
