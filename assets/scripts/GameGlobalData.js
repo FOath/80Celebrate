@@ -30,6 +30,8 @@ cc.Class({
         userId: "3220190920",
         // 玩家姓名
         userName: "张政",
+        // 玩家类型
+        userType: 0, //0为新玩家，1为老玩家
         // 主线关卡相关数据
         currentLevel: 0,
         level: 1,
@@ -137,7 +139,7 @@ cc.Class({
             new this.BuildingTemplate().init(10,  "工科大楼",     0, 0, 0, new cc.v2(3, 3), 0,  "gongkedalou",         "prefabs/gongkedalou"), // 1
             new this.BuildingTemplate().init(11,  "教室",         0, 0, 0, new cc.v2(2, 2), 0,  "jiaoshi",            "prefabs/jiaoshi"), // 6
             new this.BuildingTemplate().init(12,  "教学楼",       0, 0, 0, new cc.v2(2, 3), 0,  "jiaoxuelou",         "prefabs/jiaoxuelou"), // 5
-            new this.BuildingTemplate().init(13,  "实验楼",       0, 0, 0, new cc.v2(2, 3), 0,  "shiyanlou",          "prefabs/shiyanlou"), // 5
+            new this.BuildingTemplate().init(13,  "实验楼",       0, 0, 0, new cc.v2(2, 3), 0,  "shiyanlou",          "prefabs/shiyanlou"), // 4
             new this.BuildingTemplate().init(14,  "实验室",       0, 0, 0, new cc.v2(2, 2), 0,  "shiyanshi",          "prefabs/shiyanshi"), // 4
             new this.BuildingTemplate().init(15,  "西山实验室",   0, 0, 0, new cc.v2(2, 3), 0,  "xishanshiyanshi",    "prefabs/xishanshiyanshi"), // 6
             new this.BuildingTemplate().init(16,  "艺术馆",       0, 0, 0, new cc.v2(3, 2), 0,  "yishuguan",          "prefabs/yishuguan"), // 7
@@ -148,10 +150,11 @@ cc.Class({
             new this.BuildingTemplate().init(19,  "北理工的恶龙", 0, 0, 0, new cc.v2(2, 3), 0,  "long",                "prefabs/long"), // 8
             new this.BuildingTemplate().init(20,  "体育馆",       0, 0, 0, new cc.v2(3, 3), 0,  "tiyuguan",            "prefabs/tiyuguan"), // 1
             new this.BuildingTemplate().init(21,  "徐特立图书馆", 0, 0, 0, new cc.v2(3, 3), 0,  "xutelitushuguan",     "prefabs/xutelitushuguan"), // 7
-            new this.BuildingTemplate().init(22,  "游泳馆",       0, 0, 0, new cc.v2(3, 3), 0,  "youyongguan",         "prefabs/youyongguan"), // 8
+            new this.BuildingTemplate().init(22,  "游泳馆",       0, 0, 0, new cc.v2(3, 3), 0,  "youyongguan",         "prefabs/youyongguan"), // 5
             new this.BuildingTemplate().init(23,  "中心教学楼",   0, 0, 0, new cc.v2(3, 3), 0,  "zhongxinjiaoxuelou",  "prefabs/zhongxinjiaoxuelou"), // 8
             new this.BuildingTemplate().init(24,  "主楼",         0, 0, 0, new cc.v2(3, 3), 0,  "zhulou",              "prefabs/zhulou"), // 6
             new this.BuildingTemplate().init(25,  "理科教学楼",   0, 0, 0, new cc.v2(3, 3), 0,  "likejiaoxuelou",      "prefabs/likejiaoxuelou"), // 5
+            new this.BuildingTemplate().init(26,  "北理纪念碑",   0, 0, 0, new cc.v2(4, 1), 0,  "jinianbei",           "prefabs/jinianbei"), // 8
             
         );
         // 初始化史诗建筑属性
@@ -258,8 +261,8 @@ cc.Class({
         switch (this.level) {
             case 9:
                 this.ExistingTypeArray[19] = true;
-                this.ExistingTypeArray[22] = true;
                 this.ExistingTypeArray[23] = true;
+                this.ExistingTypeArray[26] = true;
             case 8:        
                 this.ExistingTypeArray[16] = true;
                 this.ExistingTypeArray[17] = true;
@@ -270,9 +273,10 @@ cc.Class({
                 this.ExistingTypeArray[24] = true;
             case 6:
                 this.ExistingTypeArray[12] = true;
-                this.ExistingTypeArray[13] = true;
+                this.ExistingTypeArray[22] = true;
                 this.ExistingTypeArray[25] = true;
             case 5:  
+                this.ExistingTypeArray[13] = true;
                 this.ExistingTypeArray[14] = true;
                 this.ExistingTypeArray[18] = true;
             case 4:  
@@ -313,7 +317,7 @@ cc.Class({
         }
         // 根据获得的建筑信息更新可放置区域和buff作用区域
         for(let i = 0; i < this.ExistingBuildingArray.length; ++i){
-            //let typeId = this.ExistingBuildingArray[i].typeId;
+            let typeId = this.ExistingBuildingArray[i].typeId;
             //if(typeId != 1)
             //    this.ExistingTypeArray[typeId] = true;
             // 如果建筑在背包，直接跳过

@@ -30,12 +30,12 @@
   "design-resolution-height": 640,
   "fit-width": false,
   "fit-height": true,
-  "use-project-simulator-setting": false,
-  "simulator-orientation": false,
-  "use-customize-simulator": true,
+  "use-project-simulator-setting": true,
+  "simulator-orientation": true,
+  "use-customize-simulator": false,
   "simulator-resolution": {
-    "height": 640,
-    "width": 960
+    "height": 1920,
+    "width": 1080
   },
   "facebook": {
     "appID": "",
@@ -47,5 +47,6 @@
       "enable": false
     }
   },
-  "last-module-event-record-time": 1599202032603
+  "last-module-event-record-time": 1599891185533,
+  "start-scene": "e00e2845-c3d8-422e-ba19-2db825888ba9"
 }

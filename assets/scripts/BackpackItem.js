@@ -39,6 +39,11 @@ cc.Class({
                 cc.resources.load(this.GameGlobalData.BuildingType[value].imageUrl, cc.SpriteFrame, (err, sprite)=>{
                     if(err != undefined)
                         cc.log(err);
+                    let originSize = sprite.getOriginalSize();
+                    let scale1 = 130 / originSize.height;
+                    let scale2 = 155 / originSize.width;
+                    let minScale = Math.min(scale1, scale2);
+                    this.Thumbnail.scale = minScale;
                     this.Thumbnail.getComponent(cc.Sprite).spriteFrame = sprite;
                 });
                 // 科技 文化 魅力

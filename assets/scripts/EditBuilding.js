@@ -119,8 +119,6 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_MOVE, (event)=>{
             if(!this.Building)
                 return;
-            
-            cc.log("点击编辑Canvas");
             let pos = this.node.parent.convertToNodeSpaceAR(event.getLocation()).add(this.GridOffset);            
             // 调节位置
             let newPos = this.checkBuildingPosition(pos);

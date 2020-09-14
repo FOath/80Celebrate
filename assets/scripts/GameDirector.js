@@ -70,7 +70,7 @@ cc.Class({
 
     onLoad() {
         // 初始化变量
-        this.isComplete = false; // 刚开始无动作。
+        
         this.playSpeed = 0.05;
 
         // 打字机效果
@@ -80,13 +80,14 @@ cc.Class({
             if (this.linesIndex > str.length) {
                 this.linesIndex = 0;
                 this.isSpeaking = false;
-                if (!this.isAutoPlay) {
-                    this.isComplete = true;
-                }
-                else {
+                if (this.isAutoPlay) {
                     this.scheduleOnce(() => {
-                        this.playScirpt();
+                        if(!this.AnswerCanvas.active)
+                            this.playScirpt();
                     }, 0.5);
+                }
+                else{
+                    this.isComplete = true;
                 }
             }
         };
@@ -132,13 +133,19 @@ cc.Class({
         }, this);
         // 点击进行下一个动作
         this.node.on(cc.Node.EventType.TOUCH_END, (event) => {
+            if(this.isAutoPlay || this.AnswerCanvas.active)
+                return;
+       
             if (this.isComplete) {
                 this.playScirpt();
+                this.isComplete = false;
             }
+             
         });
     },
 
     start() {
+        this.isComplete = false; // 刚开始无动作。
         this.GameGlobalData = cc.find('/GameGlobalData');
 
         this.btnClip = cc.find('/Btn').getComponent(cc.AudioSource);
@@ -159,7 +166,7 @@ cc.Class({
             this.playScirpt();
         });
     },
-    setAutoPlay() {
+    setAutoPlay(event) {
         this.isAutoPlay = !this.isAutoPlay;
         if(this.GameGlobalData.soundState){
             this.btnClip.play();
@@ -174,10 +181,15 @@ cc.Class({
             this.AutoPlay.getComponent(cc.Button).normalSprite = this.APSpritePressed;
             this.AutoPlay.getComponent(cc.Button).pressedSprite = this.APSprite;
             this.AutoPlay.getComponent(cc.Button).hoverSprite = this.APSpritePressed;
+            if(this.isComplete && !this.AnswerCanvas.active){
+                this.playScirpt();
+                this.isComplete = false;
+            }
         }
 
+        event.stopPropagation();
     },
-    setSpeedUp() {
+    setSpeedUp(event) {
         if(this.GameGlobalData.soundState){
             this.btnClip.play();
         }
@@ -194,6 +206,7 @@ cc.Class({
             this.SpeedUp.getComponent(cc.Button).pressedSprite = this.SUSprite;
             this.SpeedUp.getComponent(cc.Button).hoverSprite = this.SUSpritePressed;
         }
+        event.stopPropagation();
     },
     backToMain() {
         if(this.GameGlobalData.soundState){
@@ -259,6 +272,8 @@ cc.Class({
             case "dialog-switch":
                 this.isComplete = false;
                 action = new Promise((resolve, reject) => {
+                    if(!item.content.state)
+                        this.DialogLabel.getComponent(cc.Label).string = "";
                     this.Dialog.active = item.content.state;
                     this.AutoPlay.active = item.content.state;
                     this.SpeedUp.active = item.content.state;

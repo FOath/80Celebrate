@@ -35,7 +35,6 @@ cc.Class({
     },
 
     disableBtn(){
-        console.log(123123);
         this.node.active = false;
     }
     // update (dt) {},

@@ -23,18 +23,7 @@
                 "state": true
             }
         }, 
-        {
-            "op": "speak",
-            "content": {
-                "lines": "我们的故事是从1940年开始的，在这一年代，中国的抗日战争经历了最艰苦也是最后取得伟大胜利的时期."
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，名为\"自然科学院\"，抗战建国的故事就此展开…"
-            }
-        },
+        
         {
             "op": "actor1-appear",
             "content": {
@@ -76,7 +65,7 @@
         {
             "op": "speak",
             "content": {
-                "lines": "你是？等等，这里的景致怎么从来没有见过，我这是在哪？"
+                "lines": "你是谁？"
             }
         },
         {
@@ -94,13 +83,114 @@
         {
             "op": "speak",
             "content": {
-                "lines": "自我介绍一下吧，我叫北小理，是中国共产党领导和创办的第一所理工科大学。"
+                "lines": "自我介绍一下吧，我叫北小理，将陪你一起成长。"
+            }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我这是在哪？"
+            }
+        },
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+          "content": {
+            "lines": "这是你的个人校园世界。现在，你的个人校园还是一片待开发的空地，你可以通过校史答题闯关的方式获得更多的建筑，从而打造你的专属校园，还可以进行截图分享哦！"
+          }
+        },
+        {
+            "op": "actor1-back",
+            "content": {}
+        },
+        {
+            "op": "actor2-front",
+            "content": {}
+        },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "这么酷！那我们快出发吧！"
+            }
+        },
+          
+
+        {
+            "op": "actor1-disappear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        
+        {
+            "op": "speak",
+            "content": {
+                "lines": "我们的故事是从1940年开始的，在这一年代，中国的抗日战争经历了最艰苦也是最后取得伟大胜利的时期。"
             }
         },
         {
             "op": "speak",
             "content": {
-                "lines": "我刚刚诞生不久，你知道我现在叫什么吗？"
+                "lines": "中国共产党高瞻远瞩，在革命圣地延安创办了第一所理工科大学，名为\"自然科学院\"，抗战建国的故事就此展开……"
+            }
+        },
+
+
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+
+        {
+            "op": "actor2-back",
+            "content": {}
+        },
+        {
+            "op": "actor1-front",
+            "content": {}
+        },
+
+        {
+            "op": "speak",
+            "content": {
+                "lines": "北理工的前身是？"
             }
         },
         {
@@ -126,96 +216,8 @@
                 "lines": "你记错啦！是叫\"自然科学院\""
             }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "接下来的日子我会给你讲述我的成长，我已经在这等你很久了。"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "了解一所大学的成长？这真是一件很酷的事儿呢，不过我可以为你做些什么呢？"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "目前的个人校园还是一片待开发的空地，你可以通过完成关卡对话和答题的方式获得不同的建筑"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "在个人校园中你可以随意创造你的独属校园，还可以进行截图分享呢！"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "是不是很简单？我想你应该知道游戏怎么玩了吧。"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "嗯嗯！然后我们要干嘛呢？"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "接下来就让我们一起出发吧。第一站让我们先到学校里去看一看吧。"
-            }
-        },
+        
+      
         {
             "op": "actor1-disappear",
             "content": {
@@ -265,15 +267,10 @@
         {
             "op": "speak",
             "content": {
-                "lines": "这里就是自然科学院啊，虽然比我想象中的要艰苦些，可是感觉大家都在很认真地学习呢。"
+                "lines": "这里就是自然科学院啊~"
             }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "在这样的时期里创建一所学校真是一个突破性的决定，能给我讲讲自然科学院创建的契机吗？"
-            }
-        },
+        
         {
             "op": "actor2-back",
             "content": {
@@ -286,133 +283,14 @@
 
             }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "没问题。这件事就要从1939年说起了，你知道那个时候我国的抗日战争进入到了一个什么阶段吗？"
-            }
-        },
+      {
+        "op": "speak",
+        "content": {
+          "lines": "别看咱们的学校刚成立不久，实力可不容小觑！在1940-1949年间，延安自然科学院取得非常多的成就！"
+        }
+      },
 
-        {
-            "op": "question",
-            "content": {
-                "answer1": "A. 反攻阶段",
-                "answer2": "B. 防御阶段",
-                "answer3": "C. 相持阶段",
-                "answer4": "D. 即将迎来胜利",
-                "corrent_answer": 3
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "对，在相持阶段中，战局出现了一定的平衡",
-                "skip": true
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "想什么呢！是\"相持阶段\""
-            }
-        },
 
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这时候国民党顽固派消极抗日，发动了抗战时期第一次反共高潮，"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "对陕甘宁边区实行经济封锁，边区的财政和人民生活发生了困难。"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这可怎么办呀，内忧外患持续干扰，一定要想想办法保障大家的生活啊。"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "你说的没错，事情发生后，中共中央就确定了自力更生、发展边区经济的方针。"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "但是在生产过程中，我们还是遇到了许多科技问题"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "经中共中央审批，1939年5月\"延安自然科学研究院\"正式成立了，也就是我的前身了。"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这下可太好啦，学校创建后，我们就可以发展生产了，大家也不用为了生活而担心了。"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "咱们的实力的确不容小觑！1940-1949年这段时间延安自然科学院可是取得非常多的成就："
-            }
-        },
         {
             "op": "speak",
             "content": {
@@ -427,47 +305,30 @@
         },
         {
             "op": "question",
-            "content": {
-                "answer1": "A. 发明马兰草造纸技术",
-                "answer2": "B. 发现了南泥湾 ",
-                "answer3": "C. 研制灰生铁",
-                "answer4": "D. 原子弹爆炸成功",
-                "corrent_answer": 4
-            }
+          "content": {
+            "answer1": "A. 发明马兰草造纸技术",
+            "answer2": "B. 发现了南泥湾 ",
+            "answer3": "C. 研制灰生铁",
+            "answer4": "D. 研制出中国第一套电视发射、接收设备",
+            "corrent_answer": 4
+          }
         },
         {
             "op": "speak",
-            "content": {
-                "lines": "对的！\"原子弹爆炸成功\"还早着呢",
-                "skip": true
-            }
+          "content": {
+            "lines": "对的！学校师生于1956年成功研制出\"中国第一套电视发射、接收设备\"。",
+            "skip": true
+          }
         },
 
 
         {
             "op": "speak",
-            "content": {
-                "lines": "不对呢！是\"原子弹爆炸成功\"，那时候还早着呢"
-            }
+          "content": {
+            "lines": "不对呢！学校师生于1956年成功研制出\"中国第一套电视发射、接收设备\"。"
+          }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "不过这些都是大家的科研成果，小理不敢独自居功。"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "小理只是希望大家的生活能过得好一些"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "能有更多的优秀学子为国家作出贡献，能看到我们的国家越来越强大。"
-            }
-        },
+        
         {
             "op": "actor1-back",
             "content": {
@@ -483,51 +344,10 @@
         {
             "op": "speak",
             "content": {
-                "lines": "小理真是心怀国家呢~ 那小理你自己有什么愿望吗，或许我可以帮你实现呢。"
+                "lines": "执自然科学抗战建国，不愧是我理！"
             }
         },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "当然有了，你别看现在我们的条件艰苦些，但是小理也是有自己的目标的"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "我希望有朝一日小理能成为世界一流大学，培养更多优秀的年轻人的，为祖国的国防事业做更多的贡献！"
-            }
-        },
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这个目标尽管很难，但是我想陪你一起努力实现！"
-            }
-        },
+       
         {
             "op": "actor1-disappear",
             "content": {
@@ -583,7 +403,7 @@
         {
             "op": "speak",
             "content": {
-                "lines": "你们这是要搬走了吗？"
+                "lines": "我们这是要搬去哪儿呀？"
             }
         },
 
@@ -602,50 +422,13 @@
         {
             "op": "speak",
             "content": {
-                "lines": "是的，我们正在搬家。"
-            }
-        },
-
-        {
-            "op": "actor1-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor2-front",
-            "content": {
-
+                "lines": "抗战胜利后，国民党发动全面内战，中国共产党领导全国人民开始了伟大的解放战争。"
             }
         },
         {
             "op": "speak",
             "content": {
-                "lines": "好端端的为什么要搬走？搬哪儿去呀？"
-            }
-        },
-        {
-            "op": "actor2-back",
-            "content": {
-
-            }
-        },
-        {
-            "op": "actor1-front",
-            "content": {
-
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "这一次是为了取得全国胜利做准备。"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "党中央全面筹划教育发展，为加速人才培养，所以我们要向东北解放区转移了。"
+                "lines": "在危机的战争环境下，党中央依然十分重视教育事业和人才的培养，为取得全国胜利做准备，决定将延安大学部分学院，也包括我们自然科学院，向东北转移。"
             }
         },
         {
@@ -662,11 +445,10 @@
         },
         {
             "op": "speak",
-            "content": {
-                "lines": "不过我听说山海关和承德等地区已经被国民党军队占领了，我们要怎么到东北去啊？"
-            }
+          "content": {
+            "lines": "烽火连天，一定阻碍重重吧！"
+          }
         },
-
         {
             "op": "actor2-back",
             "content": {
@@ -682,70 +464,69 @@
         {
             "op": "speak",
             "content": {
-                "lines": "是啊，就是由于这些重重阻碍，我最终停留在了华北地区。"
+                "lines": "是啊，1945年11月，我们离开圣地延安，至此开始了在华北辗转办学的艰苦历程。"
+            }
+        },
+      {
+            "op": "speak",
+            "content": {
+                "lines": "这期间我们几经更名与合并，晋察冀边区工业专门学校、晋察冀边区工业局工业学校、北方大学工学院、华北大学工学院……"
+            }
+      },
+        {
+            "op": "speak",
+            "content": {
+                "lines": "一个个闪亮的名字记录了北理工辗转华北、薪火相传的三年艰苦历程与光辉岁月！"
             }
         },
         {
             "op": "speak",
             "content": {
-                "lines": "这期间几经更名与合并"
+                "lines": "但无论何时，我们始终牢记毛主席的嘱托，坚持办学，为党和国家建设保留住了这一诞生于延安的根脉！"
             }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "晋察冀边区工业专门学校、晋察冀边区工业局工业学校、北方大学工学院、华北大学工学院一个个闪亮的名字"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "记录了小理辗转华北、薪火相传的三年艰苦历程与光辉岁月！"
-            }
-        },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "但无论何时，小理始终牢记毛泽东主席的嘱托，坚持办学，保住了延安自然科学院这一诞生于延安的根脉。"
-            }
-        },
-        {
+        
+         {
             "op": "speak",
             "content": {
                 "lines": "为了让你加深印象，我问你个问题吧"
             }
         },
-        {
+
+         {
             "op": "speak",
             "content": {
-                "lines": "下列选项中哪个不是延安科学院转移期间更名或者合并组建成的学校？"
+                "lines": "下列选项中哪个不是北理工辗转华北时期的曾用名？"
             }
         },
-        {
+
+         {
             "op": "question",
-            "content": {
-                "answer1": "A. 晋察冀边区工业专门学校 ",
-                "answer2": "B. 华北大学工学院",
-                "answer3": "C. 北京工业学院",
-                "answer4": "D. 北方大学工学院",
-                "corrent_answer": 3
-            }
+          "content": {
+            "answer1": "A. 晋察冀边区工业专门学校",
+            "answer2": "B. 华北大学工学院",
+            "answer3": "C. 北京工业学院",
+            "answer4": "D. 北方大学工学院",
+            "corrent_answer": 3
+          }
         },
-        {
+
+         {
             "op": "speak",
-            "content": {
-                "lines": "嗯，就是\"北京工业学院\"，\"北京工业学院\"是后来改的名字呢",
-                "skip": true
-            }
+          "content": {
+            "lines": "答对啦。",
+            "skip": true
+          }
         },
 
 
         {
             "op": "speak",
-            "content": {
-                "lines": "不对，是\"北京工业学院\"，以后要记清楚啦"
-            }
+          "content": {
+            "lines": "不对，是\"北京工业学院\"，以后要记清楚啦。"
+          }
         },
+     
         {
             "op": "actor1-back",
             "content": {
@@ -758,12 +539,7 @@
 
             }
         },
-        {
-            "op": "speak",
-            "content": {
-                "lines": "嗯嗯！"
-            }
-        },
+        
         {
             "op": "speak",
             "content": {
@@ -785,7 +561,7 @@
         {
             "op": "speak",
             "content": {
-                "lines": "你说得对。"
+                "lines": "你说得对！"
             }
         },
         {
@@ -869,13 +645,20 @@
         {
             "op": "speak",
             "content": {
-                "lines": "1949年10月1日，中华人民共和国成立，华北大学工学院全体师生光荣地参加了开国大典，接受了党中央、毛主席的检阅。"
+                "lines": "1949年10月1日，中华人民共和国成立。"
             }
         },
         {
             "op": "speak",
+          "content": {
+            "lines": "300名华北大学工学院师生组成的方队，以中央机关干部身份，列队在金水桥边，光荣参加了中华人民共和国开国大典并现场观摩阅兵式。"
+          }
+        },
+        
+        {
+            "op": "speak",
             "content": {
-                "lines": "自此开始了规范化、正规化、培养多方位人才的漫漫发展之路…"
+                "lines": "阅兵结束后，学校师生又参加了群众游行，接受了毛泽东等国家领导人的检阅。"
             }
         },
         {

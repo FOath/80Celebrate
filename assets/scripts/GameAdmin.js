@@ -91,6 +91,10 @@ cc.Class({
             visible: false,
         },
 
+        StrategyCanvas:{
+            default: null,
+            visible: false,
+        },
         btnClip: {
             default: null,
             visible: false,
@@ -145,10 +149,18 @@ cc.Class({
 
         this.ProducerCanvas = cc.find('/Canvas/UICanvas/ProducerCanvas');
 
+        this.StrategyCanvas = cc.find('/Canvas/UICanvas/StrategyCanvas');
+
         this.btnClip = cc.find('/Btn').getComponent(cc.AudioSource);
         this.closeClip = cc.find('/Close').getComponent(cc.AudioSource);
         this.openClip = cc.find('/Open').getComponent(cc.AudioSource);
         this.getComponent(cc.AudioSource).volume = 0.3;
+
+        // 向新手玩家显示攻略
+        if(this.GameGlobalData.userType == 1){
+            this.StrategyCanvas.active = true;
+            this.GameGlobalData.userType = 0;
+        }
 
         this.init();
     },
@@ -391,7 +403,6 @@ cc.Class({
             }
             this.SettingCanvas.active = false;
         } else {
-            console.log(this.GameGlobalData.soundState);
             if (this.GameGlobalData.soundState) {
                 this.openClip.play();
             }
@@ -483,5 +494,13 @@ cc.Class({
             
         });
 
+    },
+    switchStrategyCanvas(){
+        if(this.StrategyCanvas.active){
+            this.StrategyCanvas.active = false;
+        }
+        else{
+            this.StrategyCanvas.active = true;
+        }
     }
 });

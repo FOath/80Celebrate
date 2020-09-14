@@ -234,7 +234,22 @@
                 "state": true
             }
         },
-        
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
         {
             "op": "actor2-back",
             "content": {
@@ -425,7 +440,64 @@
                 "lines": "不对呢！是\"天眼射电望远镜\"，它如今在贵州深处，有机会你可以去看看"
             }
         },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": false
+            }
+        },
+        {
+            "op": "actor1-disappear",
+            "content":{
 
+            }
+        },
+        {
+            "op": "actor2-disappear",
+            "content":{
+                
+            }
+        },
+        {
+            "op": "backgroundl-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-1l"
+            }
+        },
+        {
+            "op": "backgroundr-switch",
+            "content": {
+                "id": 0,
+                "delay": 2,
+                "url": "backgrounds/7-1r"
+            }
+        },
+        {
+            "op": "actor1-appear",
+            "content": {
+                "url": "actors/actor_man",
+                "posX": -700,
+                "posY": -140
+            }
+        },
+        {
+            "op": "actor2-appear",
+            "content": {
+                "url": "actors/actor_woman",
+                "posX": 700,
+                "posY": -160
+            }
+        },
+        {
+            "op": "dialog-switch",
+            "content": {
+                "id": 1,
+                "state": true
+            }
+        },
         {
             "op": "actor2-back",
             "content": {

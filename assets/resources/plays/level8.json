@@ -574,8 +574,6 @@
         "lines": "一起努力，在这个充满了际遇的时代！"
       }
     },
-
-
     {
       "op": "actor1-disappear",
       "content": {
@@ -590,6 +588,37 @@
         "url": "actors/actor-woman",
         "posX": 700,
         "posY": -160
+      }
+    },
+    {
+      "op": "dialog-switch",
+      "content": {
+        "id": 1,
+        "state": false
+      }
+    },
+
+    {
+      "op": "backgroundl-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-6l"
+      }
+    },
+    {
+      "op": "backgroundr-switch",
+      "content": {
+        "id": 0,
+        "delay": 2,
+        "url": "backgrounds/8-6r"
+      }
+    },
+    {
+      "op": "dialog-switch",
+      "content": {
+        "id": 1,
+        "state": true
       }
     },
     {

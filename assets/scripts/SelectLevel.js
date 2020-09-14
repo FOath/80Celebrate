@@ -63,7 +63,6 @@ cc.Class({
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[9] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[10] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[20] = true;
-
                     break;
                 case 2:
                     this.Label1.getComponent(cc.Label).string = "恭喜您完成第二关";
@@ -79,15 +78,17 @@ cc.Class({
                     break;
                 case 4:
                     this.Label1.getComponent(cc.Label).string = "恭喜您完成第四关";
-                    this.Label2.getComponent(cc.Label).string = "获得建筑：实验室、丹枫楼";
+                    this.Label2.getComponent(cc.Label).string = "获得建筑：实验楼、实验室、丹枫楼";
+                    this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[13] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[14] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[18] = true;
+
                     break;
                 case 5:
                     this.Label1.getComponent(cc.Label).string = "恭喜您完成第五关";
-                    this.Label2.getComponent(cc.Label).string = "获得建筑：教学楼、实验楼、理科教学楼";
+                    this.Label2.getComponent(cc.Label).string = "获得建筑：教学楼、游泳馆、理科教学楼";
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[12] = true;
-                    this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[13] = true;
+                    this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[22] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[25] = true;
                     break;
                 case 6:
@@ -106,10 +107,10 @@ cc.Class({
                     break;
                 case 8:
                     this.Label1.getComponent(cc.Label).string = "恭喜您完成第八关";
-                    this.Label2.getComponent(cc.Label).string = "获得建筑：北理工的恶龙、游泳馆、中心教学楼";
+                    this.Label2.getComponent(cc.Label).string = "获得建筑：北理工的恶龙、中心教学楼、北理纪念碑";
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[19] = true;
-                    this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[22] = true;
                     this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[23] = true;
+                    this.GameGlobalData.getComponent('GameGlobalData').ExistingTypeArray[26] = true;
                     break;                  
             }
             this.GameGlobalData.getComponent('GameGlobalData').completeLevel = false;
